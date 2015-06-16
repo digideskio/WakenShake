@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @dancer.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @dancer.last_name %>
+</p>
+<p>
+  <strong>Email Address:</strong>
+  <%= @dancer.email_address %>
+</p>
+<p>
+  <strong>Year:</strong>
+  <%= @dancer.year %>
+</p>
+<p>
+  <strong>Bio:</strong>
+  <%= @dancer.bio %>
+</p>
+<p>
+  <strong>Dancing For:</strong>
+  <%= @dancer.dancing_for %>
+</p>
+<p>
+  <strong>Amount Raised:</strong>
+  <%= @dancer.amount_raised %>
+</p>
+
+
+<%= link_to 'Edit', edit_dancer_path(@dancer) %> |
+<%= link_to 'Back', dancers_path %>
