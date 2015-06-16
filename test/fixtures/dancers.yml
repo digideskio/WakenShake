@@ -23,6 +23,7 @@
 #  conditional_details :string
 #  dancing_for         :string
 #  email_address       :email
+#  password            :password
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
