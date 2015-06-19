@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :dancers
   resources :charges
-  root 'dancers#index'
+  root 'home_page#index'
   get 'dancer/index'
   get 'welcome/index'
 
