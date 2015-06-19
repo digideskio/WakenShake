@@ -4,7 +4,11 @@ class DancersController < ApplicationController
   # GET /dancers
   # GET /dancers.json
   def index
-    @dancers = Dancer.all
+    if params[:search]
+      @articles = Dancer.search(params[:search])
+    else
+      @dancers = Dancer.all
+    end
   end
 
   # GET /dancers/1

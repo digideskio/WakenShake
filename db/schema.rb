@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616043903) do
+ActiveRecord::Schema.define(version: 20150616045357) do
 
 # Could not dump table "dancers" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass

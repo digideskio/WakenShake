@@ -23,10 +23,22 @@
 #  conditional_details :string
 #  dancing_for         :string
 #  email_address       :email
+#  password            :password
 #
 
 class Dancer < ActiveRecord::Base
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :first_name, presence: true, length: { minimum: 2 }
+  validates :last_name, presence: true, length: { minimum: 2 }
   validates :email_address, presence: true, confirmation: true
+  validates :password, length: { in: 6..20 }
+  validates :bio, length: { maximum: 500, too_long: "%{ count } characters is the maximum allowed." }
+  validates :year, presence: true
+  validates :gender, presence: true
+  validates :tshirt, presence: true
+  validates :contact_name, presence: true, length: { minimum: 2 }
+  validates :contact_number, presence: true, length: { minimum: 5 }
+
+  def self.search(query)
+    where("first_name like ?", "%#{query}%")
+  end
 end
