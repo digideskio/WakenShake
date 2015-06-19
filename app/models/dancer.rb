@@ -37,4 +37,8 @@ class Dancer < ActiveRecord::Base
   validates :tshirt, presence: true
   validates :contact_name, presence: true, length: { minimum: 2 }
   validates :contact_number, presence: true, length: { minimum: 5 }
+
+  def self.search(query)
+    where("first_name like ?", "%#{query}%")
+  end
 end
