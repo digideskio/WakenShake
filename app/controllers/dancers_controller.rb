@@ -1,32 +1,24 @@
 class DancersController < ApplicationController
   before_action :set_dancer, only: [:show, :edit, :update, :destroy]
 
-  # GET /dancers
-  # GET /dancers.json
   def index
     if params[:search]
-      @articles = Dancer.search(params[:search])
+      @dancers = Dancer.search(params[:search])
     else
       @dancers = Dancer.all
     end
   end
 
-  # GET /dancers/1
-  # GET /dancers/1.json
   def show
   end
 
-  # GET /dancers/new
   def new
     @dancer = Dancer.new
   end
 
-  # GET /dancers/1/edit
   def edit
   end
 
-  # POST /dancers
-  # POST /dancers.json
   def create
     @dancer = Dancer.new(dancer_params)
 
@@ -41,8 +33,6 @@ class DancersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /dancers/1
-  # PATCH/PUT /dancers/1.json
   def update
     respond_to do |format|
       if @dancer.update(dancer_params)
@@ -55,8 +45,6 @@ class DancersController < ApplicationController
     end
   end
 
-  # DELETE /dancers/1
-  # DELETE /dancers/1.json
   def destroy
     @dancer.destroy
     respond_to do |format|
@@ -65,21 +53,21 @@ class DancersController < ApplicationController
     end
   end
 
-  # Function to donate money to dancer
   def donate
   end
 
   def login
   end
 
+  def portal
+  end
+
   private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_dancer
       @dancer = Dancer.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def dancer_params
       params.require(:dancer).permit(:first_name, :last_name, :password, :email_address)
     end

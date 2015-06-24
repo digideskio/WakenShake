@@ -3,7 +3,7 @@
 
   <div class="page-header"><div class="text-center"><h1>Dancers</h1></div></div>
   <div class="row">
-  <div class="col-lg-6">
+  <div class="col-md-3">
     <%= form_tag(dancers_path, :method => "get", class: "input-group", id: "search-form") do %>
         <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Dancers" %>
         <span class="input-group-btn">

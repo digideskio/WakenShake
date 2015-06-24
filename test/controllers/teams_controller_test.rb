@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TeamControllerTest < ActionController::TestCase
+class TeamsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
@@ -11,8 +11,8 @@ class TeamControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get destroy" do
-    get :destroy
+  test "should get new" do
+    get :new
     assert_response :success
   end
 

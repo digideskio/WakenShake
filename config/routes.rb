@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
+  get 'teams/index'
+  get 'teams/create'
+  get 'teams/new'
+
   get 'charges/new'
   get 'charges/create'
   get 'charges/index'
-
-  get 'team/index'
-  get 'team/create'
-  get 'team/destroy'
-  get 'team/show'
 
   get 'donations/index'
   get 'about/index'
