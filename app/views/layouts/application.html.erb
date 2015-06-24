@@ -24,6 +24,9 @@
 					<li>
 						<%= link_to "Dancers", dancers_path%>
 					</li>
+          <li>
+            <%= link_to "Teams", teams_path%>
+          </li>
 				</ul>
       	<ul class="nav navbar-nav navbar-right">
       		<li>
@@ -37,6 +40,33 @@
 		</div>
 	</nav>
 				<%= yield %>
-
+  <br><br><br>
+  <div class="container">
+    <div class="row" id="footer">
+    <div class="col-md-3">
+      <h5>Get to know us</h5>
+      <ul>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+    <div class="col-md-3">
+      <h5>Contact information</h5>
+      <p>Wake 'N Shake<br>
+c/o Office of Campus Life<br>
+Campus Box 7526<br>
+1834 Wake Forest Rd.<br>
+Winston-Salem, NC 27109<br>
+</p>
+    </div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-3">
+      <p>This website was built by 1834 Software</p>
+    </div>
+  </div>
+  </div>
+  <br>
 </body>
 </html>

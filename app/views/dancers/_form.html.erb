@@ -19,9 +19,14 @@
       <%= f.text_field :first_name, class: "form-control input-lg", placeholder: "First Name" %><br>
       <%= f.text_field :last_name, class: "form-control input-lg", placeholder: "Last Name" %><br>
       <%= f.email_field :email_address, class: "form-control input-lg", placeholder: "Email Address" %><br>
-      <%= f.select :year, class: "form-control input-lg", placeholder: "Year" %><br>
+      <%= f.password_field :password, class: "form-control input-lg", placeholder: "Password" %><br>
+      <%= select_tag(:year,'<option value="1">Select your year</option>', class: "form-control input-lg") %><br>
+      <%= text_area_tag(:bio, "hi", size: "30x6", class: "form-control input-lg")%><br>
+
       <div class="actions">
-        <%= f.submit %>
+        <%= button_tag(type: 'submit', class: "btn btn-success btn-lg") do %>
+          <i class="icon-ok icon-white"></i> Submit
+        <% end %>
       </div>
     </div>
   </div>

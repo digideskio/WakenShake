@@ -81,6 +81,6 @@ class DancersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dancer_params
-      params.require(:dancer).permit(:first_name, :last_name)
+      params.require(:dancer).permit(:first_name, :last_name, :password, :email_address)
     end
 end

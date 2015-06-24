@@ -31,6 +31,7 @@ last_name_array = %w(Johnson Smith Root Beshara Thompson Reed Jackson Allen Rich
     contact_number: "203-504-0543",
     conditional_details: "Need a chair to sit in",
     dancing_for: "Mom",
-    bio: "Hey, I'm Nick and I love to dance!"
+    bio: "Hey, I'm Nick and I love to dance!",
+    amount_raised: rand(40..999)
   )
 end

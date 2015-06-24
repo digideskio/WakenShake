@@ -1,16 +1,26 @@
 <div class="container">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
   <p id="notice"><%= notice %></p>
 
-  <p><h2>
+  <div class="page-header">
+    <h2>
     <%= @dancer.first_name %>
-    <%= @dancer.last_name %> | <%= link_to "Team Iron Man", root_path %>
-    </h2>
+    <%= @dancer.last_name %> <small> <%= link_to "Team Iron Man", @teams %></small>
+    </h2>      
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+        data-description="Donation to <%= @dancer.first_name %>"
+        data-amount="500"
+        data-label="Donate to <%= @dancer.first_name %>">
+    </script>
+  </div>
     <h5>Class of <%= @dancer.year %></h5>
   </p>
 
   <div class="progress">
-    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-      <span class="sr-only">40% Complete (success)</span>
+    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= @dancer.amount_raised %>">
+      <span class="sr-only"><%= @dancer.amount_raised %> raised!</span>
     </div>
   </div>
   <p>
@@ -24,11 +34,16 @@
     <strong>Dancing For:</strong>
     <%= @dancer.dancing_for %>
   </p>
-  <p>
-    <strong>Amount Raised:</strong>
-    <%= @dancer.amount_raised %>
-  </p>
+    
 
+  <div class="well">
+      Susan donated $50 to Nick
+  </div>
+  <div class="well">
+      Nick donated $25 to Susan
+  </div>
 
   <%= link_to 'Edit', edit_dancer_path(@dancer) %>
+  </div>
+  <div class="col-md-2"></div>
 </div>

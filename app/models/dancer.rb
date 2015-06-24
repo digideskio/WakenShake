@@ -33,7 +33,7 @@ class Dancer < ActiveRecord::Base
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :email_address, presence: true, confirmation: true
-  validates :password, length: { in: 6..20 }
+  validates :password, presence: true, length: { in: 6..20 }
   validates :bio, length: { maximum: 500, too_long: "%{ count } characters is the maximum allowed." }
   validates :year, presence: true
   validates :gender, presence: true

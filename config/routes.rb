@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'team/index'
   get 'team/create'
   get 'team/destroy'
+  get 'team/show'
 
   get 'donations/index'
   get 'about/index'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :dancers
   resources :charges
+  resources :teams
 
   root 'home_page#index'
 
