@@ -8,7 +8,7 @@
 </head>
 <body>
 	<!-- Navigation Bar -->
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse">
 		<div class="container">
 			<div id="navbar-header">
 				<ul class="nav navbar-nav">
@@ -16,25 +16,27 @@
 						<%= link_to "Wake 'N Shake", root_path, class: "navbar-brand"%>
 					</li>
 	        <li>
-	        	<%= link_to "About", controller: :about, action: :index %>
+	        	<%= link_to "About Us", controller: :about, action: :index %>
 	        </li>
 					<li>
-						<a href="#">Donate</a>
+						<%= link_to "Donate", controller: :donations, action: :index %>
 					</li>
 					<li>
-						<%= link_to "Become a Dancer", dancers_path%>
+						<%= link_to "Dancers", dancers_path%>
 					</li>
 				</ul>
+      	<ul class="nav navbar-nav navbar-right">
+      		<li>
+      			<%= link_to "Log In", controller: :dancers, action: :login %>
+      		</li>
+      		<li>
+      			<%= link_to("Sign Up", {controller: :dancers, action: :new}, class: "btn btn-primary navbar-btn") %>
+      		</li>
+      	</ul>
 			</div>
 		</div>
 	</nav>
-	<div id="main-container" class="container">
-		<div class="row">
-			<div class="col-md-6 col-sm-12">
 				<%= yield %>
-			</div>
-		</div>
-	</div>
 
 </body>
 </html>

@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
-  get 'about/index'
+  get 'charges/new'
+  get 'charges/create'
+  get 'charges/index'
 
+  get 'team/index'
+  get 'team/create'
+  get 'team/destroy'
+
+  get 'donations/index'
+  get 'about/index'
   get 'home_page/index'
+  get 'dancers/login'
 
   resources :dancers
   resources :charges
+
   root 'home_page#index'
-  get 'dancer/index'
-  get 'welcome/index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

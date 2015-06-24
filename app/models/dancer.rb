@@ -27,6 +27,9 @@
 #
 
 class Dancer < ActiveRecord::Base
+  belongs_to :team
+  has_many :charge
+
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :email_address, presence: true, confirmation: true
