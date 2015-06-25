@@ -53,15 +53,6 @@ class DancersController < ApplicationController
     end
   end
 
-  def donate
-  end
-
-  def login
-  end
-
-  def portal
-  end
-
   private
 
     def set_dancer

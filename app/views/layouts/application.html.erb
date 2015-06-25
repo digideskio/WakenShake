@@ -16,13 +16,13 @@
 						<%= link_to "Wake 'N Shake", root_path, class: "navbar-brand"%>
 					</li>
 	        <li>
-	        	<%= link_to "About Us", controller: :about, action: :index %>
+	        	<%= link_to "About Us", controller: "/about", action: :index %>
 	        </li>
           <li>
             <%= link_to "Our History", histories_path %>
           </li>
 					<li>
-						<%= link_to "Donate", controller: :donations, action: :index %>
+						<%= link_to "Donate", controller: "/donations", action: :index %>
 					</li>
 					<li>
 						<%= link_to "Dancers", dancers_path %>
@@ -32,14 +32,25 @@
           </li>
 				</ul>
       	<ul class="nav navbar-nav navbar-right">
-      		<li>
-      			<%= link_to "Log In", controller: :dancers, action: :login %>
-      		</li>
-      		<li>
-            <p class="navbar-btn">
-      			<%= link_to("Sign Up", {controller: :dancers, action: :new}, class: "btn btn-primary") %>
-            </p>
-      		</li>
+          <% if dancer_signed_in? %>
+            <li>
+              <% link_to "#{current_user.email}", edit_dancer_registration_path %>
+            </li>
+            <li>
+              <p class="navbar-btn">
+                <%= link_to("Logout", destroy_user_session_path, method: :delete, class: "btn btn-primary")%>
+              </p>
+            </li>
+          <% else %>
+            <li>
+              <% link_to "Login", new_dancer_session_path, class: "navbar-link" %>
+            </li>
+            <li>
+              <p class="navbar-btn">
+              <%= link_to("Sign Up", new_dancer_registration_path, class: "btn btn-primary") %>
+              </p>
+            </li>
+          <% end %>
       	</ul>
 			</div>
 		</div>
