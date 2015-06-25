@@ -7,26 +7,22 @@
   </div>
 
   <p id="notice"><%= notice %></p>
-  <table>
-    <tbody>
-      <% @histories.each do |history| %>
-        <tr>
-          <td><%= history.name %></td>
-          <td><%= history.theme %></td>
-          <td><%= history.year %></td>
-          <td><%= history.overview %></td>
-          <td><%= history.amount_raised %></td>
-          <td><%= history.num_of_dancers %></td>
-          <td><%= link_to 'Show', history %></td>
-          <td><%= link_to 'Edit', edit_history_path(history) %></td>
-          <td><%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 
-  <br>
+  <% @histories.each do |history| %>
+    <div class="row">
+      <div class="col-md-7">
+        <%= image_tag history.photo.url %>
+      </div>
+      <div class="col-md-5">
+        <h3><%= history.year.year %> | <%= history.theme %></h3>
+        <p class="lead"><%= history.num_of_dancers %> dancers, <%= history.amount_raised %> raised</p>
+        <p><%= history.overview %></p>
+        <%= link_to 'Edit', edit_history_path(history) %>
+        <%= link_to 'Delete', history, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  <% end %>
 
-  <%= link_to 'New History', new_history_path %>
+  <%= link_to 'New History Entry', new_history_path %>
 
 </div>

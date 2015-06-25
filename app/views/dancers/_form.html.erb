@@ -26,7 +26,7 @@
       </div>
       <div class="form-group">
         <label for="email" class="text-uppercase">Email address</label>
-        <%= f.email_field :email_address, id: "email", class: "form-control input-lg", placeholder: "Enter your email" %>
+        <%= f.email_field :email, id: "email", class: "form-control input-lg", placeholder: "Enter your email" %>
       </div>
       <div class="form-group">
         <label for="password" class="text-uppercase">Password</label>
@@ -48,6 +48,10 @@
       <div class="form-group">
         <label for="tshirt" class="text-uppercase">T-Shirt Size</label>
         <%= select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control input-lg") %>
+      </div>
+      <div class="form-group">
+        <label for="avatar" class="text-uppercase">Profile picture</label>
+        <%= f.file_field :avatar %>
       </div>
 
       <div class="actions">

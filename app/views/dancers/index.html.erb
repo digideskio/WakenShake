@@ -3,24 +3,27 @@
 
   <div class="page-header"><div class="text-center"><h1>Dancers</h1></div></div>
   <div class="row">
-  <div class="col-md-3">
-    <%= form_tag(dancers_path, :method => "get", class: "input-group", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Dancers" %>
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-        </span>
-    <% end %>
-  </div>
-  </div>
-  <table>
-    <tbody>
-      <% @dancers.each do |dancer| %>
-        <tr>
-          <td><%= link_to "#{dancer.first_name} #{dancer.last_name}", dancer %></td>
-          <td><%= link_to 'Edit', edit_dancer_path(dancer) %></td>
-          <td><%= link_to 'Destroy', dancer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+    <div class="col-md-4">
+      <%= form_tag(dancers_path, :method => "get", class: "input-group", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Dancers" %>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </span>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+      <% @dancers.each do |dancer| %>
+      <div class="col-md-3">
+        <div class="thumbnail">
+          <%= image_tag(dancer.avatar.url, class: "img-rounded") %>
+          <div class="caption">
+            <div class="text-center"><h4><%= link_to "#{dancer.first_name} #{dancer.last_name}", dancer %></h4></div>
+<!--             <%= link_to 'Edit', edit_dancer_path(dancer) %> <%= link_to 'Delete', dancer, method: :delete, data: { confirm: 'Are you sure?' } %>
+ -->          </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
 </div>

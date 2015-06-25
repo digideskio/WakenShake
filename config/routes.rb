@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :dancers
   resources :histories
   resources :teams
   get 'teams/index'

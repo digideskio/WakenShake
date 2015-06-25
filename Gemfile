@@ -20,6 +20,15 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 # Annotations for our model objects
 gem 'annotate', '~> 2.6.6'
 
+# Paperclip is for handling photos
+gem "paperclip", "~> 4.2"
+
+# Devise is for login help
+gem 'devise'
+
+# for tiered access in the app
+gem "cancan"
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

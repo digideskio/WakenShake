@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :overview %><br>
-    <%= f.text_field :overview %>
+    <%= f.text_area :overview %>
   </div>
   <div class="field">
     <%= f.label :amount_raised %><br>
@@ -34,6 +34,10 @@
   <div class="field">
     <%= f.label :num_of_dancers %><br>
     <%= f.text_field :num_of_dancers %>
+  </div>
+  <div class="field">
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
   </div>
   <div class="actions">
     <%= f.submit %>

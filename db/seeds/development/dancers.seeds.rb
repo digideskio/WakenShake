@@ -15,8 +15,8 @@ last_name_array = %w(Johnson Smith Root Beshara Thompson Reed Jackson Allen Rich
   Dancer.where(
     first_name: first_name,
     last_name: last_name,
-    email_address: "#{first_name.downcase}.#{last_name.downcase}@wfu.edu",
     year: years.sample,
+    email: "#{first_name.downcase}.#{last_name.downcase}.#{rand(10..12)}@wfu.edu",
     gender: %w('Male' 'Female').sample,
     tshirt: tshirts.sample
   ).first_or_create!(

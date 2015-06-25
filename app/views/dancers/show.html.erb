@@ -1,14 +1,23 @@
 <div class="container">
-  <div class="col-md-2"></div>
+  <div class="col-md-2">
+    <%= image_tag(@dancer.avatar.url, class: "img-circle") %>
+  </div>
   <div class="col-md-8">
   <p id="notice"><%= notice %></p>
 
   <div class="page-header">
     <h2>
     <%= @dancer.first_name %>
-    <%= @dancer.last_name %> <small> <%= link_to "Team Iron Man", @teams %></small>
-    </h2>      
-    <div class="form-inline">
+    <%= @dancer.last_name %> <small><%= link_to "Team Iron Man", controller: :teams, action: :index %></small>
+    </h2>
+  </div>
+    <h5>Class of <%= @dancer.year %></h5>
+  <p>
+    <strong>Dancing for </strong>
+    <%= @dancer.dancing_for %>
+  </p>
+  </p>
+<div class="form-inline">
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-addon">$</div>
@@ -24,27 +33,11 @@
         </script>
       </div>
     </div>
-  </div>
-    <h5>Class of <%= @dancer.year %></h5>
-  </p>
-
   <div class="progress">
     <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= @dancer.amount_raised %>">
       <span class="sr-only"><%= @dancer.amount_raised %> raised!</span>
     </div>
   </div>
-  <p>
-
-  </p>
-  <p>
-    <strong>Bio:</strong>
-    <%= @dancer.bio %>
-  </p>
-  <p>
-    <strong>Dancing For:</strong>
-    <%= @dancer.dancing_for %>
-  </p>
-    
 
   <div class="well">
       Susan donated $50 to Nick
