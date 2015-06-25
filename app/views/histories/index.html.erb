@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="page-header">
+    <div class="text-center">
+      <h1>Our History</h1>
+      <p>Wake 'N Shake has been Wake Forest's top charity event for the past decade</p>
+    </div>
+  </div>
+
+  <p id="notice"><%= notice %></p>
+  <table>
+    <tbody>
+      <% @histories.each do |history| %>
+        <tr>
+          <td><%= history.name %></td>
+          <td><%= history.theme %></td>
+          <td><%= history.year %></td>
+          <td><%= history.overview %></td>
+          <td><%= history.amount_raised %></td>
+          <td><%= history.num_of_dancers %></td>
+          <td><%= link_to 'Show', history %></td>
+          <td><%= link_to 'Edit', edit_history_path(history) %></td>
+          <td><%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New History', new_history_path %>
+
+</div>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :histories
+  resources :teams
   get 'teams/index'
   get 'teams/create'
   get 'teams/new'

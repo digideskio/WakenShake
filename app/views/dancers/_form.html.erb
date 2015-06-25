@@ -16,15 +16,42 @@
     <% end %>
 
     <div class="row">
-      <%= f.text_field :first_name, class: "form-control input-lg", placeholder: "First Name" %><br>
-      <%= f.text_field :last_name, class: "form-control input-lg", placeholder: "Last Name" %><br>
-      <%= f.email_field :email_address, class: "form-control input-lg", placeholder: "Email Address" %><br>
-      <%= f.password_field :password, class: "form-control input-lg", placeholder: "Password" %><br>
-      <%= select_tag(:year,'<option value="1">Select your year</option>', class: "form-control input-lg") %><br>
-      <%= text_area_tag(:bio, "hi", size: "30x6", class: "form-control input-lg")%><br>
+      <div class="form-group">
+        <label for="first_name" class="text-uppercase">First Name</label>
+        <%= f.text_field :first_name, id: "first_name", class: "form-control input-lg", placeholder: "Enter your first name" %>
+      </div>
+      <div class="form-group">
+        <label for="last_name" class="text-uppercase">Last Name</label>
+        <%= f.text_field :last_name, id: "last_name", class: "form-control input-lg", placeholder: "Enter your last name" %>
+      </div>
+      <div class="form-group">
+        <label for="email" class="text-uppercase">Email address</label>
+        <%= f.email_field :email_address, id: "email", class: "form-control input-lg", placeholder: "Enter your email" %>
+      </div>
+      <div class="form-group">
+        <label for="password" class="text-uppercase">Password</label>
+        <%= f.password_field :password, id: "password", class: "form-control input-lg", placeholder: "Enter a new password" %>
+      </div>
+      <div class="form-group">
+        <label for="sex" class="text-uppercase">Gender</label>
+        <div class="form-group" id="sex">
+          <%= radio_button_tag(:gender, "male") %>
+          <%= label_tag(:gender_male, "Male") %>
+          <%= radio_button_tag(:gender, "female") %>
+          <%= label_tag(:gender_female, "Female") %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="year" class="text-uppercase">Year</label>
+        <%= select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control input-lg") %>
+      </div>
+      <div class="form-group">
+        <label for="tshirt" class="text-uppercase">T-Shirt Size</label>
+        <%= select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control input-lg") %>
+      </div>
 
       <div class="actions">
-        <%= button_tag(type: 'submit', class: "btn btn-success btn-lg") do %>
+        <%= button_tag(type: 'submit', class: "btn btn-success btn-lg btn-block") do %>
           <i class="icon-ok icon-white"></i> Submit
         <% end %>
       </div>

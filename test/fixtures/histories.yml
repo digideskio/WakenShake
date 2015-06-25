@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  theme: MyString
+  year: 2015-06-24 18:19:39
+  overview: MyString
+  amount_raised: MyString
+  num_of_dancers: MyString
+
+two:
+  name: MyString
+  theme: MyString
+  year: 2015-06-24 18:19:39
+  overview: MyString
+  amount_raised: MyString
+  num_of_dancers: MyString

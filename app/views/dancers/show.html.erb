@@ -8,12 +8,22 @@
     <%= @dancer.first_name %>
     <%= @dancer.last_name %> <small> <%= link_to "Team Iron Man", @teams %></small>
     </h2>      
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-        data-description="Donation to <%= @dancer.first_name %>"
-        data-amount="500"
-        data-label="Donate to <%= @dancer.first_name %>">
-    </script>
+    <div class="form-inline">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon">$</div>
+          <input type="text" class="form-control" placeholder="Amount">
+          <div class="input-group-addon">.00</div>
+        </div>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="Donation to Wake 'N Shake"
+                data-amount="500"
+                data-label="Donate to <%= @dancer.first_name %>"
+                data-panel-label="Donate {{amount}}">
+        </script>
+      </div>
+    </div>
   </div>
     <h5>Class of <%= @dancer.year %></h5>
   </p>
