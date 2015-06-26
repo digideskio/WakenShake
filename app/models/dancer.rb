@@ -49,22 +49,21 @@ class Dancer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   belongs_to :team
-  has_many :charge
+  has_many :charges
 
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :password, presence: true, length: { in: 6..20 }
-  validates :bio, length: { maximum: 500, too_long: "%{ count } characters is the maximum allowed." }
-  validates :year, presence: true
-  validates :gender, presence: true
-  validates :tshirt, presence: true
-  validates :contact_name, presence: true, length: { minimum: 2 }
-  validates :contact_number, presence: true, length: { minimum: 5 }
+  # validates :year, presence: true
+  # validates :gender, presence: true
+  # validates :tshirt, presence: true
+  # validates :contact_name, presence: true, length: { minimum: 2 }
+  # validates :contact_number, presence: true, length: { minimum: 5 }
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/app_icon.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   def self.search(query)
-    where("first_name like ?", "%#{query}%")
+    where("first_name LIKE ? OR last_name LIKE ?", "%#{query}%", "%#{query}%")
   end
 end

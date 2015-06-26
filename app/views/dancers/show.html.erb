@@ -45,8 +45,12 @@
   <div class="well">
       Nick donated $25 to Susan
   </div>
+  
+  <% if can? :manage, :all %>
+    <%= link_to 'Edit', edit_dancer_path(@dancer) %> | 
+    <%= link_to 'Delete this dancer', @dancer, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 
-  <%= link_to 'Edit', edit_dancer_path(@dancer) %>
   </div>
   <div class="col-md-2"></div>
 </div>

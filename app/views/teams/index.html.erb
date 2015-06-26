@@ -27,5 +27,7 @@
 
   <br>
 
-  <%= link_to 'New Team', new_team_path %>
+  <% if can? :manage, :all %>
+    <%= link_to 'Create a new team', new_team_path %>
+  <% end %>
 </div>

@@ -10,7 +10,7 @@
     <div class="form-inline">
       <div class="form-group">
         <%= form_tag(dancers_path, :method => "get", class: "input-group", id: "search-form") do %>
-            <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search dancers..." %>
+            <%= text_field_tag :search, params[:search], class: "form-control input-md", placeholder: "Search dancers..." %>
             <span class="input-group-btn">
               <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
             </span>

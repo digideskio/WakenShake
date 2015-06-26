@@ -1,5 +1,6 @@
 class DancersController < ApplicationController
   before_action :set_dancer, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     if params[:search]

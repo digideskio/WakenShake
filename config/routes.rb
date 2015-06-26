@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :dancers
+  devise_for :dancers, controllers: { registrations: 'registrations' }
   resources :histories
   resources :teams
   get 'teams/index'

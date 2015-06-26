@@ -29,6 +29,12 @@ gem 'devise'
 # for tiered access in the app
 gem "cancan"
 
+# for pagination
+gem 'will_paginate', '~> 3.0.6'
+
+# bootstrap integration with will_paginate
+gem 'will_paginate-bootstrap'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -63,5 +69,8 @@ group :development, :test do
 
   # Seedbank organizes our seed data a little better so that it's not a mess seeding stuff
   gem 'seedbank'
+
+  # for testing email messages
+  gem "letter_opener"
 end
 

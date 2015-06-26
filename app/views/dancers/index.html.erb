@@ -14,16 +14,24 @@
   </div>
   <br>
   <div class="row">
+      <% @dancers = @dancers.paginate(page: params[:page]).per_page(28).order('amount_raised DESC') %>
       <% @dancers.each do |dancer| %>
       <div class="col-md-3">
         <div class="thumbnail">
           <%= image_tag(dancer.avatar.url, class: "img-rounded") %>
           <div class="caption">
             <div class="text-center"><h4><%= link_to "#{dancer.first_name} #{dancer.last_name}", dancer %></h4></div>
-<!--             <%= link_to 'Edit', edit_dancer_path(dancer) %> <%= link_to 'Delete', dancer, method: :delete, data: { confirm: 'Are you sure?' } %>
- -->          </div>
+            <% if can? :manage, :all %>
+             <%= link_to 'Edit', edit_dancer_path(dancer) %> | <%= link_to 'Delete', dancer, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </div>
         </div>
       </div>
       <% end %>
+  </div>
+  <div class="text-center">
+    <div class="pagination">
+      <%= will_paginate @dancers, renderer: BootstrapPagination::Rails %>
+    </div>
   </div>
 </div>
