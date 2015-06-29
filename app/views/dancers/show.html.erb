@@ -8,7 +8,7 @@
   <div class="page-header">
     <h2>
     <%= @dancer.first_name %>
-    <%= @dancer.last_name %> <small><%= link_to "Team Iron Man", controller: :teams, action: :index %></small>
+    <%= @dancer.last_name %> <small><%= link_to @dancer.team.name, @dancer.team %></small>
     </h2>
   </div>
     <h5>Class of <%= @dancer.year %></h5>

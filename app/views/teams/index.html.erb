@@ -1,32 +1,31 @@
 <div class="container">
+
   <p id="notice"><%= notice %></p>
 
   <div class="page-header"><div class="text-center"><h1>Teams</h1></div></div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Amount raised</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
+  <div class="row">
+    <% @teams = @teams.paginate(page: params[:page]).per_page(40).order('name ASC') %>
       <% @teams.each do |team| %>
-        <tr>
-          <td><%= team.name %></td>
-          <td><%= team.amount_raised %></td>
-          <td><%= link_to 'Show', team %></td>
-          <td><%= link_to 'Edit', edit_team_path(team) %></td>
-          <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <div class="caption">
+              <%= link_to(team.name, team) %><br>
+              Raised <%= team.amount_raised %>
+              <% if can? :manage, :all %>
+                <%= link_to 'Edit', edit_team_path(team) %>
+                <%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <div class="text-center">
+    <div class="pagination">
+      <%= will_paginate @teams, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
   <% if can? :manage, :all %>
     <%= link_to 'Create a new team', new_team_path %>
   <% end %>

@@ -41,6 +41,8 @@
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
+#  admin                  :boolean          default(FALSE)
+#  team_id                :integer
 #
 
 require 'test_helper'

@@ -1,14 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Amount raised:</strong>
+  <h1><%= @team.name %></h1>
+
+  <h3>Dancers</h3>
+  <ul>
+    <% @team.dancers.each do |dancer| %>
+     <li><%= link_to dancer.first_name, dancer %></li>
+    <% end %>
+  </ul>
+
   <%= @team.amount_raised %>
-</p>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+  <% if can? :manage, :all %>
+    <%= link_to 'Edit', edit_team_path(@team) %>
+  <% end %>
+  
+</div>
