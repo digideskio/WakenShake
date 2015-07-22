@@ -1,0 +1,15 @@
+.container
+
+  %p#notice= notice
+
+  %h1= @team.name
+
+  %h3 Dancers
+  %ul
+    - @team.dancers.each do |dancer|
+      %li= link_to(dancer.first_name, dancer)
+
+  = @team.amount_raised
+
+  - if can? :manage, :all
+    = link_to('Edit', edit_team_path(@team))

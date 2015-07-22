@@ -1,0 +1,74 @@
+!!!
+%html
+  %head
+    %title Wake 'N Shake
+    = stylesheet_link_tag('application', media: 'all', 'data-turbolinks-track' => true)
+    = javascript_include_tag('application', 'data-turbolinks-track' => true)
+    = csrf_meta_tags
+  %body
+    %nav.navbar.navbar-inverse
+      .container
+        #navbar-header
+          %ul.nav.navbar-nav
+            %li= link_to("Wake 'N Shake", root_path, class: "navbar-brand")
+            %li= link_to("About Us", controller: "/about", action: :index)
+            %li= link_to("Our History", histories_path)
+            %li= link_to("Donate", controller: "/donations", action: :index)
+            %li= link_to("Dancers", dancers_path)
+            %li= link_to("Teams", teams_path)
+        %ul.nav.navbar-nav.navbar-right
+          - if dancer_signed_in?
+            %li
+              = link_to("#{current_dancer.first_name} #{current_dancer.last_name}", edit_dancer_registration_path)
+            %li
+              %p.navbar-btn= link_to("Logout", destroy_dancer_session_path, method: :delete, class: "btn btn-primary")
+          - else
+            %li
+              = link_to("Log In", new_dancer_session_path)
+            %li
+              %p.navbar-btn= link_to("Sign Up", new_dancer_registration_path, class: "btn btn-primary")
+    = yield
+  %br
+  %br
+  %br
+  .container
+    .row#footer
+      .col-md-3
+        %h5 Get to know us
+        %ul.list-unstyled
+          %li
+            %a{href: "https://twitter.com/wfuwakenshake"}Twitter
+          %li
+            %a{href: "http://instagram.com/wfuwakenshake"}Instagram
+          %li
+            %a{href: "https://www.facebook.com/wfuWakeNShake"}Facebook
+          %li
+            %a{href:"http://www.youtube.com/wfuwakenshake"}YouTube
+      .col-md-3
+        %h5 Contact information
+        %address
+          %strong Wake 'N Shake
+          %br
+          c/o Office of Campus Life
+          %br
+          Campus Box 7526
+          %br
+          1834 Wake Forest Rd.
+          %br
+          Winston-Salem, NC 27109
+          %br
+          %a{href: "mailto:wns@wfu.edu"}Email Us
+      .col-md-3
+      .col-md-3
+        %h5 Our partners
+        %ul.list-unstyled
+          %li 
+            %a{href: "http://campuslife.wfu.edu/"}WFU Campus Life
+          %li
+            %a{href: "http://www.wakehealth.edu/Comprehensive-Cancer-Center/"}WFBMC Comprehensive Cancer Center
+          %li
+            %a{href: "http://philanthropy.campuslife.wfu.edu/brian-piccolo-cancer-fund-drive/"}Brian Piccolo Cancer Research Fund
+        %p 
+          This website was built by 
+          %a{href: "http://1834wfu.com"}1834 Software
+        %br"

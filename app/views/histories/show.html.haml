@@ -1,0 +1,29 @@
+%p#notice= notice
+
+%p
+  %strong Name:
+  = @history.name
+
+%p
+  %strong Theme:
+  = @history.theme
+
+%p
+  %strong Year:
+  = @history.year
+
+%p
+  %strong Overview:
+  = @history.overview
+
+%p
+  %strong Amount raised:
+  = @history.amount_raised
+
+%p
+  %strong Num of dancers:
+  = @history.num_of_dancers
+
+= link_to 'Edit', edit_history_path(@history)
+|
+= link_to 'Back', histories_path %>

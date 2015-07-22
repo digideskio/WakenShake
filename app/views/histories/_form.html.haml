@@ -1,0 +1,34 @@
+= form_for(@history) do |f|
+  - if @history.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@history.errors.count, "error")
+        prohibited this history from being saved:
+
+      %ul
+        = @history.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :theme
+    = f.text_field :theme
+  .field
+    = f.label :year
+    = f.datetime_select :year
+  .field
+    = f.label :overview
+    = f.text_area :overview
+  .field
+    = f.label :amount_raised
+    = f.text_field :amount_raised
+  .field
+    = f.label :num_of_dancers
+    = f.text_field :num_of_dancers
+  .field
+    = f.label :photo
+    = f.file_field :photo
+  .actions
+    = f.submit

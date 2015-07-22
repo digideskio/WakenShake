@@ -1,0 +1,24 @@
+.container
+
+  %p#notice= notice
+
+  .page-header.text-center
+    %h1 Teams
+
+  .row
+    - @teams = @teams.paginate(page: params[:page]).per_page(40).order('name ASC')
+      = @teams.each do |team|
+        .col-md-3
+          .thumbnail
+            .caption
+              = link_to(team.name, team)
+              Raised 
+              = team.amount_raised
+              - if can? :manage, :all
+                = link_to('Edit', edit_team_path(team))
+                = link_to('Destroy', team, method: :delete, data: { confirm: 'Are you sure?' })
+  .text-center.pagination
+    = will_paginate @teams, renderer: BootstrapPagination::Rails
+
+  - if can? :manage, :all
+    = link_to('Create a new team', new_team_path)

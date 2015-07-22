@@ -1,0 +1,28 @@
+.container
+  .page-header.text-center
+    %h1 Our History
+    %p Wake 'N Shake has been Wake Forest's top charity event for the past decade
+
+  %p#notice= notice
+
+  - @histories.each do |history|
+    .row
+      .col-md-7
+        = image_tag(history.photo.url, class: "img-responsive")
+      .col-md-5
+        %h3
+          = history.year.year
+          |
+          = history.theme
+        %p.lead
+          =history.num_of_dancers
+          dancers, 
+          = history.amount_raised
+          raised
+        %p= history.overview
+        - if can? :manage, :all
+          = link_to('Edit', edit_history_path(history))
+          = link_to('Delete', history, method: :delete, data: { confirm: 'Are you sure?' })
+
+  - if can? :manage, :all
+    = link_to('Create a new history entry', new_history_path)

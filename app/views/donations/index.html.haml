@@ -1,0 +1,44 @@
+.container
+  .page-header.text-center
+    %h1 Support Us
+  .row
+    .col-md-6
+      .well
+        %h3 Donate to a dancer
+        %p Send a donation to your friends, family, and fellow dancers to help support their fundraising efforts!
+        .form-inline
+          .form-group
+            = form_tag(dancers_path, :method => "get", class: "input-group", id: "search-form") do
+              = text_field_tag(:search, params[:search], class: "form-control input-md", placeholder: "Search dancers...")
+              %span.input-group-btn
+                %button.btn.btn-default{type:"button"}
+                  %span.glyphicon.glyphicon-search{aria: {hidden:"true"}}
+    .col-md-6
+      .well
+        %h3 Donate to Wake 'N Shake
+        %p If you do not want to donate to a specific dancer or team, you can make a general donation to Wake 'N Shake.
+        .form-inline
+          .form-group
+            .input-group
+              .input-group-addon $
+              %input.form-control{type:"text", placeholder: "Amount"}
+              .input-group-addon .00
+          / %script{ src: "https://checkout.stripe.com/checkout.js" class="stripe-button",
+          /     data-key: "<%= Rails.configuration.stripe[:publishable_key] %>",
+          /     data-description: "Donation to Wake 'N Shake",
+          /     data-amount: "500",
+          /     data-label: "Donate",
+          /     data-panel-label: "Donate {{amount}}"}
+  .row
+    .col-md-6
+      .well
+        %h3 Send in donations by mail
+        %p We also accept cash or check donations! Checks can be made out to the Brian Piccolo Cancer Research Fund. If you would like this amount to be credited to a specific dancer, organization, or department, simply include a note with that information in the envelope. All donations can be sent to:
+        %address
+          %strong Brian Piccolo Cancer Fund
+          %br
+          Wake Forest University
+          %br
+          PO Box 7526
+          %br
+          Winston-Salem, NC 27109

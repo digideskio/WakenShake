@@ -1,0 +1,58 @@
+.row
+  .col-md-3
+    .col-md-6
+      .well
+        = form_for(@dancer) do |f|
+          = if @dancer.errors.any?
+            #error_explanation
+              %h2= pluralize(@dancer.errors.count, "error") stopped you from signing up:
+
+              %ul
+                <% @dancer.errors.full_messages.each do |message| %>
+                  %li= message
+                = end
+          = end
+
+        .row
+          .form-group
+            %label for="first_name".text-uppercase First Name
+            = f.text_field :first_name, id: "first_name", class: "form-control input-lg", placeholder: "Enter your first name"
+
+          .form-group
+            %label for="last_name"."text-uppercase" Last Name
+            = f.text_field :last_name, id: "last_name", class: "form-control input-lg", placeholder: "Enter your last name"
+
+          .form-group
+            %label for="email"."text-uppercase" Email address
+            = f.email_field :email, id: "email", class: "form-control input-lg", placeholder: "Enter your email"
+
+          .form-group
+            %label for="password"."text-uppercase" Password
+            = f.password_field :password, id: "password", class: "form-control input-lg", placeholder: "Enter a new password"
+
+          .form-group
+            %label for="sex"."text-uppercase" Gender
+            .form-group#sex
+              = radio_button_tag(:gender, "male")
+              = label_tag(:gender_male, "Male")
+              = radio_button_tag(:gender, "female")
+              = label_tag(:gender_female, "Female")
+
+          .form-group
+            %label for="year"."text-uppercase" Year
+            = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control input-lg")
+
+          .form-group
+            %label for="tshirt"."text-uppercase" T-Shirt Size
+            = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control input-lg")
+
+          .form-group
+            %label for="avatar"."text-uppercase" Profile picture
+            = f.file_field :avatar
+
+          .actions
+            = button_tag(type: 'submit', class: "btn btn-success btn-lg btn-block") do
+              %i.icon-ok.icon-white Submit
+            = end
+      = end
+.col-md-3
