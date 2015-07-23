@@ -1,24 +1,32 @@
 .container
 
-  %p#notice= notice
-
   .page-header.text-center
     %h1 Teams
 
+  .form-inline
+    = form_tag(teams_path, :method => "get", id: "search-form") do
+      .input-group
+        = text_field_tag(:search, params[:search], class: "form-control input-md", placeholder: "Search teams...")
+        %span.input-group-btn
+          %button.btn.btn-default{type:"button"}
+            %span.glyphicon.glyphicon-search{aria: {hidden:"true"}}
+      - if can? :manage, :all
+        = link_to('Create a new team', new_team_path, class: "btn btn-primary btn-md")
+    %br
+
   .row
     - @teams = @teams.paginate(page: params[:page]).per_page(40).order('name ASC')
-      = @teams.each do |team|
-        .col-md-3
-          .thumbnail
-            .caption
-              = link_to(team.name, team)
-              Raised 
-              = team.amount_raised
-              - if can? :manage, :all
-                = link_to('Edit', edit_team_path(team))
-                = link_to('Destroy', team, method: :delete, data: { confirm: 'Are you sure?' })
+    - @teams.each do |team|
+      .col-md-3
+        .thumbnail
+          .caption
+            = link_to team.name, team
+            %br
+            Raised 
+            = team.amount_raised
+            %br
+            - if can? :manage, :all
+              = link_to('Edit', edit_team_path(team), class: "btn btn-default btn-sm")
+              = link_to('Delete team', team, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
   .text-center.pagination
-    = will_paginate @teams, renderer: BootstrapPagination::Rails
-
-  - if can? :manage, :all
-    = link_to('Create a new team', new_team_path)
+    = will_paginate(@teams, renderer: BootstrapPagination::Rails)

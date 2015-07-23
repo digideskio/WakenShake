@@ -11,4 +11,8 @@
 
 class Team < ActiveRecord::Base
   has_many :dancers
+
+  def self.search(query)
+    where("name LIKE ?", "%#{query}%")
+  end
 end

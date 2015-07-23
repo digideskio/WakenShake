@@ -1,15 +1,13 @@
 .container
 
-  %p#notice= notice
-
-  %h1= @team.name
-
+  %h1
+    = @team.name
+    - if can? :manage, :all
+      = link_to('Edit', edit_team_path(@team), class: "btn btn-default btn-md")
+      = link_to('Delete team', @team, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-md")
+  = @team.amount_raised
+  raised
   %h3 Dancers
   %ul
     - @team.dancers.each do |dancer|
       %li= link_to(dancer.first_name, dancer)
-
-  = @team.amount_raised
-
-  - if can? :manage, :all
-    = link_to('Edit', edit_team_path(@team))

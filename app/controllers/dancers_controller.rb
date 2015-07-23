@@ -54,6 +54,12 @@ class DancersController < ApplicationController
     end
   end
 
+  def set_staff
+  end
+
+  def set_admin
+  end
+
   private
 
     def set_dancer

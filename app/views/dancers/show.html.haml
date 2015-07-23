@@ -1,10 +1,9 @@
 .container
   .col-md-2
-    = image_tag(@dancer.avatar.url, class: "img-circle")
+    .thumbnail
+      = image_tag(@dancer.avatar.url, class: "img-circle")
 
   .col-md-8
-    %p#notice= notice
-
     .page-header
       %h2
         = @dancer.first_name
@@ -14,6 +13,9 @@
       %h5 
         Class of 
         = @dancer.year
+      - if can? :manage, :all
+        = link_to('Edit', edit_dancer_path(@dancer), class: "btn btn-default btn-md")
+        = link_to('Delete this dancer', @dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-md")
     %p
       %strong Dancing for
       = @dancer.dancing_for
@@ -22,8 +24,8 @@
         .input-group
           .input-group-addon
             $
-            %input.form-control{type: "text", placeholder:"Amount" }
-            .input-group-addon .00
+          %input.form-control{type: "text", placeholder:"Amount" }
+          .input-group-addon .00
           / %script{:src => "https://checkout.stripe.com/checkout.js" class="stripe-button",
           /         :data-key => "<%= Rails.configuration.stripe[:publishable_key] %>",
           /         :data-description => "Donation to Wake 'N Shake",
@@ -36,17 +38,17 @@
         aria: { valuenow:"40" },
         aria: { valuemin:"0" },
         aria: { valuemax:"100" },
-        style: "width: <%= @dancer.amount_raised %>" }
-        %span.sr-only
-          = @dancer.amount_raised
-          raised!
+        style: "width: %= @dancer.amount_raised" }
+    %span
+      $
+      =@dancer.amount_raised
+      raised!
 
     .well Susan donated $50 to Nick
     .well Nick donated $25 to Susan
-    
-    - if can? :manage, :all
-      = link_to('Edit', edit_dancer_path(@dancer))
-      | 
-      = link_to('Delete this dancer', @dancer, method: :delete, data: { confirm: 'Are you sure?' })
 
   .col-md-2
+    - if can? :manage, :all
+      = link_to "Make a WNS staff member", {controller: "/dancers", action: :set_staff}, class: "btn btn-default btn-md"
+      = link_to "Make a WNS website admin", {controller: "/dancers", action: :set_admin}, class: "btn btn-default btn-md"
+

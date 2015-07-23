@@ -1,28 +1,28 @@
 .container
-  %p#notice= notice
 
   .page-header.text-center
     %h1 Dancers
 
   .row
     .col-md-4
-      - form_tag(dancers_path, method: "get", class: "input-group", id: "search-form") do
-        = text_field_tag(:search, params[:search], class: "form-control", placeholder: "Search Dancers")
-        %span.input-group-btn
-          %button.btn.btn-default{type: "button"}
-            %span.glyphicon.glyphicon-search{ aria:{hidden: "true"}}
+      .form-inline
+        = form_tag(dancers_path, :method => "get", id: "search-form") do
+          .input-group
+            = text_field_tag(:search, params[:search], class: "form-control input-md", placeholder: "Search dancers...")
+            %span.input-group-btn
+              %button.btn.btn-default{type:"button"}
+                %span.glyphicon.glyphicon-search{aria: {hidden:"true"}}
       %br
   .row
-    - @dancers = @dancers.paginate(page: params[:page]).per_page(28).order('amount_raised DESC')
+    - @dancers = @dancers.paginate(page: params[:page]).per_page(24).order('amount_raised DESC')
       - @dancers.each do |dancer|
-      .col-md-3
+      .col-md-2
         .thumbnail
-          = image_tag(dancer.avatar.url, class: "img-rounded")
+          = image_tag(dancer.avatar.url)
           .text-center.caption
             %h4= link_to("#{dancer.first_name} #{dancer.last_name}", dancer)
             - if can? :manage, :all
-              = link_to('Edit', edit_dancer_path(dancer))
-              |
-              = link_to('Delete', dancer, method: :delete, data: { confirm: 'Are you sure?' })
+              = link_to('Edit', edit_dancer_path(dancer), class: "btn btn-default btn-sm")
+              = link_to('Delete', dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
   .text-center.pagination
     = will_paginate(@dancers, renderer: BootstrapPagination::Rails)

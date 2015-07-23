@@ -7,8 +7,8 @@
         %h3 Donate to a dancer
         %p Send a donation to your friends, family, and fellow dancers to help support their fundraising efforts!
         .form-inline
-          .form-group
-            = form_tag(dancers_path, :method => "get", class: "input-group", id: "search-form") do
+          = form_tag(dancers_path, :method => "get", id: "search-form") do
+            .input-group
               = text_field_tag(:search, params[:search], class: "form-control input-md", placeholder: "Search dancers...")
               %span.input-group-btn
                 %button.btn.btn-default{type:"button"}

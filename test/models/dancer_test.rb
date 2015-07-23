@@ -43,6 +43,7 @@
 #  unconfirmed_email      :string
 #  admin                  :boolean          default(FALSE)
 #  team_id                :integer
+#  staff_member           :boolean
 #
 
 require 'test_helper'

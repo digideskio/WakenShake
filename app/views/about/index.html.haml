@@ -17,3 +17,16 @@
         %p= link_to("Help us reach our goal", {controller: :donations, action: :index}, class: "btn btn-primary btn-lg")
 
     .col-md-8
+  .row
+    .col-md-12
+      %hr
+      %h2 Meet The Staff
+      - @staff.each do |staff|
+        .col-md-3
+          .thumbnail
+            = image_tag(staff.avatar.url)
+            .text-center.caption
+              %h4= link_to("#{staff.first_name} #{staff.last_name}", staff)
+              - if can? :manage, :all
+                = link_to('Remove from staff', staff, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm")
+
