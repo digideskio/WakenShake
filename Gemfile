@@ -36,7 +36,7 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 
 # for better views
-gem "haml"
+gem "haml-rails"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
