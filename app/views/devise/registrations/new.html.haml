@@ -29,7 +29,7 @@
               = f.password_field(:password_confirmation, autocomplete: "off", class: "form-control input-lg", placeholder: "Confirm your password")
             .form-group
               %label.text-uppercase{for: "sex"} Gender
-              .form-group#sex
+              .btn-group
                 = radio_button_tag(:gender, "male")
                 = label_tag(:gender_male, "Male")
                 = radio_button_tag(:gender, "female")
