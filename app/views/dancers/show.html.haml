@@ -20,19 +20,22 @@
     %p
       %strong Dancing for
       = @dancer.dancing_for
-    .form-inline
-      .form-group
-        .input-group
-          .input-group-addon
-            $
-          %input.form-control{type: "text", placeholder:"Amount" }
-          .input-group-addon .00
-          / %script{:src => "https://checkout.stripe.com/checkout.js" class="stripe-button",
-          /         :data-key => "<%= Rails.configuration.stripe[:publishable_key] %>",
-          /         :data-description => "Donation to Wake 'N Shake",
-          /         :data-amount => "500",
-          /         :data-label => "Donate to <%= @dancer.first_name %>",
-          /         :data-panel-label => "Donate {{amount}}"}
+    .well
+      %h4 Donations
+      .form-inline
+        .form-group
+          .input-group
+            .input-group-addon
+              $
+            %input.form-control{type: "text", placeholder:"Amount" }
+            .input-group-addon .00
+          = javascript_include_tag "https://checkout.stripe.com/v2/checkout.js", 
+            :class => "stripe-button",
+            :"data-key" => "#{Rails.configuration.stripe[:publishable_key]}", 
+            :"data-description" => "Donate to #{@dancer.first_name}", 
+            :"data-amount" => "500",
+            :"data-label" => "Donate to #{@dancer.first_name}",
+            :"data-image" => "/app-128x128.png"
 
     .progress
       .progress-bar.progress-bar-success.progress-bar-striped{ :role => "progressbar", :aria =>{valuenow:"40"}, :aria => { valuemin:"0" }, :aria => { valuemax:"100" }, :style => "width: 40"}

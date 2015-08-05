@@ -10,38 +10,38 @@
           - devise_error_messages!
           .row
             .form-group
-              %label.text-uppercase{for: "first_name"} First Name
-              = f.text_field(:first_name, autofocus: true, id: "first_name", class: "form-control input-lg", placeholder: "Enter your first name")
+              %label.label{for: "first_name"} First Name
+              = f.text_field(:first_name, autofocus: true, id: "first_name", class: "form-control", placeholder: "Enter your first name")
             .form-group
-              %label.text-uppercase{for: "last_name"} Last Name
-              = f.text_field(:last_name, id: "last_name", class: "form-control input-lg", placeholder: "Enter your last name")
+              %label.label{for: "last_name"} Last Name
+              = f.text_field(:last_name, id: "last_name", class: "form-control", placeholder: "Enter your last name")
             .form-group
-              %label.text-uppercase{for: "email"} Email address
-              = f.email_field(:email, id: "email", class: "form-control input-lg", placeholder: "Enter your email")
+              %label.label{for: "email"} Email address
+              = f.email_field(:email, id: "email", class: "form-control", placeholder: "Enter your email")
             .form-group
-              %label.text-uppercase{for: "password"} Password
+              %label.label{for: "password"} Password
               - if @minimum_password_length
-                .help-block
+                .small
                   = @minimum_password_length
                   characters minimum
-              = f.password_field(:password, id: "password", class: "form-control input-lg", autocomplete: "off", placeholder: "Enter a new password")
+              = f.password_field(:password, id: "password", class: "form-control", autocomplete: "off", placeholder: "Enter a new password")
             .form-group
-              = f.password_field(:password_confirmation, autocomplete: "off", class: "form-control input-lg", placeholder: "Confirm your password")
+              = f.password_field(:password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirm your password")
             .form-group
-              %label.text-uppercase{for: "sex"} Gender
+              %label.label{for: "sex"} Gender
               .btn-group
                 = radio_button_tag(:gender, "male")
                 = label_tag(:gender_male, "Male")
                 = radio_button_tag(:gender, "female")
                 = label_tag(:gender_female, "Female")
             .form-group
-              %label.text-uppercase{for: "year"} Year
-              = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control input-lg")
+              %label.label{for: "year"} Year
+              = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control")
             .form-group
-              %label.text-uppercase{for: "tshirt"} T-Shirt Size
-              = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control input-lg")
+              %label.label{for: "tshirt"} T-Shirt Size
+              = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control")
             .form-group
-              %label.text-uppercase{for: "avatar"} Profile picture
+              %label.label{for: "avatar"} Profile picture
               = f.file_field :avatar
 
           .actions

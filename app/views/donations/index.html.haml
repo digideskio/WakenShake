@@ -23,12 +23,13 @@
               .input-group-addon $
               %input.form-control{type:"text", placeholder: "Amount"}
               .input-group-addon .00
-          / %script{ src: "https://checkout.stripe.com/checkout.js" class="stripe-button",
-          /     data-key: "<%= Rails.configuration.stripe[:publishable_key] %>",
-          /     data-description: "Donation to Wake 'N Shake",
-          /     data-amount: "500",
-          /     data-label: "Donate",
-          /     data-panel-label: "Donate {{amount}}"}
+          = javascript_include_tag "https://checkout.stripe.com/v2/checkout.js", 
+            :class => "stripe-button",
+            :"data-key" => "#{Rails.configuration.stripe[:publishable_key]}", 
+            :"data-description" => "Donation", 
+            :"data-amount" => "500",
+            :"data-label" => "Donate",
+            :"data-image" => "/app-128x128.png"
   .row
     .col-md-6
       .well

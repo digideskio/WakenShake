@@ -1,0 +1,36 @@
+.container
+  %h1.page-header
+    .fa.fa-key
+    Admin Panel
+  .row
+    .col-md-3
+      .well
+        %h4
+          .fa.fa-file-excel-o
+          Download Excel
+        / = link_to "All donations", donations_path(format: :csv), class: "btn btn-md btn-default btn-block"
+        = link_to dancers_path(format: :csv), class: "btn btn-md btn-default btn-block" do
+          .fa.fa-user
+          Dancers
+        = link_to teams_path(format: :csv), class: "btn btn-md btn-default btn-block" do
+          .fa.fa-group
+          Teams
+
+    .col-md-9
+      .panel.panel-default.panel-body
+        %h4
+          .fa.fa-line-chart
+          Stats
+        .row.text-center
+          .col-md-4
+            .thumbnail
+              %h5 Dancers signed up
+              %h2=@dancers_count
+          .col-md-4
+            .thumbnail
+              %h5 Amount raised
+              %h2=@amount_raised
+          .col-md-4
+            .thumbnail
+              %h5 Active teams
+              %h2=@active_teams

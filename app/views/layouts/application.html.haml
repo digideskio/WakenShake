@@ -17,9 +17,14 @@
             %li= link_to("Dancers", dancers_path)
             %li= link_to("Teams", teams_path)
         %ul.nav.navbar-nav.navbar-right
+          - if can? :manage, :all
+            %li
+              = link_to controller: "/admin", action: :index do
+                %i.fa.fa-key
+                Admin
           - if dancer_signed_in?
             %li
-              = link_to("#{current_dancer.first_name} #{current_dancer.last_name}", edit_dancer_registration_path)
+              = link_to("#{current_dancer.first_name} #{current_dancer.last_name}", dancer_path(current_dancer))
             %li
               %p.navbar-btn= link_to("Logout", destroy_dancer_session_path, method: :delete, class: "btn btn-primary")
           - else

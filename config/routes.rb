@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+
   devise_for :dancers, controllers: { registrations: 'registrations' }
 
   get 'teams/index'
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   get 'dancers/login'
   get 'dancers/set_staff'
   get 'dancers/set_admin'
+  get 'admin/index'
 
   resources :dancers
   resources :charges
@@ -20,5 +23,4 @@ Rails.application.routes.draw do
   resources :histories
 
   root 'home_page#index'
-
 end

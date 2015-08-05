@@ -5,4 +5,6 @@ class ApplicationController < ActionController::Base
 
   # for CanCan to see current dancer
   alias_method :current_user, :current_dancer
+
+  require 'csv'
 end

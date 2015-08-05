@@ -7,6 +7,13 @@ class DancersController < ApplicationController
       @dancers = Dancer.search(params[:search])
     else
       @dancers = Dancer.all
+      respond_to do |format|
+        format.html
+        format.csv do
+          headers['Content-Disposition'] = "attachment; filename=\"dancer-list.csv\""
+          headers['Content-Type'] ||= 'text/csv'
+        end
+      end
     end
   end
 
