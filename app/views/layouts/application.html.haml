@@ -17,11 +17,6 @@
             %li= link_to("Dancers", dancers_path)
             %li= link_to("Teams", teams_path)
         %ul.nav.navbar-nav.navbar-right
-          - if can? :manage, @donations
-            %li
-              = link_to controller: "/accountant", action: :index do
-                %i.fa.fa-money
-                Accountant
           - if can? :manage, :all
             %li
               = link_to controller: "/admin", action: :index do

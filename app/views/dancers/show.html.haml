@@ -12,10 +12,10 @@
       = @dancer.first_name
       = @dancer.last_name
       %small= link_to(@dancer.team.name, @dancer.team)
-
+      %br
       - if can? :manage, :all
-        = link_to('Edit', edit_dancer_path(@dancer), class: "btn btn-default btn-md")
-        = link_to('Delete this dancer', @dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-md")
+        = link_to('Edit', edit_dancer_path(@dancer), class: "btn btn-default btn-sm")
+        = link_to('Delete this dancer', @dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
     .well
       .form-inline
         .form-group
@@ -31,6 +31,9 @@
             :"data-amount" => "500",
             :"data-label" => "Donate to #{@dancer.first_name}",
             :"data-image" => "/app-128x128.png"
+          = link_to edit_dancer_path(@dancer), class: "btn btn-default btn-md" do
+            %i.fa.fa-money
+            Add donation
       %br
       .progress
         .progress-bar.progress-bar-success.progress-bar-striped{role: "progressbar", style:"width: 40", aria:{valuenow:40, valuemin:0, valuemax: 100}}
@@ -41,6 +44,10 @@
 
   .col-md-2
     - if can? :manage, :all
-      = link_to "Make a WNS staff member", {controller: "/dancers", action: :set_staff}, class: "btn btn-default btn-md"
-      = link_to "Make a WNS website admin", {controller: "/dancers", action: :set_admin}, class: "btn btn-default btn-md"
+      %br
+      %h3
+        %i.fa.fa-key
+        Access
+      = link_to "Staff", {controller: "/dancers", action: :set_staff}, class: "btn btn-default btn-md btn-block"
+      = link_to "Admin", {controller: "/dancers", action: :set_admin}, class: "btn btn-default btn-md btn-block"
 
