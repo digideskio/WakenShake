@@ -17,7 +17,6 @@
         = link_to('Edit', edit_dancer_path(@dancer), class: "btn btn-default btn-md")
         = link_to('Delete this dancer', @dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-md")
     .well
-      %h4 Donations
       .form-inline
         .form-group
           .input-group
@@ -38,6 +37,7 @@
 
     .panel.panel-default.panel-body Susan donated $50 to Nick
     .panel.panel-default.panel-body Nick donated $25 to Susan
+    .panel.panel-default.panel-body Nick recieved a $40 donation from Mom
 
   .col-md-2
     - if can? :manage, :all
