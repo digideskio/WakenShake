@@ -44,6 +44,7 @@
 #  admin                  :boolean          default(FALSE)
 #  team_id                :integer
 #  staff_member           :boolean
+#  is_accountant          :boolean
 #
 
 require 'test_helper'
