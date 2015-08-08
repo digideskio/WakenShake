@@ -12,7 +12,7 @@
           %li Sarah
     %p.lead Who are you dancing for?
     %p
-      = link_to( "Sign Up", { controller: :dancers, action: :new} , class: "btn btn-success btn-lg")
+      = link_to( "Sign Up", new_dancer_registration_path , class: "btn btn-success btn-lg")
       %br
       or 
       = link_to "donate", controller: :donations, action: :index

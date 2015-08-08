@@ -8,10 +8,8 @@
               %h2= pluralize(@dancer.errors.count, "error") stopped you from signing up:
 
               %ul
-                <% @dancer.errors.full_messages.each do |message| %>
+                = @dancer.errors.full_messages.each do |message|
                   %li= message
-                = end
-          = end
 
         .row
           .form-group
