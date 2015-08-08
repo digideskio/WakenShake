@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'accountant/index'
+
   get 'admin/index'
 
   devise_for :dancers, controllers: { registrations: 'registrations' }
