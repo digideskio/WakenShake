@@ -10,42 +10,42 @@
           - devise_error_messages!
           .row
             .form-group
-              %label.label{for: "first_name"} First Name
+              =label :first_name
               = f.text_field(:first_name, autofocus: true, id: "first_name", class: "form-control", placeholder: "Enter your first name")
             .form-group
-              %label.label{for: "last_name"} Last Name
+              =label :last_name
               = f.text_field(:last_name, id: "last_name", class: "form-control", placeholder: "Enter your last name")
             .form-group
-              %label.label{for: "email"} Email address
+              =label :email
               = f.email_field(:email, id: "email", class: "form-control", placeholder: "Enter your email")
             .form-group
-              %label.label{for: "password"} Password
+              =label :password
               - if @minimum_password_length
-                .small
+                .small.text-muted
                   = @minimum_password_length
                   characters minimum
               = f.password_field(:password, id: "password", class: "form-control", autocomplete: "off", placeholder: "Enter a new password")
             .form-group
-              = f.password_field(:password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Confirm your password")
+              =label :sex
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  Male
+                  = f.radio_button :gender, "Male"
+                .btn.btn-primary.btn-sm
+                  Female
+                  = f.radio_button :gender, "Female"
             .form-group
-              %label.label{for: "sex"} Gender
-              .btn-group
-                = radio_button_tag(:gender, "male")
-                = label_tag(:gender_male, "Male")
-                = radio_button_tag(:gender, "female")
-                = label_tag(:gender_female, "Female")
-            .form-group
-              %label.label{for: "year"} Year
+              =label :year
               = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control")
             .form-group
-              %label.label{for: "tshirt"} T-Shirt Size
+              =label :tshirt
               = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control")
             .form-group
-              %label.label{for: "avatar"} Profile picture
+              =label :avatar
               = f.file_field :avatar
 
           .actions
-            = button_tag(type: 'submit', class: "btn btn-success btn-lg btn-block") do
+            = button_tag(type: 'submit', class: "btn btn-success btn-md btn-block") do
               %i.icon-ok.icon-white
               Submit
   .col-md-3

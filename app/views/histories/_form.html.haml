@@ -1,31 +1,32 @@
-= form_for(@history) do |f|
-  - if @history.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@history.errors.count, "error")
-        prohibited this history from being saved:
+.container
+  = form_for(@history) do |f|
+    - if @history.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@history.errors.count, "error")
+          prohibited this history from being saved:
 
-      %ul
-        = @history.errors.full_messages.each do |message|
-          %li= message
+        %ul
+          = @history.errors.full_messages.each do |message|
+            %li= message
 
-  .field
-    = f.label :theme
-    = f.text_field :theme
-  .field
-    = f.label :year
-    = f.datetime_select :year
-  .field
-    = f.label :overview
-    = f.text_area :overview
-  .field
-    = f.label :amount_raised
-    = f.text_field :amount_raised
-  .field
-    = f.label :num_of_dancers
-    = f.text_field :num_of_dancers
-  .field
-    = f.label :photo
-    = f.file_field :photo
-  .actions
-    = f.submit
+    .field
+      = f.label :theme, class: "label"
+      = f.text_field :theme, class: "form-control"
+    .field
+      = f.label :year, class: "label"
+      = f.datetime_select :year, class: "form-control"
+    .field
+      = f.label :overview, class: "label"
+      = f.text_area :overview, class: "form-control"
+    .field
+      = f.label :amount_raised, class: "label"
+      = f.text_field :amount_raised, class: "form-control"
+    .field
+      = f.label :num_of_dancers, class: "label"
+      = f.text_field :num_of_dancers, class: "form-control"
+    .field
+      = f.label :photo, class: "label"
+      = f.file_field :photo
+    .actions
+      = f.submit

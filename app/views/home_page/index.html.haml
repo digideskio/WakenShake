@@ -11,12 +11,15 @@
           %li Nick
           %li Sarah
     %p.lead Who are you dancing for?
-    %p
-      = link_to( "Sign Up", new_dancer_registration_path , class: "btn btn-success btn-lg")
-      %br
-      or 
-      = link_to "donate", controller: :donations, action: :index
-      instead!
+    - if current_dancer.nil?
+      %p
+        = link_to( "Sign Up", new_dancer_registration_path , class: "btn btn-success btn-lg")
+        %br
+        or 
+        = link_to "donate", controller: :donations, action: :index
+        instead!
+    - else
+      %p= link_to "Send a donation", {controller: :donations, action: :index}, class: "btn btn-primary btn-lg"
 .container
   .row
     .col-md-4
