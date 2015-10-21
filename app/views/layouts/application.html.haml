@@ -11,7 +11,8 @@
         #navbar-header
           %ul.nav.navbar-nav
             %li= link_to("Wake 'N Shake", root_path, class: "navbar-brand")
-            %li= link_to("About Us", controller: "/about", action: :index)
+            %li= link_to("About", controller: "/about", action: :index)
+            %li= link_to("Committee", controller: "/about", action: :committee)
             %li= link_to("Our History", histories_path)
             %li= link_to("Donate", controller: "/donations", action: :index)
             %li= link_to("Dancers", dancers_path)

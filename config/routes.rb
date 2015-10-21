@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'committee/index'
+
   get 'accountant/index'
 
   get 'admin/index'
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   get 'charges/index'
   get 'donations/index'
   get 'about/index'
+  get 'about/committee'
   get 'home_page/index'
   get 'dancers/login'
   get 'dancers/set_staff'

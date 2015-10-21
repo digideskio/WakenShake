@@ -1,27 +1,28 @@
-after "teams" do
-  # years to sample
-  years = [2019, 2018, 2017, 2016]
-
-  # t-shirt sizes to sample
+after "teams", "dorms" do
+  
+  # data to sample
+  years = ["Freshman", "Sophomore", "Junior", "Senior", "Graduate", "Alumni"]
   tshirts = ["Small", "Medium", "Large", "X-Large"]
 
   # names
   first_name_array = %w(Nick Joe John Mark Mike Jake Jessie Melissa Ann Caroline Megan Sarah)
   last_name_array = %w(Johnson Smith Root Beshara Thompson Reed Jackson Allen Richards)
 
-  # Seed Data
   25.times do
+    next if Dancer.count > 24
+    # come up with a random name
     first_name = first_name_array.sample
     last_name = last_name_array.sample
+
     Dancer.where(
       first_name: first_name,
       last_name: last_name,
       year: years.sample,
-      email: "#{first_name.downcase}.#{last_name.downcase}.#{rand(10..30)}@wfu.edu",
       gender: %w('Male' 'Female').sample,
       tshirt: tshirts.sample
     ).first_or_create!(
-      residence: "Bostwick Hall",
+      residence: Dorm.order("RANDOM()").first,
+      email: "#{first_name.downcase}.#{last_name.downcase}.#{rand(1..1000)}@wfu.edu",
       shift: "First",
       team: Team.order("RANDOM()").first,
       password: "demo_pass",

@@ -1,19 +1,29 @@
 .jumbotron {
-  min-height: 500px;
+  min-height: 400px;
   background: #000 image-url("photo_grid.png") repeat-x center center;
   color: #FFF;
+}
+.dancing_for_frame {
+  position: relative;
 }
 .dance_for {
   height: 100px;
   line-height: 100px;
   margin-right: 20px;
+  margin-top: -30px;
+  position: absolute;
+  top: 15px;
 }
 #names {
   display: inline-block;
-  width: 500px;
+  width: 600px;
   color: #FFFF00;
+  position: absolute;
+  left: 305px;
 }
-
+.lead-text {
+  font-size: 26px;
+}
 /* Nav Bar Styling */
 .navbar-inverse {
   margin: 0;

@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-md-12
+      %br
+      %h1.page-header.text-center 2016 Wake 'N Shake Committee
+      - @staff.each do |staff|
+        .col-md-3
+          .thumbnail
+            = image_tag(staff.avatar.url)
+            .text-center.caption
+              %h4= link_to("#{staff.first_name} #{staff.last_name}", staff)
+              - if can? :manage, :all
+                = link_to('Remove from staff', staff, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm")

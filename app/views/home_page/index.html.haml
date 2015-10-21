@@ -5,16 +5,16 @@
 .jumbotron
   .container
     %h1
-      %span.dance_for Dance for
-      #names
-        %ul
-          %li Nick
-          %li Sarah
-    %p.lead Who are you dancing for?
+      .dancing_for_frame
+        %span.dance_for Dance for
+        #names
+          %ul
+            %li Nick
+            %li Sarah Moran
+    %h3.lead.lead-text Who are you dancing for?
     - if current_dancer.nil?
-      %p
-        = link_to( "Sign Up", new_dancer_registration_path , class: "btn btn-success btn-lg")
-        %br
+      = link_to( "Join 1,000+ dancers now!", new_dancer_registration_path , class: "btn btn-success btn-lg")
+      %h5
         or 
         = link_to "donate", controller: :donations, action: :index
         instead!
@@ -23,8 +23,28 @@
 .container
   .row
     .col-md-4
-      %p Wake ‘N Shake is a dance marathon held every spring at Wake Forest University, benefiting the Brian Piccolo Cancer Research Fund.  For 12 hours, students, alumni, and faculty members come together in support of all those affected by cancer.  The event is simply non-stop fun, complete with food, games, prizes, live entertainment, and speakers.
+      %h3 Latest donations
+      .panel.panel-default.panel-body Susan donated $50 to Nick
+      .panel.panel-default.panel-body Nick donated $25 to Susan
+      .panel.panel-default.panel-body Nick recieved a $40 donation from Mom
+      .panel.panel-default.panel-body Susan donated $50 to Nick
+      .panel.panel-default.panel-body Nick donated $25 to Susan
+      .panel.panel-default.panel-body Nick recieved a $40 donation from Mom
     .col-md-4
-      %p Content there!
+      %h3 Top 10 Teams
+      %table.table-striped.table.table-bordered
+        - @top_10_teams.each_with_index do |team, index|
+          %tr
+            %td.text-center
+              %strong= "#{index+1}"
+            %td= link_to(team.name, team)
+            %td.text-success.text-center= team.amount_raised
     .col-md-4
-      %p 12 Hours!
+      %h3 Top 10 Dancers
+      %table.table-striped.table.table-bordered
+        - @top_10_dancers.each_with_index do |dancer, index|
+          %tr
+            %td.text-center
+              %strong= "#{index+1}"
+            %td= link_to("#{dancer.first_name} #{dancer.last_name}", dancer)
+            %td.text-success.text-center=number_to_currency(dancer.amount_raised)

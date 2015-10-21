@@ -1,6 +1,7 @@
 .container
   %br
   %h1.text-center Sign Up
+  %p.lead.text-center.text-muted You're about to join hundreds of incredible dancers.
   %br
   .row
     .col-md-3
@@ -10,42 +11,160 @@
           - devise_error_messages!
           .row
             .form-group
-              =label :first_name
+              =f.label :first_name, class: "label"
               = f.text_field(:first_name, autofocus: true, id: "first_name", class: "form-control", placeholder: "Enter your first name")
             .form-group
-              =label :last_name
+              =f.label :last_name, class: "label"
               = f.text_field(:last_name, id: "last_name", class: "form-control", placeholder: "Enter your last name")
             .form-group
-              =label :email
-              = f.email_field(:email, id: "email", class: "form-control", placeholder: "Enter your email")
+              =f.label :email, class: "label"
+              = f.email_field(:email, id: "email", class: "form-control", autocomplete: "off", placeholder: "Enter your email")
             .form-group
-              =label :password
-              - if @minimum_password_length
-                .small.text-muted
-                  = @minimum_password_length
-                  characters minimum
+              =f.label :password, class: "label"
               = f.password_field(:password, id: "password", class: "form-control", autocomplete: "off", placeholder: "Enter a new password")
+            %br
+            %hr
+            %h4.text-center
+              .fa.fa-user.text-primary
+              General Information
             .form-group
-              =label :sex
+              =f.label :dancing_for, "Who are you dancing for?", class: "label"
+              =f.text_field :dancing_for, class: "form-control", placeholder: "Enter the name of the special someone you are dancing for"
+            .form-group
+              .label Sex
+              %br
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-sm
+                  .fa.fa-male
                   Male
                   = f.radio_button :gender, "Male"
                 .btn.btn-primary.btn-sm
+                  .fa.fa-female
                   Female
                   = f.radio_button :gender, "Female"
             .form-group
-              =label :year
-              = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control")
+              .label Have you participated in WNS before?
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  Yes
+                  = f.radio_button :first_time, "Veteran dancer"
+                .btn.btn-primary.btn-sm
+                  No
+                  = f.radio_button :first_time, "New dancer"
             .form-group
-              =label :tshirt
-              = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control")
+              .label Year
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-xs
+                  Freshman
+                  = f.radio_button :year, "Freshman"
+                .btn.btn-primary.btn-xs
+                  Sophomore
+                  = f.radio_button :year, "Sophomore"
+                .btn.btn-primary.btn-xs
+                  Junior
+                  = f.radio_button :year, "Junior"
+                .btn.btn-primary.btn-xs
+                  Senior
+                  = f.radio_button :year, "Senior"
+                .btn.btn-primary.btn-xs
+                  Graduate
+                  = f.radio_button :year, "Graduate"
+                .btn.btn-primary.btn-xs
+                  Alumni
+                  = f.radio_button :year, "Alumni"
+                .btn.btn-primary.btn-xs
+                  Faculty/Staff
+                  = f.radio_button :year, "Faculty/Staff"
             .form-group
-              =label :avatar
-              = f.file_field :avatar
-
+              .label Residence
+              %br
+              =f.collection_select :team_id, Dorm.all, :id, :name, {prompt: "Select your residence"}, {class: "form-control"}
+            .form-group
+              .label 
+                Team
+                %span.text-muted (Optional)
+              %br
+              =f.collection_select :team_id, Team.all, :id, :name, {prompt: "Select a team to join"}, {class: "form-control"}
+            .form-group
+              .label T-Shirt Size
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  Small
+                  = f.radio_button :tshirt, "Small"
+                .btn.btn-primary.btn-sm
+                  Medium
+                  = f.radio_button :tshirt, "Medium"
+                .btn.btn-primary.btn-sm
+                  Large
+                  = f.radio_button :tshirt, "Large"
+                .btn.btn-primary.btn-sm
+                  X-Large
+                  = f.radio_button :tshirt, "X-Large"
+            .form-group
+              .label Shift
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  .fa.fa-trophy
+                  All 12 Hours
+                  = f.radio_button :shift, "All 12 Hours"
+                .btn.btn-primary.btn-sm
+                  .fa.fa-sun-o
+                  First 6 Hours
+                  = f.radio_button :shift, "First Shift"
+                .btn.btn-primary.btn-sm
+                  .fa.fa-moon-o
+                  Last 6 Hours
+                  = f.radio_button :shift, "Last Shift"
+                .btn.btn-primary.btn-sm
+                  No Preference
+                  = f.radio_button :shift, "No Preference"
+            %br
+            %hr
+            %h4.text-center
+              .fa.fa-heartbeat.text-danger
+              Safety & Medical Information
+            .form-group
+              =f.label :conditional_details, class: "label"
+              %br
+              %em.text-muted.small During Wake 'N Shake, each participant is expected to be on his or her feet for twelve hours (or, if qualified, a six hour shift). With this in mind, do you have any medical conditions we should be aware of? ex. asthma, allergies, illness, medications, etc.
+              = f.text_area :conditional_details, class: "form-control", placeholder: "Enter conditional details here if needed", rows: 5
+            .form-group
+              =f.label :food_allergies, class: "label"
+              =f.text_area :food_allergies, class: "form-control", placeholder: "Enter any food allergies here"
+            .form-group
+              .label Vegetarian
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  Yes
+                  = f.radio_button :vegetarian, "Vegetarian"
+                .btn.btn-primary.btn-sm
+                  No
+                  = f.radio_button :vegetarian, "Not a vegetarian"
+          %br
+          %hr
+          %h4.text-center
+            .fa.fa-heart-o.text-warning
+            Donation Information
+          %em.text-muted.small Please submit the contact information of friends or family members. They will automatically be sent an email telling them about Wake 'N Shake and your participation in the event, and asking if they would be willing to support you by donating to the Brian Piccolo Cancer Research Fund on your behalf.
+          %h5.text-center Required
+          - 5.times do |i|
+            = label :email, "Contact #{i+1}", class: "label"
+            = f.text_field :email, placeholder: "Enter name", class: "form-control"
+            = f.text_field :email, placeholder: "Enter email address", class: "form-control"
+            %hr
+          %h5.text-center Optional
+          - 5.times do |i|
+            = label :email, "Contact #{i+6}", class: "label"
+            = f.text_field :email, placeholder: "Enter name", class: "form-control"
+            = f.text_field :email, placeholder: "Enter email address", class: "form-control"
+            %hr
           .actions
             = button_tag(type: 'submit', class: "btn btn-success btn-md btn-block") do
-              %i.icon-ok.icon-white
-              Submit
+              .fa.fa-check-circle-o
+              Register and pay
   .col-md-3

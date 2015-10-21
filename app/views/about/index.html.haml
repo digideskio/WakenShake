@@ -1,9 +1,5 @@
 .container
-
-  .page-header
-    .text-center
-      %h1 About Wake 'N Shake
-
+  %h1.page-header.text-center About Wake 'N Shake
   .row
     .col-md-8
       %p Wake ‘N Shake is a 12-hour dance marathon held every spring at Wake Forest University, benefiting the Brian Piccolo Cancer Research Fund.  For 12-hours, students, alumni, and faculty members come together to stay standing in support of all those affected by cancer, asking for donations in support of their participation.  The event is non-stop fun, complete with food, games, prizes, live entertainment, and speakers.
@@ -17,16 +13,3 @@
         %p= link_to("Help us reach our goal", {controller: :donations, action: :index}, class: "btn btn-primary btn-lg")
 
     .col-md-8
-  .row
-    .col-md-12
-      %hr
-      %h2 Meet The Staff
-      - @staff.each do |staff|
-        .col-md-3
-          .thumbnail
-            = image_tag(staff.avatar.url)
-            .text-center.caption
-              %h4= link_to("#{staff.first_name} #{staff.last_name}", staff)
-              - if can? :manage, :all
-                = link_to('Remove from staff', staff, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm")
-

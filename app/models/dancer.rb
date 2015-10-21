@@ -53,15 +53,6 @@ class Dancer < ActiveRecord::Base
   belongs_to :team
   has_many :charges
 
-  validates :first_name, presence: true, length: { minimum: 2 }
-  validates :last_name, presence: true, length: { minimum: 2 }
-  validates :password, presence: true, length: { in: 6..20 }
-  # validates :year, presence: true
-  # validates :gender, presence: true
-  # validates :tshirt, presence: true
-  # validates :contact_name, presence: true, length: { minimum: 2 }
-  # validates :contact_number, presence: true, length: { minimum: 5 }
-
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "app_icon.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
