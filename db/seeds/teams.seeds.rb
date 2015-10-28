@@ -1,3 +1,5 @@
+puts "Seeding teams..."
+
 teams = []
 open(File.expand_path("#{Rails.root}/db/seeds/data/teams.csv", __FILE__)) do |team|
   teams = team.read.each_line.map(&:chomp)

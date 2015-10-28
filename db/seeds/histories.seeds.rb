@@ -1,3 +1,4 @@
+puts "Seeding histories..."
 History.where(
   theme: "X Out Cancer",
   year: DateTime.strptime("03/21/2015 17:00", "%m/%d/%Y %H:%M"),

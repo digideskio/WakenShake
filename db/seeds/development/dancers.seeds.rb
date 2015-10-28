@@ -1,5 +1,7 @@
 after "teams", "dorms" do
   
+  puts "Seeding dancers..."
+
   # data to sample
   years = ["Freshman", "Sophomore", "Junior", "Senior", "Graduate", "Alumni"]
   tshirts = ["Small", "Medium", "Large", "X-Large"]
@@ -9,7 +11,6 @@ after "teams", "dorms" do
   last_name_array = %w(Johnson Smith Root Beshara Thompson Reed Jackson Allen Richards)
 
   25.times do
-    next if Dancer.count > 24
     # come up with a random name
     first_name = first_name_array.sample
     last_name = last_name_array.sample
