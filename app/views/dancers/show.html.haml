@@ -16,7 +16,7 @@
       - if can? :manage, :all
         = link_to('Edit', edit_dancer_path(@dancer), class: "btn btn-default btn-sm")
         = link_to('Delete this dancer', @dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
-    .well
+    .panel.panel-default.panel-body
       .form-inline
         .form-group
           .input-group
@@ -31,13 +31,14 @@
             :"data-amount" => "500",
             :"data-label" => "Donate to #{@dancer.first_name}",
             :"data-image" => "/app-128x128.png"
-          = link_to edit_dancer_path(@dancer), class: "btn btn-default btn-md" do
-            %i.fa.fa-money
-            Add donation
+          - if can? :manage, :all
+            = link_to edit_dancer_path(@dancer), class: "btn btn-default btn-md" do
+              %i.fa.fa-money
+              Add donation
       %br
       .progress
-        .progress-bar.progress-bar-success.progress-bar-striped{role: "progressbar", style:"width: 40", aria:{valuenow:40, valuemin:0, valuemax: 100}}
-
+        .progress-bar.progress-bar-success.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 40%"}
+          %span.sr-only 40% Complete (success)
     .panel.panel-default.panel-body Susan donated $50 to Nick
     .panel.panel-default.panel-body Nick donated $25 to Susan
     .panel.panel-default.panel-body Nick recieved a $40 donation from Mom
