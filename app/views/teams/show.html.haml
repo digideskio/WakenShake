@@ -5,8 +5,38 @@
     - if can? :manage, :all
       = link_to('Edit', edit_team_path(@team), class: "btn btn-default btn-md")
       = link_to('Delete team', @team, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-md")
-  = @team.amount_raised
-  raised
+  .panel.panel-default.panel-body
+    %h4
+      = @team.name
+      has raised 
+      %span.text-success= @team.amount_raised
+    .text-muted
+      Send a donation to 
+      = @team.name
+      to help their campaign!
+    %hr
+    .form-inline
+      .form-group
+        .input-group
+          .input-group-addon
+            $
+          %input.form-control{type: "text", placeholder:"Amount" }
+          .input-group-addon .00
+        = javascript_include_tag "https://checkout.stripe.com/v2/checkout.js", 
+          :class => "stripe-button",
+          :"data-key" => "#{Rails.configuration.stripe[:publishable_key]}", 
+          :"data-description" => "Donate to #{@team.name}", 
+          :"data-amount" => "500",
+          :"data-label" => "Donate to #{@team.name}",
+          :"data-image" => "/app-128x128.png"
+        - if can? :manage, :all
+          = link_to edit_team_path(@team), class: "btn btn-default btn-md" do
+            %i.fa.fa-money
+            Add donation
+    %br
+    .progress
+      .progress-bar.progress-bar-success.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 40%"}
+        40% from reaching the goal
   %h3 Dancers
   - @team.dancers.each do |dancer|
     .col-md-2
