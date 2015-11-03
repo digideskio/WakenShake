@@ -1,12 +1,23 @@
 .container
-  .col-md-2
+  .col-md-3
     %br
-    .thumbnail
-      = image_tag(@dancer.avatar.url)
+    =image_tag(@dancer.avatar.url, size: "190", class: "img-rounded center-block")
     %p
-      Class of 2017
-      Dancing for Mom
-
+      %hr
+      %b Year:
+      Sophomore
+      %br
+      %b Dancing for:
+      =@dancer.dancing_for
+      %br
+      %b Bio:
+      =@dancer.bio
+    %hr
+    %h2
+      .fa.fa-facebook-square
+      .fa.fa-twitter-square
+      .fa.fa-google-plus-square
+      .fa.fa-share-alt-square
   .col-md-8
     %h2
       = @dancer.first_name
@@ -24,7 +35,12 @@
       .text-muted
         Send a donation to 
         = @dancer.first_name
-        to help his campaign!
+        to help
+        - if @dancer.gender == "male"
+          his
+        - else
+          her
+        campaign!
       %hr
       .form-inline
         .form-group
@@ -46,19 +62,31 @@
               Add donation
       %br
       .progress
-        .progress-bar.progress-bar-success.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 40%"}
-          40% from reaching the goal
-    .panel.panel-default.panel-body Susan donated $50 to Nick
-    .panel.panel-default.panel-body Nick donated $25 to Susan
-    .panel.panel-default.panel-body Nick recieved a $40 donation from Mom
-    .panel.panel-default.panel-body Susan donated $50 to Nick
-    .panel.panel-default.panel-body Nick donated $25 to Susan
-    .panel.panel-default.panel-body Nick recieved a $40 donation from Mom
-    .panel.panel-default.panel-body Susan donated $50 to Nick
-    .panel.panel-default.panel-body Nick donated $25 to Susan
-    .panel.panel-default.panel-body Nick recieved a $40 donation from Mom
-
-  .col-md-2
+        .progress-bar.progress-bar-success.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "65", :role => "progressbar", :style => "width: 65%"}
+          65% from reaching
+          - if @dancer.gender == "male"
+            his
+          - else
+            her
+          goal
+    - 12.times do
+      .panel.panel-default.panel-body
+        .row
+          - donor = Dancer.all.sample
+          .col-md-1
+            = image_tag(donor.avatar, class: "img-rounded", size: "40")
+          .col-md-11
+            = donor.first_name
+            donated
+            %span.text-success
+              =number_to_currency(rand(10..60))
+            to
+            =@dancer.first_name
+            %br
+              .text-muted.small
+                = time_ago_in_words(rand(20).days.ago)
+                ago
+  .col-md-1
     - if can? :manage, :all
       %br
       %h3

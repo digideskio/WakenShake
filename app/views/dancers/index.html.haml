@@ -18,7 +18,8 @@
       - @dancers.each do |dancer|
       .col-md-2
         .thumbnail
-          = image_tag(dancer.avatar.url)
+          .profile-spaced
+            = image_tag(dancer.avatar.url, size: "150", class: "profile-spaced center-block")
           .text-center.caption
             %h4= link_to("#{dancer.first_name} #{dancer.last_name}", dancer)
             - if can? :manage, :all

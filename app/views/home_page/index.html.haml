@@ -11,6 +11,8 @@
           %ul
             %li Nick
             %li Sarah Jones
+            %li Mom
+            %li Jessica Smith
     %h3.lead.lead-text Who are you dancing for?
     - if current_dancer.nil?
       = link_to( "Join 1,000+ dancers now!", new_dancer_registration_path , class: "btn btn-success btn-lg")
@@ -23,13 +25,17 @@
 .container
   .row
     .col-md-4
-      %h3 Latest donations
-      .panel.panel-default.panel-body Susan donated $50 to Nick
-      .panel.panel-default.panel-body Nick donated $25 to Susan
-      .panel.panel-default.panel-body Nick recieved a $40 donation from Mom
-      .panel.panel-default.panel-body Susan donated $50 to Nick
-      .panel.panel-default.panel-body Nick donated $25 to Susan
-      .panel.panel-default.panel-body Nick recieved a $40 donation from Mom
+      %h3 Recent donations
+      - 5.times do
+        .panel.panel-default.panel-body
+          - donor = Dancer.all.sample
+          = image_tag(donor.avatar, class: "img-rounded", size: "30")
+          = donor.first_name
+          donated
+          %span.text-success
+            =number_to_currency(rand(10..60))
+          to
+          =Dancer.all.sample.first_name
     .col-md-4
       %h3 Top 10 Teams
       %table.table-striped.table.table-bordered

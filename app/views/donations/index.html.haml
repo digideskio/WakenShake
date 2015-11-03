@@ -15,6 +15,18 @@
                   %span.glyphicon.glyphicon-search{aria: {hidden:"true"}}
     .col-md-6
       .well
+        %h3 Donate to a team
+        %p Send a donation to your favorite team to help support their fundraising efforts!
+        .form-inline
+          = form_tag(dancers_path, :method => "get", id: "search-form") do
+            .input-group
+              = text_field_tag(:search, params[:search], class: "form-control input-md", placeholder: "Search teams...")
+              %span.input-group-btn
+                %button.btn.btn-default{type:"button"}
+                  %span.glyphicon.glyphicon-search{aria: {hidden:"true"}}
+  .row
+    .col-md-6
+      .well
         %h3 Donate to Wake 'N Shake
         %p If you do not want to donate to a specific dancer or team, you can make a general donation to Wake 'N Shake.
         .form-inline
@@ -30,7 +42,6 @@
             :"data-amount" => "500",
             :"data-label" => "Donate",
             :"data-image" => "/app-128x128.png"
-  .row
     .col-md-6
       .well
         %h3 Send in donations by mail
