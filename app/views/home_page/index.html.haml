@@ -9,10 +9,8 @@
         %span.dance_for Dance for
         #names
           %ul
-            %li Nick
-            %li Sarah Jones
-            %li Mom
-            %li Jessica Smith
+            - @dancing_for_list.each do |dancing_for|
+              %li=dancing_for.dancing_for
     %h3.lead.lead-text Who are you dancing for?
     - if current_dancer.nil?
       = link_to( "Join 1,000+ dancers now!", new_dancer_registration_path , class: "btn btn-success btn-lg")
