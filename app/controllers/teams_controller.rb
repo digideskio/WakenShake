@@ -15,6 +15,10 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @amount_raised = 0
+    Dancer.where(team_id: params[:id]).each do |dancer|
+      @amount_raised += dancer.amount_raised
+    end
   end
 
   # GET /teams/new

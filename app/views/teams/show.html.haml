@@ -9,7 +9,7 @@
     %h4
       = @team.name
       has raised 
-      %span.text-success= @team.amount_raised
+      %span.text-success= number_to_currency(@amount_raised)
     .text-muted
       Send a donation to 
       = @team.name
@@ -18,32 +18,42 @@
     .form-inline
       .form-group
         .input-group
-          .input-group-addon
-            $
-          %input.form-control{type: "text", placeholder:"Amount" }
+          .input-group-addon $
+          = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
           .input-group-addon .00
-        = javascript_include_tag "https://checkout.stripe.com/v2/checkout.js", 
-          :class => "stripe-button",
-          :"data-key" => "#{Rails.configuration.stripe[:publishable_key]}", 
-          :"data-description" => "Donate to #{@team.name}", 
-          :"data-amount" => "500",
-          :"data-label" => "Donate to #{@team.name}",
-          :"data-image" => "/app-128x128.png"
-        - if can? :manage, :all
-          = link_to edit_team_path(@team), class: "btn btn-default btn-md" do
-            %i.fa.fa-money
-            Add donation
+        %button{class: "btn btn-md btn-primary", id: "stripeButton"} Donate
+        %span.action
+          :javascript
+            var handler = StripeCheckout.configure({
+              key: "#{Rails.configuration.stripe[:publishable_key]}",
+              locale: 'auto',
+              token: function(token) {
+                var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+                var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
+                $("form").append(tokenInput).append(emailInput).submit();
+              }
+            });
+
+            $('#stripeButton').on('click', function(e) {
+              var amount = $("#total-amount-val").val();
+              if(amount > 0) {
+                handler.open({
+                  name: "Donation to #{@team.name}",
+                  amount: amount*100,
+                  billingAddress: true
+                });
+              }
+              e.preventDefault();
+            });
+
+            // Close Checkout on page navigation
+            $(window).on('popstate', function() {
+              handler.close();
+            });
     %br
     .progress
       .progress-bar.progress-bar-success.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 40%"}
         40% from reaching the goal
   %h3 Dancers
-  - @team.dancers.each do |dancer|
-    .col-md-2
-      .thumbnail
-        = image_tag(dancer.avatar.url)
-        .text-center.caption
-          %h4= link_to("#{dancer.first_name} #{dancer.last_name}", dancer)
-          - if can? :manage, :all
-            = link_to('Edit', edit_dancer_path(dancer), class: "btn btn-default btn-xs")
-            = link_to('Delete', dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs")
+  - @dancers = @team.dancers
+  = render partial: "/dancers/profiles", object: @dancers
