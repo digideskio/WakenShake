@@ -33,15 +33,37 @@
           .form-group
             .input-group
               .input-group-addon $
-              %input.form-control{type:"text", placeholder: "Amount"}
+              = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
               .input-group-addon .00
-          = javascript_include_tag "https://checkout.stripe.com/v2/checkout.js", 
-            :class => "stripe-button",
-            :"data-key" => "#{Rails.configuration.stripe[:publishable_key]}", 
-            :"data-description" => "Donation", 
-            :"data-amount" => "500",
-            :"data-label" => "Donate",
-            :"data-image" => "/app-128x128.png"
+            %button{class: "btn btn-md btn-primary", id: "stripeButton"} Donate
+            %span.action
+              :javascript
+                var handler = StripeCheckout.configure({
+                  key: "#{Rails.configuration.stripe[:publishable_key]}",
+                  locale: 'auto',
+                  token: function(token) {
+                    var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+                    var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
+                    $("form").append(tokenInput).append(emailInput).submit();
+                  }
+                });
+
+                $('#stripeButton').on('click', function(e) {
+                  var amount = $("#total-amount-val").val();
+                  if(amount > 0) {
+                    handler.open({
+                      name: "Donation to Wake 'N Shake",
+                      amount: amount*100,
+                      billingAddress: true
+                    });
+                  }
+                  e.preventDefault();
+                });
+
+                // Close Checkout on page navigation
+                $(window).on('popstate', function() {
+                  handler.close();
+                });
     .col-md-6
       .well
         %h3 Send in donations by mail
