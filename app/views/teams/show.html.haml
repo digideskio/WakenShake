@@ -21,7 +21,9 @@
           .input-group-addon $
           = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
           .input-group-addon .00
-        %button{class: "btn btn-md btn-primary", id: "stripeButton"} Donate
+        %button{class: "btn btn-md btn-primary", id: "stripeButton"}
+          Donate to 
+          = @team.name
         %span.action
           :javascript
             var handler = StripeCheckout.configure({

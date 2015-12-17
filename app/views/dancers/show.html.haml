@@ -45,21 +45,40 @@
       .form-inline
         .form-group
           .input-group
-            .input-group-addon
-              $
-            %input.form-control{type: "text", placeholder:"Amount" }
+            .input-group-addon $
+            = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
             .input-group-addon .00
-          = javascript_include_tag "https://checkout.stripe.com/v2/checkout.js", 
-            :class => "stripe-button",
-            :"data-key" => "#{Rails.configuration.stripe[:publishable_key]}", 
-            :"data-description" => "Donate to #{@dancer.first_name}", 
-            :"data-amount" => "500",
-            :"data-label" => "Donate to #{@dancer.first_name}",
-            :"data-image" => "/app-128x128.png"
-          - if can? :manage, :all
-            = link_to edit_dancer_path(@dancer), class: "btn btn-default btn-md" do
-              %i.fa.fa-money
-              Add donation
+          %button{class: "btn btn-md btn-primary", id: "stripeButton"}
+            Donate to 
+            = @dancer.first_name
+          %span.action
+            :javascript
+              var handler = StripeCheckout.configure({
+                key: "#{Rails.configuration.stripe[:publishable_key]}",
+                locale: 'auto',
+                token: function(token) {
+                  var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+                  var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
+                  $("form").append(tokenInput).append(emailInput).submit();
+                }
+              });
+
+              $('#stripeButton').on('click', function(e) {
+                var amount = $("#total-amount-val").val();
+                if(amount > 0) {
+                  handler.open({
+                    name: "Donation to #{@dancer.first_name}",
+                    amount: amount*100,
+                    billingAddress: true
+                  });
+                }
+                e.preventDefault();
+              });
+
+              // Close Checkout on page navigation
+              $(window).on('popstate', function() {
+                handler.close();
+              });
       %br
       .progress
         .progress-bar.progress-bar-success.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "65", :role => "progressbar", :style => "width: 65%"}
