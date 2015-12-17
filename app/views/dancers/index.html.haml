@@ -1,8 +1,6 @@
 .container
-
   .page-header.text-center
     %h1 Dancers
-
   .row
     .col-md-4
       .form-inline
@@ -17,13 +15,14 @@
     - @dancers = @dancers.paginate(page: params[:page]).per_page(24).order('amount_raised DESC')
       - @dancers.each do |dancer|
       .col-md-2
-        .thumbnail
-          .profile-spaced
-            = image_tag(dancer.avatar.url, size: "150", class: "profile-spaced center-block")
-          .text-center.caption
-            %h4= link_to("#{dancer.first_name} #{dancer.last_name}", dancer)
-            - if can? :manage, :all
-              = link_to('Edit', edit_dancer_path(dancer), class: "btn btn-default btn-xs")
-              = link_to('Delete', dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs")
+        = link_to dancer do
+          .thumbnail.thumbnail-fixed-height
+            .profile-spaced
+              = image_tag(dancer.avatar.url, size: "150", class: "profile-spaced center-block img-responsive")
+            .text-center.caption
+              %h4= "#{dancer.first_name} #{dancer.last_name}"
+              - if can? :manage, :all
+                = link_to('Edit', edit_dancer_path(dancer), class: "btn btn-default btn-xs")
+                = link_to('Delete', dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs")
   .pagination.pagination-centered
     = will_paginate(@dancers, renderer: BootstrapPagination::Rails)
