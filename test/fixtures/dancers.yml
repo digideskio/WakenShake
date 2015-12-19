@@ -22,7 +22,6 @@
 #  contact_number         :string
 #  conditional_details    :string
 #  dancing_for            :string
-#  password               :password
 #  avatar_file_name       :string
 #  avatar_content_type    :string
 #  avatar_file_size       :integer
@@ -50,8 +49,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  first_name: MyString
-  last_name: MyString
+  first_name: Nick
+  last_name: Ladd
 
 two:
   first_name: MyString

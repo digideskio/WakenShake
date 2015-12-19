@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  # TODO set the default email address here
+  default from: "wns@wfu.edu"
   layout 'mailer'
 end

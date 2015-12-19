@@ -13,7 +13,7 @@
               %li=dancing_for.dancing_for
     %h3.lead.lead-text Who are you dancing for?
     - if current_dancer.nil?
-      = link_to( "Join 1,000+ dancers now!", new_dancer_registration_path , class: "btn btn-success btn-lg")
+      = link_to( "Become a dancer now!", new_dancer_registration_path , class: "btn btn-success btn-lg")
       %h5
         or 
         = link_to "donate", controller: :donations, action: :index

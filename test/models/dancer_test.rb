@@ -22,7 +22,6 @@
 #  contact_number         :string
 #  conditional_details    :string
 #  dancing_for            :string
-#  password               :password
 #  avatar_file_name       :string
 #  avatar_content_type    :string
 #  avatar_file_size       :integer

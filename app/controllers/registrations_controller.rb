@@ -1,28 +1,25 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def new
-    super
-
-    # Teams
     @teams = Team.all
-
-    # Dorms
     @dorms = Team.all
+
+    super
   end
 
   def create
     super
 
-    @referral = {email: "laddng@gmail.com"}
-
     # Queue up donation emails
-    DonationMailer.request_a_donation(@referral)
+    params[:referral_array].each do |referral|
+      DonationMailer.request_a_donation(referral).deliver_later
+    end
   end
 
   private
 
   def sign_up_params
-    params.require(:dancer).permit(:first_name, :last_name, :email, :password, :gender, :year, :tshirt, :avatar, :team, :residence)
+    params.require(:dancer).permit(:first_name, :last_name, :email, :password, :gender, :year, :tshirt, :avatar, :team, :residence, :dancing_for, :first_time, :team_id, :shift, :conditional_details, :food_allergies, :referral_array)
   end
 
   def account_update_params

@@ -1,6 +1,11 @@
 class DonationsController < ApplicationController
-  
-  def index
+
+  # TODO clean up how donation records are created
+  def create
+    super
+
+    # Send donation notification email to dancer
+    DonationMailer.donation_notification()
   end
 
 end

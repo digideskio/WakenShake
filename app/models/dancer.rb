@@ -22,7 +22,6 @@
 #  contact_number         :string
 #  conditional_details    :string
 #  dancing_for            :string
-#  password               :password
 #  avatar_file_name       :string
 #  avatar_content_type    :string
 #  avatar_file_size       :integer
@@ -49,7 +48,7 @@
 
 class Dancer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable
   belongs_to :team
   has_many :charges
   has_many :donations

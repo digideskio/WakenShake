@@ -22,14 +22,13 @@
             .form-group
               =f.label :password, class: "label"
               = f.password_field(:password, id: "password", class: "form-control", autocomplete: "off", placeholder: "Enter a new password")
-            %br
             %hr
             %h4.text-center
               .fa.fa-user.text-primary
               General Information
             .form-group
               =f.label :dancing_for, "Who are you dancing for?", class: "label"
-              =f.text_field :dancing_for, class: "form-control", placeholder: "Enter the name of the special someone you are dancing for"
+              =f.text_field :dancing_for, class: "form-control", placeholder: "Enter the name of someone you are dancing for"
             .form-group
               .label Sex
               %br
@@ -80,13 +79,13 @@
             .form-group
               .label Residence
               %br
-              =f.collection_select :team_id, Dorm.all, :id, :name, {prompt: "Select your residence"}, {class: "form-control"}
+              =f.collection_select :team_id, @dorms, :id, :name, {prompt: "Select your residence"}, {class: "form-control"}
             .form-group
               .label 
                 Team
                 %span.text-muted (Optional)
               %br
-              =f.collection_select :team_id, Team.all, :id, :name, {prompt: "Select a team to join"}, {class: "form-control"}
+              =f.collection_select :team_id, @teams, :id, :name, {prompt: "Select a team to join"}, {class: "form-control"}
             .form-group
               .label T-Shirt Size
               %br
@@ -145,7 +144,6 @@
                 .btn.btn-primary.btn-sm
                   No
                   = f.radio_button :vegetarian, "Not a vegetarian"
-          %br
           %hr
           %h4.text-center
             .fa.fa-heart-o.text-warning
@@ -153,15 +151,15 @@
           %em.text-muted.small Please submit the contact information of friends or family members. They will automatically be sent an email telling them about Wake 'N Shake and your participation in the event, and asking if they would be willing to support you by donating to the Brian Piccolo Cancer Research Fund on your behalf.
           %h5.text-center Required
           - 5.times do |i|
-            = label :email, "Contact #{i+1}", class: "label"
-            = f.text_field :email, placeholder: "Enter name", class: "form-control"
-            = f.text_field :email, placeholder: "Enter email address", class: "form-control"
+            %label.label= "Contact #{i+1}"
+            %p= text_field_tag 'referral_names_array[]',"", placeholder: "Enter name", class: "form-control"
+            %p= text_field_tag 'referral_emails_array[]',"", placeholder: "Enter email address", class: "form-control"
             %hr
           %h5.text-center Optional
           - 5.times do |i|
             = label :email, "Contact #{i+6}", class: "label"
-            = f.text_field :email, placeholder: "Enter name", class: "form-control"
-            = f.text_field :email, placeholder: "Enter email address", class: "form-control"
+            %p= f.text_field :email, placeholder: "Enter name", class: "form-control"
+            %p= f.text_field :email, placeholder: "Enter email address", class: "form-control"
             %hr
           .actions
             = button_tag(type: 'submit', class: "btn btn-success btn-md btn-block") do
