@@ -10,6 +10,15 @@ class RegistrationsController < Devise::RegistrationsController
     @dorms = Team.all
   end
 
+  def create
+    super
+
+    @referral = {email: "laddng@gmail.com"}
+
+    # Queue up donation emails
+    DonationMailer.request_a_donation(@referral)
+  end
+
   private
 
   def sign_up_params

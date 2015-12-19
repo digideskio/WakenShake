@@ -1,0 +1,2 @@
+class FinancialMailer < ApplicationMailer
+end
