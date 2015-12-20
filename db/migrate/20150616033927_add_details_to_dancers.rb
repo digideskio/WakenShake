@@ -1,7 +1,8 @@
 class AddDetailsToDancers < ActiveRecord::Migration
   def change
     add_column :dancers, :bio, :string
-    add_column :dancers, :year, :int
+    add_column :dancers, :year, :string
+    add_column :dancers, :goal, :integer
     add_column :dancers, :gender, :string
     add_column :dancers, :tshirt, :string
     add_column :dancers, :residence, :string

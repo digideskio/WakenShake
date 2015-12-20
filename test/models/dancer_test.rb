@@ -7,9 +7,9 @@
 #  last_name              :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  amount_raised          :float
 #  bio                    :string
-#  year                   :integer
+#  year                   :string
+#  goal                   :integer
 #  gender                 :string
 #  tshirt                 :string
 #  residence              :string
@@ -36,14 +36,9 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string
 #  admin                  :boolean          default(FALSE)
 #  team_id                :integer
 #  staff_member           :boolean
-#  is_accountant          :boolean
 #
 
 require 'test_helper'

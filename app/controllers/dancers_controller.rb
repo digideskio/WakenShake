@@ -18,6 +18,8 @@ class DancersController < ApplicationController
   end
 
   def show
+    @dancer = Dancer.find(params[:id])
+    @amount_raised_goal = (@dancer.donations.sum(:amount)/@dancer.goal)*100
   end
 
   def new

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027202749) do
+ActiveRecord::Schema.define(version: 20151022222718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20151027202749) do
     t.string   "last_name"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.float    "amount_raised"
     t.string   "bio"
-    t.integer  "year"
+    t.string   "year"
+    t.integer  "goal"
     t.string   "gender"
     t.string   "tshirt"
     t.string   "residence"
@@ -50,31 +50,25 @@ ActiveRecord::Schema.define(version: 20151027202749) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
     t.boolean  "admin",                  default: false
     t.integer  "team_id"
     t.boolean  "staff_member"
-    t.boolean  "is_accountant"
   end
 
-  add_index "dancers", ["confirmation_token"], name: "index_dancers_on_confirmation_token", unique: true, using: :btree
   add_index "dancers", ["email"], name: "index_dancers_on_email", unique: true, using: :btree
   add_index "dancers", ["reset_password_token"], name: "index_dancers_on_reset_password_token", unique: true, using: :btree
   add_index "dancers", ["team_id"], name: "index_dancers_on_team_id", using: :btree
 
   create_table "donations", force: :cascade do |t|
-    t.integer  "dancer_id"
     t.float    "amount"
     t.string   "name"
-    t.string   "messages"
+    t.integer  "gift_id"
+    t.integer  "gift_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "donations", ["dancer_id"], name: "index_donations_on_dancer_id", using: :btree
+  add_index "donations", ["gift_id"], name: "index_donations_on_gift_id", using: :btree
 
   create_table "dorms", force: :cascade do |t|
     t.string   "name"
@@ -97,22 +91,11 @@ ActiveRecord::Schema.define(version: 20151027202749) do
     t.datetime "photo_updated_at"
   end
 
-  create_table "scores", force: :cascade do |t|
-    t.string   "team"
-    t.integer  "blairScore"
-    t.integer  "peddieScore"
-    t.boolean  "active"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "teams", force: :cascade do |t|
     t.string   "name"
-    t.string   "amount_raised"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "dancers", "teams"
-  add_foreign_key "donations", "dancers"
 end

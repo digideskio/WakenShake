@@ -7,8 +7,6 @@ end
 
 teams.each do |team|
   Team.where(
-    name: "#{team}",
-  ).first_or_create(
-    amount_raised: "$0"
-  )
+    name: "#{team}"
+  ).first_or_create!
 end

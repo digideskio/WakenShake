@@ -42,7 +42,7 @@
             %td.text-center
               %strong= "#{index+1}"
             %td= link_to(team.name, team)
-            %td.text-success.text-center= team.amount_raised
+            %td.text-success.text-center= number_to_currency(team_amount_raised(team))
     .col-md-4
       %h3 Top 10 Dancers
       %table.table-striped.table.table-bordered
@@ -51,4 +51,4 @@
             %td.text-center
               %strong= "#{index+1}"
             %td= link_to("#{dancer.first_name} #{dancer.last_name}", dancer)
-            %td.text-success.text-center=number_to_currency(dancer.amount_raised)
+            %td.text-success.text-center=number_to_currency(dancer_amount_raised(dancer))

@@ -3,10 +3,10 @@
 # Table name: donations
 #
 #  id         :integer          not null, primary key
-#  dancer_id  :integer
 #  amount     :float
 #  name       :string
-#  messages   :string
+#  gift_id    :integer
+#  gift_type  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

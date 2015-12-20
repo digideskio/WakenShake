@@ -121,6 +121,22 @@
                 .btn.btn-primary.btn-sm
                   No Preference
                   = f.radio_button :shift, "No Preference"
+            .form-group
+              .label What is your goal to raise?
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  $500
+                  = f.radio_button :shift, 500
+                .btn.btn-primary.btn-sm
+                  $1,000
+                  = f.radio_button :shift, 1000
+                .btn.btn-primary.btn-sm
+                  $2,000
+                  = f.radio_button :shift, 2000
+                .btn.btn-primary.btn-sm
+                  $5,000
+                  = f.radio_button :shift, 5000
             %br
             %hr
             %h4.text-center

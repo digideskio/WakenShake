@@ -9,7 +9,7 @@
     %h4
       = @team.name
       has raised 
-      %span.text-success= number_to_currency(@amount_raised)
+      %span.text-success= number_to_currency(team_amount_raised(@team))
     .text-muted
       Send a donation to 
       = @team.name

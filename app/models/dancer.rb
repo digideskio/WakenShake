@@ -7,9 +7,9 @@
 #  last_name              :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  amount_raised          :float
 #  bio                    :string
-#  year                   :integer
+#  year                   :string
+#  goal                   :integer
 #  gender                 :string
 #  tshirt                 :string
 #  residence              :string
@@ -36,14 +36,9 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
-#  unconfirmed_email      :string
 #  admin                  :boolean          default(FALSE)
 #  team_id                :integer
 #  staff_member           :boolean
-#  is_accountant          :boolean
 #
 
 class Dancer < ActiveRecord::Base
@@ -51,7 +46,7 @@ class Dancer < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :team
   has_many :charges
-  has_many :donations
+  has_many :donations, as: :gift
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "app_icon.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

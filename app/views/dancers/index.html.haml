@@ -12,7 +12,7 @@
                 %span.glyphicon.glyphicon-search{aria: {hidden:"true"}}
       %br
   .row
-    - @dancers = @dancers.paginate(page: params[:page]).per_page(24).order('amount_raised DESC')
+    - @dancers = @dancers.paginate(page: params[:page]).per_page(24)
     = render partial: "profiles", object: @dancers
   .pagination.pagination-centered
     = will_paginate(@dancers, renderer: BootstrapPagination::Rails)
