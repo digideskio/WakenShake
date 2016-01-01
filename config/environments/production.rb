@@ -78,5 +78,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Google Analytics tracking code
-  GA.tracker = "UA-59724283-2"
+  GA.tracker = ENV['GA-KEY']
 end

@@ -6,7 +6,7 @@ class FinancialMailer < ApplicationMailer
   def send_stripe_documents
 
     # Get all Stripe charges
-    Stripe.api_key = "sk_test_71RBtKbXjJcn2VAcPA2PY40W"
+    Stripe.api_key = ENV['STRIPE-TEST-KEY']
     Stripe::Charge.all
 
     # attachments['charges.csv']

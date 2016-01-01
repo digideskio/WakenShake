@@ -23,17 +23,7 @@
 .container
   .row
     .col-md-4
-      %h3 Recent donations
-      - 5.times do
-        .panel.panel-default.panel-body
-          - donor = Dancer.all.sample
-          = image_tag(donor.avatar, class: "img-rounded", size: "30")
-          = donor.first_name
-          donated
-          %span.text-success
-            =number_to_currency(rand(10..60))
-          to
-          =Dancer.all.sample.first_name
+      %h3 Why Wake 'N Shake?
     .col-md-4
       %h3 Top 10 Teams
       %table.table-striped.table.table-bordered
