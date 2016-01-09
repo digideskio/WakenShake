@@ -1,7 +1,8 @@
 class SendEmailsJob < ActiveJob::Base
-  queue_as :default
+  # emails are a low priority job for this web app
+  queue_as :low_priority
 
-  def perform(*args)
-    # Do something later
+  def deliver(*args)
+    # Send emails
   end
 end

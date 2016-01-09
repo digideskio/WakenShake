@@ -48,6 +48,18 @@ class Dancer < ActiveRecord::Base
   belongs_to :team
   has_many :charges
   has_many :donations, as: :gift
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :year, presence: true
+  validates :goal, presence: true
+  validates :gender, presence: true
+  validates :tshirt, presence: true
+  validates :residence, presence: true
+  validates :shift, presence: true
+  validates :first_time, presence: true
+  validates :vegetarian, presence: true
+  validates :dancing_for, presence: true
+  validates :email, presence: true
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "app_icon.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

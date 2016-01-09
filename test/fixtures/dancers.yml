@@ -44,10 +44,12 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+nick:
   first_name: Nick
   last_name: Ladd
+  email: laddng@gmail.com
 
-two:
-  first_name: MyString
-  last_name: MyString
+jack:
+  first_name: Jack
+  last_name: Smith
+  email: abc@gmail.com
