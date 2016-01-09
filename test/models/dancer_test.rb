@@ -45,7 +45,8 @@
 require 'test_helper'
 
 class DancerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should not save dancer without names" do
+    dancer = Dancer.new
+    assert_not dancer.save, "Saved a dancer without names"
+  end
 end

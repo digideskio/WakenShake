@@ -19,18 +19,18 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  theme: MyString
-  year: 2015-06-24 18:19:39
-  overview: MyString
-  amount_raised: MyString
-  num_of_dancers: MyString
+wns2013:
+  name: WNS 2013
+  theme: Tackling Cancer
+  year: 2013-03-23 18:19:39
+  overview: Testing paragraph
+  amount_raised: $123,000
+  num_of_dancers: 1,300
 
-two:
-  name: MyString
-  theme: MyString
-  year: 2015-06-24 18:19:39
-  overview: MyString
-  amount_raised: MyString
-  num_of_dancers: MyString
+wns2014:
+  name: WNS 2014
+  theme: Superheroes
+  year: 2014-03-22 18:19:39
+  overview: Testing paragraph
+  amount_raised: $184,000
+  num_of_dancers: 1,350
