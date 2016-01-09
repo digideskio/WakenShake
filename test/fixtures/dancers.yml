@@ -39,6 +39,7 @@
 #  admin                  :boolean          default(FALSE)
 #  team_id                :integer
 #  staff_member           :boolean
+#  dorm_id                :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

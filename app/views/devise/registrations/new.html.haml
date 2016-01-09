@@ -79,7 +79,7 @@
             .form-group
               .label Residence
               %br
-              =f.collection_select :team_id, @dorms, :id, :name, {prompt: "Select your residence"}, {class: "form-control"}
+              =f.collection_select :dorm_id, @dorms, :id, :name, {prompt: "Select your residence"}, {class: "form-control"}
             .form-group
               .label 
                 Team
