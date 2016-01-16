@@ -23,7 +23,7 @@
           - if can? :manage, :all
             %li
               = link_to controller: "/admin", action: :index do
-                %i.fa.fa-key
+                %i.fa.fa-key.text-warning
                 Admin
           - if dancer_signed_in?
             %li
