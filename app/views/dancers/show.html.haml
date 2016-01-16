@@ -13,11 +13,15 @@
       %b Bio:
       =@dancer.bio
     %hr
-    %h2
-      .fa.fa-facebook-square
-      .fa.fa-twitter-square
-      .fa.fa-google-plus-square
-      .fa.fa-share-alt-square
+    .small.text-muted Share this dancer
+    %a.no-underline.icon-facebook{:href => "http://www.facebook.com/", :onclick => "popUp=window.open('http://www.facebook.com/sharer.php?u=http://example.com','popupwindow','scrollbars=yes,width=800,height=400');popUp.focus();return false", :rel => "nofollow"}
+      %i.fa.fa-2x.fa-facebook-square
+    %a.no-underline.icon-twitter{:href => "http://twitter.com/", :onclick => "popUp=window.open('http://twitter.com/intent/tweet?text=\\'[Page Title]\\' via @[handle] - [url]','popupwindow','scrollbars=yes,width=800,height=400');popUp.focus();return false", :rel => "nofollow"}
+      %i.fa.fa-2x.fa-twitter-square
+    %a.no-underline.icon-gplus{:href => "http://www.plus.google.com/", :onclick => "popUp=window.open('https://plus.google.com/share?url=http://example.com','popupwindow','scrollbars=yes,width=800,height=400');popUp.focus(); return false", :rel => "nofollow"}
+      %i.fa.fa-2x.fa-google-plus-square
+    %a.no-underline.icon-email{:href => "mailto:?subject=[Page Title] via [Site Name]& body=I've just read '[Page Title]' at [url]", :rel => "nofollow"}
+      %i.fa.fa-2x.fa-share-square
   .col-md-8
     %h2
       = @dancer.first_name
