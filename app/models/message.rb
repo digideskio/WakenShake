@@ -1,12 +1,10 @@
-# == Schema Information
-#
-# Table name: messages
-#
-#  id         :integer          not null, primary key
-#  message    :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
+class Message
 
-class Message < ActiveRecord::Base
+  include ActiveModel::Model
+  include ActiveModel::Conversion
+  include ActiveModel::Validations
+
+  attr_accessor :message
+  
+  validates :message, presence: true
 end
