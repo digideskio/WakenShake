@@ -27,7 +27,7 @@
                 Admin
           - if dancer_signed_in?
             %li
-              = link_to("#{current_dancer.first_name} #{current_dancer.last_name}", dancer_path(current_dancer))
+              = link_to("My Profile", dancer_path(current_dancer))
             %li
               %p.navbar-btn= link_to("Logout", destroy_dancer_session_path, method: :delete, class: "btn btn-primary")
           - else
