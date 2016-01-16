@@ -5,7 +5,6 @@ class AddDetailsToDancers < ActiveRecord::Migration
     add_column :dancers, :goal, :integer
     add_column :dancers, :gender, :string
     add_column :dancers, :tshirt, :string
-    add_column :dancers, :residence, :string
     add_column :dancers, :shift, :string
     add_column :dancers, :first_time, :boolean
     add_column :dancers, :hear_about, :string

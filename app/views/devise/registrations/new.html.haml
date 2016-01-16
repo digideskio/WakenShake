@@ -6,6 +6,12 @@
   .row
     .col-md-3
     .col-md-6
+      - if @dancer.errors.any?
+        .alert.alert-danger
+          %h4.text-center.text-danger Errors with registration
+          %p There were errors with your registration. Please fix the following:
+          - @dancer.errors.full_messages.each do |msg|
+            %li= msg
       .well
         = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           - devise_error_messages!
@@ -47,10 +53,10 @@
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-sm
                   Yes
-                  = f.radio_button :first_time, "Veteran dancer"
+                  = f.radio_button :first_time, true
                 .btn.btn-primary.btn-sm
                   No
-                  = f.radio_button :first_time, "New dancer"
+                  = f.radio_button :first_time, false
             .form-group
               .label Year
               %br
@@ -127,16 +133,16 @@
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-sm
                   $500
-                  = f.radio_button :shift, 500
+                  = f.radio_button :goal, 500
                 .btn.btn-primary.btn-sm
                   $1,000
-                  = f.radio_button :shift, 1000
+                  = f.radio_button :goal, 1000
                 .btn.btn-primary.btn-sm
                   $2,000
-                  = f.radio_button :shift, 2000
+                  = f.radio_button :goal, 2000
                 .btn.btn-primary.btn-sm
                   $5,000
-                  = f.radio_button :shift, 5000
+                  = f.radio_button :goal, 5000
             %br
             %hr
             %h4.text-center
@@ -156,10 +162,10 @@
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-sm
                   Yes
-                  = f.radio_button :vegetarian, "Vegetarian"
+                  = f.radio_button :vegetarian, true
                 .btn.btn-primary.btn-sm
                   No
-                  = f.radio_button :vegetarian, "Not a vegetarian"
+                  = f.radio_button :vegetarian, false
           %hr
           %h4.text-center
             .fa.fa-heart-o.text-warning
@@ -173,9 +179,9 @@
             %hr
           %h5.text-center Optional
           - 5.times do |i|
-            = label :email, "Contact #{i+6}", class: "label"
-            %p= f.text_field :email, placeholder: "Enter name", class: "form-control"
-            %p= f.text_field :email, placeholder: "Enter email address", class: "form-control"
+            // = label :email_address, "Contact #{i+6}", class: "label"
+            // %p= f.text_field :email_address, placeholder: "Enter name", class: "form-control"
+            // %p= f.text_field :email_address, placeholder: "Enter email address", class: "form-control"
             %hr
           .actions
             = button_tag(type: 'submit', class: "btn btn-success btn-md btn-block") do

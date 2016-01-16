@@ -54,7 +54,7 @@ class Dancer < ActiveRecord::Base
   validates :goal, presence: true
   validates :gender, presence: true
   validates :tshirt, presence: true
-  validates :residence, presence: true
+  validates :dorm_id, presence: true
   validates :shift, presence: true
   validates :first_time, presence: true
   validates :vegetarian, presence: true

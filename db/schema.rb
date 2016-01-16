@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20160109222713) do
     t.integer  "goal"
     t.string   "gender"
     t.string   "tshirt"
-    t.string   "residence"
     t.string   "shift"
     t.boolean  "first_time"
     t.string   "hear_about"
@@ -93,73 +92,6 @@ ActiveRecord::Schema.define(version: 20160109222713) do
     t.datetime "photo_updated_at"
   end
 
-  create_table "partners", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "projectmembers", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "staff_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "projectmembers", ["project_id"], name: "index_projectmembers_on_project_id", using: :btree
-  add_index "projectmembers", ["staff_id"], name: "index_projectmembers_on_staff_id", using: :btree
-
-  create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "link"
-    t.integer  "partner_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "branding_file_name"
-    t.string   "branding_content_type"
-    t.integer  "branding_file_size"
-    t.datetime "branding_updated_at"
-  end
-
-  add_index "projects", ["partner_id"], name: "index_projects_on_partner_id", using: :btree
-
-  create_table "projectteams", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "scores", force: :cascade do |t|
-    t.string   "team"
-    t.integer  "blairScore"
-    t.integer  "peddieScore"
-    t.boolean  "active"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "semesters", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "staffs", force: :cascade do |t|
-    t.string   "name"
-    t.string   "bio"
-    t.string   "major"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
-    t.string   "position"
-    t.boolean  "active"
-    t.string   "github"
-  end
-
   create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -168,7 +100,4 @@ ActiveRecord::Schema.define(version: 20160109222713) do
 
   add_foreign_key "dancers", "dorms"
   add_foreign_key "dancers", "teams"
-  add_foreign_key "projectmembers", "projects"
-  add_foreign_key "projectmembers", "staffs"
-  add_foreign_key "projects", "partners"
 end
