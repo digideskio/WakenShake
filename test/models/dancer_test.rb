@@ -12,7 +12,6 @@
 #  goal                   :integer
 #  gender                 :string
 #  tshirt                 :string
-#  residence              :string
 #  shift                  :string
 #  first_time             :boolean
 #  hear_about             :string
