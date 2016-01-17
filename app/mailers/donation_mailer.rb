@@ -4,7 +4,7 @@ class DonationMailer < ApplicationMailer
   def request_a_donation(referral)
     @referral = referral
     @url = "http://www.apple.com"
-    mail(to: @referral, subject: "Support Wake 'N Shake!")
+    # mail(to: @referral, subject: "Support Wake 'N Shake!")
   end
 
   # Donation notification email

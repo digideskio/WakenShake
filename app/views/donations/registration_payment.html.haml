@@ -1,4 +1,40 @@
 .container
-  .page-header.text-center
-    %h1 Pay for your registration
- 
+  .row
+    .col-md-6.col-md-offset-3
+      %br
+      %br
+      .well
+        %h3 Pay for your registration
+        %br
+        %p To complete your registration, click the "Pay" button below to pay your registration fee.
+        %br
+        = form_for @new_charge do
+          .form-inline
+            %button{class: "btn btn-md btn-block btn-success", id: "stripeButton"} Pay Registration Fee
+            %span.action
+              :javascript
+                var handler = StripeCheckout.configure({
+                  key: "#{Rails.configuration.stripe[:publishable_key]}",
+                  locale: 'auto',
+                  token: function(token) {
+                    var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+                    var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
+                    $("form").append(tokenInput).append(emailInput).submit();
+                  }
+                });
+
+                $('#stripeButton').on('click', function(e) {
+                    handler.open({
+                      name: "Wake 'N Shake Fee",
+                      amount: 2000,
+                      billingAddress: true
+                    });
+                  e.preventDefault();
+                });
+
+                // Close Checkout on page navigation
+                $(window).on('popstate', function() {
+                  handler.close();
+                });
+
+
