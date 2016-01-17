@@ -51,14 +51,14 @@ class Dancer < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :year, presence: true
-  validates :goal, presence: true
+  validates :goal, presence: {message: "Set your fundraising goal"}
   validates :gender, presence: true
   validates :tshirt, presence: true
   validates :dorm_id, presence: true
   validates :shift, presence: true
-  validates :first_time, presence: true
-  validates :vegetarian, presence: true
-  validates :dancing_for, presence: true
+  validates :first_time, presence: {message: "Indicate whether this is your first Wake 'N Shake or not"}
+  validates :vegetarian, presence: {message: "Indicate whether you are a vegetarian or not"}
+  validates :dancing_for, presence: {message: "Indicate who you are dancing for"}
   validates :email, presence: true
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "app_icon.png"
