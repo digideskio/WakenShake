@@ -48,18 +48,18 @@ class Dancer < ActiveRecord::Base
   belongs_to :team
   has_many :charges
   has_many :donations, as: :gift
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :year, presence: true
+  validates :first_name, presence: {message: "Your first name cannot be blank"}
+  validates :last_name, presence: {message: "Your last name cannot be blank"}
+  validates :year, presence: {message: "Indicate your year"}
   validates :goal, presence: {message: "Set your fundraising goal"}
-  validates :gender, presence: true
-  validates :tshirt, presence: true
-  validates :dorm_id, presence: true
-  validates :shift, presence: true
+  validates :gender, presence: {message: "Indicate your gender"}
+  validates :tshirt, presence: {message: "Select your t-shirt size"}
+  validates :dorm_id, presence: {message: "Indicate which dorm you live in"}
+  validates :shift, presence: {messsage: "Select the shift you prefer to dance in"}
   validates :first_time, presence: {message: "Indicate whether this is your first Wake 'N Shake or not"}
   validates :vegetarian, presence: {message: "Indicate whether you are a vegetarian or not"}
   validates :dancing_for, presence: {message: "Indicate who you are dancing for"}
-  validates :email, presence: true
+  validates :email, presence: {message: "Your email cannot be blank"}
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "app_icon.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

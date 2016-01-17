@@ -179,10 +179,11 @@
             %hr
           %h5.text-center Optional
           - 5.times do |i|
-            // = label :email_address, "Contact #{i+6}", class: "label"
-            // %p= f.text_field :email_address, placeholder: "Enter name", class: "form-control"
-            // %p= f.text_field :email_address, placeholder: "Enter email address", class: "form-control"
+            %label.label= "Contact #{i+6}"
+            %p= text_field_tag 'referral_names_array[]',"", placeholder: "Enter name", class: "form-control"
+            %p= text_field_tag 'referral_emails_array[]',"", placeholder: "Enter email address", class: "form-control"
             %hr
+ 
           .actions
             = button_tag(type: 'submit', class: "btn btn-success btn-md btn-block") do
               .fa.fa-check-circle-o
