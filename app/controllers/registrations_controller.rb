@@ -1,5 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def after_sign_up_path_for(resource)
+    '/an/example/path' # Or :prefix_to_your_route
+  end
+
   def new
     @teams = Team.all
     @dorms = Dorm.all
@@ -13,13 +17,13 @@ class RegistrationsController < Devise::RegistrationsController
 
     super
 
-    logger.info "User - #{params[:email]} has been created. Queueing up 
+    logger.info "User - #{resource.email} has been created. Queueing up 
     donation emails now..."
 
     # Queue up donation emails
-#    params[:referral_emails_array].each do |referral|
-#      DonationMailer.request_a_donation(referral).deliver_later
-#    end
+    params[:referral_emails_array].each do |referral|
+      DonationMailer.request_a_donation(referral).deliver_later
+    end
   end
 
   private

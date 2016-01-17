@@ -7,4 +7,9 @@ class DonationsController < ApplicationController
     DonationMailer.donation_notification()
   end
 
+  def registration_payment
+
+    # TODO this is where those who register will pay
+  end
+
 end

@@ -10,8 +10,9 @@
         .alert.alert-danger
           %h4.text-center.text-danger Errors with registration
           %p There were errors with your registration. Please fix the following:
-          - @dancer.errors.full_messages.each do |msg|
-            %li= msg
+          - @dancer.errors.messages.values.each do |msg|
+            - msg.each do |error|
+              %li= error
       .well
         = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           - devise_error_messages!
