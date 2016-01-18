@@ -45,8 +45,7 @@ class Dancer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :team
-  has_many :charges
-  has_many :donations, as: :gift
+  has_many :charges, as: :charged
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :year, presence: true
