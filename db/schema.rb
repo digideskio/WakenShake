@@ -73,18 +73,6 @@ ActiveRecord::Schema.define(version: 20160118033312) do
   add_index "dancers", ["reset_password_token"], name: "index_dancers_on_reset_password_token", unique: true, using: :btree
   add_index "dancers", ["team_id"], name: "index_dancers_on_team_id", using: :btree
 
-  create_table "donations", force: :cascade do |t|
-    t.float    "amount"
-    t.string   "name"
-    t.integer  "gift_id"
-    t.integer  "gift_type"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.boolean  "registration_fee"
-  end
-
-  add_index "donations", ["gift_id"], name: "index_donations_on_gift_id", using: :btree
-
   create_table "dorms", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
