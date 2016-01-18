@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109222713) do
+ActiveRecord::Schema.define(version: 20160118032710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "charges", force: :cascade do |t|
+    t.float    "amount"
+    t.integer  "charged_id"
+    t.string   "charged_type"
+    t.boolean  "is_registration_fee"
+    t.boolean  "is_donation"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "charges", ["charged_type", "charged_id"], name: "index_charges_on_charged_type_and_charged_id", using: :btree
 
   create_table "dancers", force: :cascade do |t|
     t.string   "first_name"
@@ -65,8 +77,9 @@ ActiveRecord::Schema.define(version: 20160109222713) do
     t.string   "name"
     t.integer  "gift_id"
     t.integer  "gift_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.boolean  "registration_fee"
   end
 
   add_index "donations", ["gift_id"], name: "index_donations_on_gift_id", using: :btree
