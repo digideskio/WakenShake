@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   get 'admin/index'
 
   resources :dancers
-  resources :charges
   resources :teams
   resources :histories
 
