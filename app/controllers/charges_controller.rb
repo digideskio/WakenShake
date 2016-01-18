@@ -26,6 +26,44 @@ class ChargesController < ApplicationController
   def create
     @charge = Charge.new(charge_params)
 
+    @amount = 2000
+
+    # charge amount
+    @charge.amount = @amount
+
+    @description = ""
+
+    # determine if the charge is a donation or registration fee
+    if params[:is_donation].present?
+      @charge.is_donation = true
+      @description = "Wake \'N Shake Donation"
+    elsif params[:is_registration_fee].present?
+      @charge.is_registration_fee = true
+      @description = "Wake \'N Shake Registration Fee"
+    end
+
+    # associate the charge to a team or dancer
+    if params[:charge_type] == "Dancer"
+      @charge.dancer = Dancer.find(params[:charge_id])
+    elsif params[:charge_type] == "Team"
+      @charge.team = Team.find(params[:charge_id])
+    end
+
+    # provide the email address for the charge
+    @charge.email = params[:stripeEmail]
+
+    customer = Stripe::Customer.create(
+      email: params[:stripeEmail],
+      source: params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      customer: customer.id,
+      amount: @amount,
+      description: 'Wake \'N Shake Registration Fee',
+      currency: 'usd'
+    )
+
     respond_to do |format|
       if @charge.save
         format.html { redirect_to @charge, notice: 'Charge was successfully created.' }
@@ -69,6 +107,6 @@ class ChargesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def charge_params
-      params.require(:charge).permit(:amount, :charged_id, :charged_type, :is_registration_fee, :is_donation)
+      params.require(:charge).permit(:amount, :charged_id, :charged_type, :is_registration_fee, :is_donation, :stripeEmail, :stripeToken)
     end
 end
