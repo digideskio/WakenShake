@@ -6,6 +6,3 @@
           = image_tag(dancer.avatar.url, size: "150", class: "profile-spaced center-block img-responsive")
         .text-center.caption
           %h4= "#{dancer.first_name} #{dancer.last_name}"
-          - if can? :manage, :all
-            = link_to('Edit', edit_dancer_path(dancer), class: "btn btn-default btn-xs")
-            = link_to('Delete', dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs")

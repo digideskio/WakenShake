@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :charges
   get 'committee/index'
   get 'accountant/index'
   get 'admin/index'
@@ -22,7 +23,6 @@ Rails.application.routes.draw do
   get 'admin/index'
 
   resources :dancers
-  resources :charges
   resources :teams
   resources :histories
   resources :donations

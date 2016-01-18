@@ -1,7 +1,5 @@
 .container
-  %h1.page-header
-    .fa.fa-key
-    Admin Panel
+  %h1.page-header Admin Panel
   .row
     .col-md-3
       .well
@@ -24,15 +22,15 @@
         .row.text-center
           .col-md-4
             .thumbnail
-              %h5 Dancers signed up
+              %h5.text-muted Dancers signed up
               %h2=@dancers_count
           .col-md-4
             .thumbnail
-              %h5 Amount raised
-              %h2=@amount_raised
+              %h5.text-muted Amount raised
+              %h2=number_to_currency(@amount_raised)
           .col-md-4
             .thumbnail
-              %h5 Active teams
+              %h5.text-muted Active teams
               %h2=@active_teams
         %hr
         %h4
@@ -40,6 +38,6 @@
           Mass Email
         = form_for (Dancer.new) do |f|
           .form-group
-            = f.text_area :first_name, class: "form-control", placeholder: "Enter a message to email to the dancers"
+            = f.text_area :first_name, class: "form-control", rows: 10, placeholder: "Enter a message to email to the dancers"
           .action
             = f.submit

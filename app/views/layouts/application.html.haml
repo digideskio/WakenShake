@@ -7,6 +7,7 @@
     = csrf_meta_tags
     %script{:src => "https://checkout.stripe.com/checkout.js"}
     = analytics_init if Rails.env.production?
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
   %body
     %nav.navbar.navbar-inverse
       .container
@@ -16,14 +17,14 @@
             %li= link_to("About", controller: "/about", action: :index)
             %li= link_to("Committee", controller: "/about", action: :committee)
             %li= link_to("Our History", histories_path)
-            %li= link_to("Donate", controller: "/donations", action: :index)
+            %li= link_to("Donate", charges_path")
             %li= link_to("Dancers", dancers_path)
             %li= link_to("Teams", teams_path)
         %ul.nav.navbar-nav.navbar-right
           - if can? :manage, :all
             %li
               = link_to controller: "/admin", action: :index do
-                %i.fa.fa-key
+                %i.fa.fa-key.text-warning
                 Admin
           - if dancer_signed_in?
             %li
