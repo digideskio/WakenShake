@@ -106,23 +106,31 @@
             - else
               her
             goal!
-    - 12.times do
+    - @donations.each do |donation|
+      - donor = Dancer.where(email: donation.email).present?
       .panel.panel-default.panel-body
         .row
-          - donor = Dancer.all.sample
-          .col-md-1
-            = image_tag(donor.avatar, class: "img-rounded", size: "40")
-          .col-md-11
-            = donor.first_name
-            donated
-            %span.text-success
-              =number_to_currency(rand(10..60))
-            to
-            =@dancer.first_name
-            %br
-              .text-muted.small
-                = time_ago_in_words(rand(20).days.ago)
-                ago
+          - if donor.present?
+            .col-md-1
+              = image_tag(donor.avatar, class: "img-rounded", size: "40")
+          .col-md-8
+            - if donor.present?
+              = donor.first_name
+              donated
+              %span.text-success
+                =number_to_currency(donation.amount)
+              to
+              =@dancer.first_name
+            - else
+              = @dancer.first_name
+              received a
+              %span.text-success
+                =number_to_currency(donation.amount)
+              donation.
+          .col-md-3
+            %span.text-muted.small
+              = time_ago_in_words(donation.created_at)
+              ago
   .col-md-1
     - if can? :manage, :all
       %br
