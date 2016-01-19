@@ -45,7 +45,7 @@ class Dancer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
   belongs_to :team
-  has_many :charges, as: charged
+  has_many :charges, as: :charged
   validates :email, presence: {message: "Your email cannot be blank"}, uniqueness: {message: "This email address is already being used"}
   validates :password, presence: {message: "Your password cannot be blank"}, length: {minimum: 8, too_short: "Your password must have at least 8 characters"}
   validates :first_name, presence: {message: "Your first name cannot be blank"}
