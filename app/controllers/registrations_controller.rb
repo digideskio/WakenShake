@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
-    '/donations/registration_payment'
+    '/charges/registration'
   end
 
   def new

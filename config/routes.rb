@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'charges/new'
   get 'charges/create'
   get 'charges/index'
+  get 'charges/registration'
   get 'donations/index'
   get 'about/index'
   get 'about/committee'
@@ -25,7 +26,6 @@ Rails.application.routes.draw do
   resources :dancers
   resources :teams
   resources :histories
-  resources :donations
 
   root 'home_page#index'
 end

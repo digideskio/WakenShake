@@ -21,6 +21,10 @@ class ChargesController < ApplicationController
   def edit
   end
 
+  def registration
+    @charge = Charge.new
+  end
+
   # POST /charges
   # POST /charges.json
   def create
