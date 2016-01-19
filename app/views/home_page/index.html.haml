@@ -10,7 +10,7 @@
         #names
           %ul
             - @dancing_for_list.each do |dancing_for|
-              %li=dancing_for.dancing_for
+              %li=dancing_for.dancing_for.split(" ")[0]
     %h3.lead.lead-text Who are you dancing for?
     - if current_dancer.nil?
       = link_to( "Become a dancer now!", new_dancer_registration_path , class: "btn btn-success btn-lg")
