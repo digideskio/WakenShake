@@ -6,15 +6,17 @@ class TeamsController < ApplicationController
   # GET /teams.json
   def index
     if params[:search]
-      @teams = Team.search(params[:search])
+      @teams = Team.joins(:dancers).search(params[:search])
     else
-      @teams = Team.all
+      @teams = Team.joins(:dancers)
     end
   end
 
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @team = Team.find(params[:id])
+    @donations = @team.charges.where(is_donation: true)
   end
 
   # GET /teams/new

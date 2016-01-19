@@ -1,71 +1,103 @@
 .container
-
-  %h1
-    = @team.name
-    - if can? :manage, :all
-      = link_to('Edit', edit_team_path(@team), class: "btn btn-default btn-md")
-      = link_to('Delete team', @team, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-md")
-  .panel.panel-default.panel-body
-    %h4
-      = @team.name
-      has raised 
-      %span.text-success= number_to_currency(team_amount_raised(@team))
-    .text-muted
-      Send a donation to 
-      = @team.name
-      to help their campaign!
-    %hr
-    .form-inline
-      .form-group
-        .input-group
-          .input-group-addon $
-          = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
-          .input-group-addon .00
-        %button{class: "btn btn-md btn-primary", id: "stripeButton"}
-          Donate to 
+  .row
+    .col-md-12
+      %h1
+        = @team.name
+        - if can? :manage, :all
+          = link_to('Edit', edit_team_path(@team), class: "btn btn-default btn-md")
+          = link_to('Delete team', @team, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-md")
+      .panel.panel-default.panel-body
+        %h4
           = @team.name
-        %span.action
-          :javascript
-            var handler = StripeCheckout.configure({
-              key: "#{Rails.configuration.stripe[:publishable_key]}",
-              locale: 'auto',
-              token: function(token) {
-                var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
-                var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
-                $("form").append(tokenInput).append(emailInput).submit();
-              }
-            });
-
-            $('#stripeButton').on('click', function(e) {
-              var amount = $("#total-amount-val").val();
-              if(amount > 0) {
-                handler.open({
-                  name: "Donation to #{@team.name}",
-                  amount: amount*100,
-                  billingAddress: true
+          has raised 
+          %span.text-success= number_to_currency(team_amount_raised(@team))
+        .text-muted
+          Send a donation to 
+          = @team.name
+          to help their campaign!
+        %hr
+        .form-inline
+          .form-group
+            .input-group
+              .input-group-addon $
+              = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
+              .input-group-addon .00
+            %button{class: "btn btn-md btn-primary", id: "stripeButton"}
+              Donate to 
+              = @team.name
+            %span.action
+              :javascript
+                var handler = StripeCheckout.configure({
+                  key: "#{Rails.configuration.stripe[:publishable_key]}",
+                  locale: 'auto',
+                  token: function(token) {
+                    var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+                    var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
+                    $("form").append(tokenInput).append(emailInput).submit();
+                  }
                 });
-              }
-              e.preventDefault();
-            });
 
-            // Close Checkout on page navigation
-            $(window).on('popstate', function() {
-              handler.close();
-            });
-    %br
-    .progress
-      .progress-bar.progress-bar-success.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 40%"}
-        40% from reaching the goal
-  .small.text-muted Share this team page
-  %a.no-underline.icon-facebook{:href => "http://www.facebook.com/", :onclick => "popUp=window.open('http://www.facebook.com/sharer.php?u=#{request.original_url}','popupwindow','scrollbars=yes,width=800,height=400');popUp.focus();return false", :rel => "nofollow"}
-    %i.fa.fa-2x.fa-facebook-square
+                $('#stripeButton').on('click', function(e) {
+                  var amount = $("#total-amount-val").val();
+                  if(amount > 0) {
+                    handler.open({
+                      name: "Donation to #{@team.name}",
+                      amount: amount*100,
+                      billingAddress: true
+                    });
+                  }
+                  e.preventDefault();
+                });
+
+                // Close Checkout on page navigation
+                $(window).on('popstate', function() {
+                  handler.close();
+                });
+        %br
+        .progress
+          .progress-bar.progress-bar-success.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 40%"}
+            40% from reaching the goal
+  .row
+    .col-md-3
+      .small.text-muted Share this team page
+      %a.no-underline.icon-facebook{:href => "http://www.facebook.com/", :onclick => "popUp=window.open('http://www.facebook.com/sharer.php?u=#{request.original_url}','popupwindow','scrollbars=yes,width=800,height=400');popUp.focus();return false", :rel => "nofollow"}
+        %i.fa.fa-2x.fa-facebook-square
       %a.no-underline.icon-twitter{:href => "http://twitter.com/", :onclick => "popUp=window.open('http://twitter.com/intent/tweet?text=\\'[#{@team.name}]\\' via @[handle] - [#{request.original_url}]','popupwindow','scrollbars=yes,width=800,height=400');popUp.focus();return false", :rel => "nofollow"}
-    %i.fa.fa-2x.fa-twitter-square
+        %i.fa.fa-2x.fa-twitter-square
       %a.no-underline.icon-gplus{:href => "http://www.plus.google.com/", :onclick => "popUp=window.open('https://plus.google.com/share?url=#{request.original_url}','popupwindow','scrollbars=yes,width=800,height=400');popUp.focus(); return false", :rel => "nofollow"}
-    %i.fa.fa-2x.fa-google-plus-square
-  %a.no-underline.icon-email{:href => "mailto:?subject=[Page Title] via [Site Name]& body=I've just read '[Page Title]' at [url]", :rel => "nofollow"}
-    %i.fa.fa-2x.fa-share-square
+        %i.fa.fa-2x.fa-google-plus-square
+      %a.no-underline.icon-email{:href => "mailto:?subject=[Page Title] via [Site Name]& body=I've just read '[Page Title]' at [url]", :rel => "nofollow"}
+        %i.fa.fa-2x.fa-share-square
 
-  %h3 Dancers
-  - @dancers = @team.dancers
-  = render partial: "/dancers/profiles", object: @dancers
+      %h3 Dancers
+      - @dancers = @team.dancers
+      = render partial: "/dancers/profiles", object: @dancers
+
+    .col-md-9
+      %h3 Donation Activity
+      - @donations.each do |donation|
+        - donor = Dancer.where(email: donation.email).present?
+        .panel.panel-default.panel-body
+          .row
+            - if donor.present?
+              .col-md-1
+                = image_tag(donor.avatar, class: "img-rounded", size: "40")
+            .col-md-8
+              - if donor.present?
+                = donor.first_name
+                donated
+                %span.text-success
+                  =number_to_currency(donation.amount)
+                to
+                =@team.name
+              - else
+                = @team.name
+                received a
+                %span.text-success
+                  =number_to_currency(donation.amount)
+                donation.
+            .col-md-3
+              %span.text-muted.small.pull-right
+                = time_ago_in_words(donation.created_at)
+                ago
+

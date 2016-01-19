@@ -84,45 +84,33 @@
                 handler.close();
               });
       %br
-      .progress
-        - if @amount_raised_goal > 100
-          .progress-bar.progress-bar-success.progress-bar-striped{:role => "progressbar", :style => "width: #{@amount_raised_goal}%"}
-            = @dancer.first_name
-            has exceeded
-            - if @dancer.gender == "male"
-              his
-            - else
-              her
-            goal by
-            =number_to_percentage(@amount_raised_goal, precision: 0)
-        - if @amount_raised_goal < 100
-          .progress-bar.progress-bar-primary.progress-bar-striped{:role => "progressbar", :style => "width: #{@amount_raised_goal}%"}
-            = @dancer.first_name
-            has reached
-            =number_to_percentage(@amount_raised_goal, precision: 0)
-            of 
-            - if @dancer.gender == "male"
-              his
-            - else
-              her
-            goal!
-    - 12.times do
+      .progress.progress-bar.progress-bar-success.progress-bar-striped{:role => "progressbar", :style => "width: #{@amount_raised_goal}%"}
+        =number_to_percentage(@amount_raised_goal, precision: 0)
+    - @donations.each do |donation|
+      - donor = Dancer.where(email: donation.email).present?
       .panel.panel-default.panel-body
         .row
-          - donor = Dancer.all.sample
-          .col-md-1
-            = image_tag(donor.avatar, class: "img-rounded", size: "40")
-          .col-md-11
-            = donor.first_name
-            donated
-            %span.text-success
-              =number_to_currency(rand(10..60))
-            to
-            =@dancer.first_name
-            %br
-              .text-muted.small
-                = time_ago_in_words(rand(20).days.ago)
-                ago
+          - if donor.present?
+            .col-md-1
+              = image_tag(donor.avatar, class: "img-rounded", size: "40")
+          .col-md-8
+            - if donor.present?
+              = donor.first_name
+              donated
+              %span.text-success
+                =number_to_currency(donation.amount)
+              to
+              =@dancer.first_name
+            - else
+              = @dancer.first_name
+              received a
+              %span.text-success
+                =number_to_currency(donation.amount)
+              donation.
+          .col-md-3
+            %span.text-muted.small.pull-right
+              = time_ago_in_words(donation.created_at)
+              ago
   .col-md-1
     - if can? :manage, :all
       %br

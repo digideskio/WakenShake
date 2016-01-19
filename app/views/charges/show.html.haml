@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Amount:
+  = @charge.amount
+%p
+  %b Charged:
+  = @charge.charged
+%p
+  %b Is registration fee:
+  = @charge.is_registration_fee
+%p
+  %b Is donation:
+  = @charge.is_donation
+
+= link_to 'Edit', edit_charge_path(@charge)
+\|
+= link_to 'Back', charges_path

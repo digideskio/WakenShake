@@ -43,23 +43,22 @@
 
 class Dancer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
   belongs_to :team
-  has_many :charges
-  has_many :donations, as: :gift
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :year, presence: true
-  validates :goal, presence: true
-  validates :gender, presence: true
-  validates :tshirt, presence: true
-  validates :dorm_id, presence: true
-  validates :shift, presence: true
-  validates :first_time, presence: true
-  validates :vegetarian, presence: true
-  validates :dancing_for, presence: true
-  validates :email, presence: true
-
+  has_many :charges, as: :charged
+  validates :email, presence: {message: "Your email cannot be blank"}, uniqueness: {message: "This email address is already being used"}
+  validates :password, presence: {message: "Your password cannot be blank"}, length: {minimum: 8, too_short: "Your password must have at least 8 characters"}
+  validates :first_name, presence: {message: "Your first name cannot be blank"}
+  validates :last_name, presence: {message: "Your last name cannot be blank"}
+  validates :year, presence: {message: "Indicate your year"}
+  validates :goal, presence: {message: "Set your fundraising goal"}
+  validates :gender, presence: {message: "Indicate your gender"}
+  validates :tshirt, presence: {message: "Select your t-shirt size"}
+  validates :dorm_id, presence: {message: "Indicate which dorm you live in"}
+  validates :shift, presence: {message: "Select the shift you prefer to dance in"}
+  validates :first_time, presence: {message: "Indicate whether this is your first Wake 'N Shake or not"}
+  validates :vegetarian, presence: {message: "Indicate whether you are a vegetarian or not"}
+  validates :dancing_for, presence: {message: "Indicate who you are dancing for"}
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "app_icon.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 

@@ -1,6 +1,6 @@
 .jumbotron {
   min-height: 400px;
-  background: #000 image-url("photo_grid.png") repeat-x center center;
+  background: #000 image-url("photo_grid.jpg") repeat-x center center;
   color: #FFF;
 }
 .dancing_for_frame {
@@ -16,10 +16,10 @@
 }
 #names {
   display: inline-block;
-  width: 600px;
+  width: 60%;
   color: #FFFF00;
   position: absolute;
-  left: 305px;
+  left: 33%;
 }
 .lead-text {
   font-size: 26px;

@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: charges
+#
+#  id                  :integer          not null, primary key
+#  amount              :float
+#  charged_id          :integer
+#  charged_type        :string
+#  is_registration_fee :boolean
+#  is_donation         :boolean
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  email               :string
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1.5
+  charged_id: 
+  charged_type: Charged
+  is_registration_fee: false
+  is_donation: false
+
+two:
+  amount: 1.5
+  charged_id: 
+  charged_type: Charged
+  is_registration_fee: false
+  is_donation: false

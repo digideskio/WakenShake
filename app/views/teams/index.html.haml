@@ -23,7 +23,6 @@
             = link_to team.name, team
             %br
             Raised 
-            = team.amount_raised
             %br
             - if can? :manage, :all
               = link_to('Edit', edit_team_path(team), class: "btn btn-default btn-xs")
