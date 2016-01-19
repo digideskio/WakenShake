@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
     if params[:search]
       @teams = Team.search(params[:search])
     else
-      @teams = Team.all
+      @teams = Team.joins(:dancers)
     end
   end
 

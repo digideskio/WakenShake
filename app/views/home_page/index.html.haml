@@ -19,7 +19,7 @@
         = link_to "donate", controller: :donations, action: :index
         instead!
     - else
-      %p= link_to "Send a donation", {controller: :donations, action: :index}, class: "btn btn-primary btn-lg"
+      %p= link_to "Send a donation", charges_path, class: "btn btn-primary btn-lg"
 .container
   .row
     .col-md-4
