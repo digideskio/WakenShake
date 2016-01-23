@@ -75,7 +75,7 @@
     .col-md-12
       %h3 Dancers
       - @dancers = @team.dancers
-      = render partial: "/dancers/profiles", object: @dancers
+      = render partial: "/dancers/profiles", locals: {object: @dancers}
   .row
     .col-md-9
       %h4.page-header Recent Activity

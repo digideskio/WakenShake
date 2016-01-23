@@ -3,9 +3,4 @@
     .col-md-12
       %br
       %h1.page-header.text-center 2016 Wake 'N Shake Committee
-      - @staff.each do |staff|
-        .col-md-3
-          .thumbnail
-            = image_tag(staff.avatar.url)
-            .text-center.caption
-              %h4= link_to("#{staff.first_name} #{staff.last_name}", staff)
+      = render partial: "/dancers/profiles", locals: {object: @staff}

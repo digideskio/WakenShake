@@ -1,6 +1,15 @@
 .container
   .page-header.text-center
     %h1 Dancers
+  - if params[:search].nil?
+    .row
+      %h3
+        %i.fa.fa-star.text-warning
+        Top 6 Dancers
+      = render partial: "profiles", locals: {object: @top_6_dancers}
+    %hr
+  .row
+    %h3 All Dancers
   .row
     .col-md-4
       .form-inline
@@ -10,9 +19,9 @@
             %span.input-group-btn
               %button.btn.btn-default{type:"button"}
                 %span.glyphicon.glyphicon-search{aria: {hidden:"true"}}
-      %br
   .row
+    %br
     - @dancers = @dancers.paginate(page: params[:page]).per_page(24)
-    = render partial: "profiles", object: @dancers
+    = render partial: "profiles", locals: {object: @dancers}
   .pagination.pagination-centered
     = will_paginate(@dancers, renderer: BootstrapPagination::Rails)

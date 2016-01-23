@@ -6,7 +6,9 @@ class DancersController < ApplicationController
     if params[:search]
       @dancers = Dancer.search(params[:search])
     else
-      @dancers = Dancer.all
+      @top_6_dancers = Dancer.joins(:charges).where('charges.is_donation=true').select('dancers.id, avatar_file_name, first_name, last_name, sum(charges.amount) as total_raised').group('dancers.id').order('total_raised desc').limit(6)
+
+      @dancers = Dancer.all.order(last_name: :asc)
       respond_to do |format|
         format.html
         format.csv do

@@ -16,16 +16,19 @@
       = link_to( "Become a dancer now!", new_dancer_registration_path , class: "btn btn-success btn-lg")
       %h5
         or 
-        = link_to "donate", controller: :donations, action: :index
+        = link_to "donate", charges_path
         instead!
     - else
       %p= link_to "Send a donation", charges_path, class: "btn btn-primary btn-lg"
 .container
   .row
     .col-md-4
+      %br
+      %p.lead Wake ‘N Shake is a 12-hour dance marathon held every spring at Wake Forest University, benefiting the Brian Piccolo Cancer Research Fund. For 12-hours, students, alumni, and faculty members come together to stay standing in support of all those affected by cancer, asking for donations in support of their participation.
+      = link_to "Read more", controller: "about", action: "index", class: "lead"
     .col-md-4
       %h3 Top 10 Teams
-      %table.table-striped.table.table-bordered
+      %table.table.table-bordered
         - @top_10_teams.each_with_index do |team, index|
           %tr
             %td.text-center
@@ -34,7 +37,7 @@
             %td.text-success.text-center= number_to_currency(team_amount_raised(team))
     .col-md-4
       %h3 Top 10 Dancers
-      %table.table-striped.table.table-bordered
+      %table.table.table-bordered
         - @top_10_dancers.each_with_index do |dancer, index|
           %tr
             %td.text-center
