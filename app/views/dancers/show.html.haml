@@ -2,6 +2,9 @@
   .col-md-3
     %br
     =image_tag(@dancer.avatar.url, size: "190", class: "img-rounded center-block")
+    - if @dancer.stafftitle.present?
+      %p
+        %h5.text-center= @dancer.stafftitle
     %p
       %hr
       %b Year:
@@ -12,6 +15,7 @@
       %br
       %b Bio:
       =@dancer.bio
+      %br
     %hr
     .small.text-muted Share this dancer
     %a.no-underline.icon-facebook{:href => "http://www.facebook.com/", :onclick => "popUp=window.open('http://www.facebook.com/sharer.php?u=http://example.com','popupwindow','scrollbars=yes,width=800,height=400');popUp.focus();return false", :rel => "nofollow"}
