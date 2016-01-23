@@ -39,6 +39,7 @@
 #  team_id                :integer
 #  staff_member           :boolean
 #  dorm_id                :integer
+#  stafftitle             :string
 #
 
 require 'test_helper'
