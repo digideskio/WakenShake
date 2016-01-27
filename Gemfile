@@ -60,6 +60,9 @@ gem 'autoprefixer-rails'
 # Google Analytics tracker
 gem "google-analytics-rails"
 
+# Seedbank organizes our seed data a little better so that it's not a mess seeding stuff
+gem 'seedbank'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -69,9 +72,6 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
-  # Seedbank organizes our seed data a little better so that it's not a mess seeding stuff
-  gem 'seedbank'
 
   # for testing email messages
   gem "letter_opener"
