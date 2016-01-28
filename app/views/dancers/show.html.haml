@@ -39,9 +39,9 @@
       = @dancer.last_name
       %small= link_to(@dancer.team.name, @dancer.team)
       %br
-      - if can? :manage, :all
-        = link_to('Edit', edit_dancer_path(@dancer), class: "btn btn-default btn-sm")
-        = link_to('Delete this dancer', @dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
+      - if can? :manage, @dancer
+        = link_to('Edit your profile', edit_dancer_path(@dancer), class: "btn btn-default btn-sm")
+        = link_to('Delete your profile', @dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
     .panel.panel-default.panel-body
       %h4
         = @dancer.first_name
