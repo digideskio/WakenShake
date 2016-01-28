@@ -1,18 +1,11 @@
-%p#notice= notice
-
-%p
-  %b Amount:
-  = @charge.amount
-%p
-  %b Charged:
-  = @charge.charged
-%p
-  %b Is registration fee:
-  = @charge.is_registration_fee
-%p
-  %b Is donation:
-  = @charge.is_donation
-
-= link_to 'Edit', edit_charge_path(@charge)
-\|
-= link_to 'Back', charges_path
+.container
+  .row.text-center
+    %br
+    %br
+    %i.text-danger.fa.fa-5x.fa-heart-o
+    %h1 Thank you for your support!
+    %h3 Your gift will support the Wake Forest Brian Piccolo Cancer Research Fund.
+    %br
+    = link_to "Go to homepage", root_path, class: "btn btn-lg btn-success"
+    %br
+    %br

@@ -9,6 +9,7 @@ class ChargesController < ApplicationController
   # GET /charges/1
   # GET /charges/1.json
   def show
+    @amount = Charge.find(params[:id]).amount
   end
 
   # GET /charges/new
@@ -20,8 +21,7 @@ class ChargesController < ApplicationController
   def edit
   end
 
-  def registration
-    @charge = Charge.new
+  def registration_fee
   end
 
   # POST /charges
