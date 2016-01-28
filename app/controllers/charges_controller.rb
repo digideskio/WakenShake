@@ -4,7 +4,6 @@ class ChargesController < ApplicationController
   # GET /charges
   # GET /charges.json
   def index
-    @charges = Charge.all
   end
 
   # GET /charges/1
@@ -28,12 +27,17 @@ class ChargesController < ApplicationController
   # POST /charges
   # POST /charges.json
   def create
-    @charge = Charge.new(charge_params)
+
+    # determine if the charge is a donation or registration fee
+    @description = ""
+
+    if params[:is_donation].present?
+      @description = "Wake \'N Shake Donation"
+    elsif params[:is_registration_fee].present?
+      @description = "Wake \'N Shake Registration Fee"
+    end
 
     @amount = 2000
-
-    # charge amount
-    @charge.amount = @amount
 
     customer = Stripe::Customer.create(
       email: params[:stripeEmail],
@@ -43,41 +47,28 @@ class ChargesController < ApplicationController
     charge = Stripe::Charge.create(
       customer: customer.id,
       amount: @amount,
-      description: 'Wake \'N Shake Registration Fee',
+      description: @description,
       currency: 'usd'
     )
 
-    @description = ""
+    charge_record = Charge.new(amount: @amount, email: params[:stripeEmail])
 
-    # determine if the charge is a donation or registration fee
-    if params[:is_donation].present?
-      @charge.is_donation = true
-      @description = "Wake \'N Shake Donation"
-    elsif params[:is_registration_fee].present?
-      @charge.is_registration_fee = true
-      @description = "Wake \'N Shake Registration Fee"
-    end
+    puts charge_record
 
     # associate the charge to a team or dancer
     if params[:charge_type] == "Dancer"
-      @charge.dancer = Dancer.find(params[:charge_id])
+      charge_record.dancer = Dancer.find(params[:charge_id])
+      charge_record.save
     elsif params[:charge_type] == "Team"
-      @charge.team = Team.find(params[:charge_id])
+      charge_record.team = Team.find(params[:charge_id])
+      charge_record.save
     elsif params[:charge_type] == "All"
     end
-
-    # provide the email address for the charge
-    @charge.email = params[:stripeEmail]
-
-#   respond_to do |format|
-#      if @charge.save
-#        format.html { redirect_to @charge, notice: 'Charge was successfully created.' }
-#        format.json { render :show, status: :created, location: @charge }
-#      else
-#        format.html { render :new }
-#        format.json { render json: @charge.errors, status: :unprocessable_entity }
-#      end
-#    end
+   
+    puts charge_record
+    if charge_record.save
+      redirect_to charge_record
+    end
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
