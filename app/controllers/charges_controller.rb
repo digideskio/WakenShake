@@ -35,6 +35,18 @@ class ChargesController < ApplicationController
     # charge amount
     @charge.amount = @amount
 
+    customer = Stripe::Customer.create(
+      email: params[:stripeEmail],
+      source: params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      customer: customer.id,
+      amount: @amount,
+      description: 'Wake \'N Shake Registration Fee',
+      currency: 'usd'
+    )
+
     @description = ""
 
     # determine if the charge is a donation or registration fee
@@ -51,32 +63,24 @@ class ChargesController < ApplicationController
       @charge.dancer = Dancer.find(params[:charge_id])
     elsif params[:charge_type] == "Team"
       @charge.team = Team.find(params[:charge_id])
+    elsif params[:charge_type] == "All"
     end
 
     # provide the email address for the charge
     @charge.email = params[:stripeEmail]
 
-    customer = Stripe::Customer.create(
-      email: params[:stripeEmail],
-      source: params[:stripeToken]
-    )
-
-    charge = Stripe::Charge.create(
-      customer: customer.id,
-      amount: @amount,
-      description: 'Wake \'N Shake Registration Fee',
-      currency: 'usd'
-    )
-
-    respond_to do |format|
-      if @charge.save
-        format.html { redirect_to @charge, notice: 'Charge was successfully created.' }
-        format.json { render :show, status: :created, location: @charge }
-      else
-        format.html { render :new }
-        format.json { render json: @charge.errors, status: :unprocessable_entity }
-      end
-    end
+#   respond_to do |format|
+#      if @charge.save
+#        format.html { redirect_to @charge, notice: 'Charge was successfully created.' }
+#        format.json { render :show, status: :created, location: @charge }
+#      else
+#        format.html { render :new }
+#        format.json { render json: @charge.errors, status: :unprocessable_entity }
+#      end
+#    end
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to new_charge_path
   end
 
   # PATCH/PUT /charges/1

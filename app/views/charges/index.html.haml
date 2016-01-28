@@ -44,7 +44,9 @@
                   token: function(token) {
                     var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
                     var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
-                    $("form").append(tokenInput).append(emailInput).submit();
+                    var is_donation = $("<input type=hidden name=is_donation value=true />")
+                    var charge_type = $("<input type=hidden name=charge_type value=All />")
+                    $("form").append(tokenInput).append(emailInput).append(is_donation).append(charge_type).submit();
                   }
                 });
 
