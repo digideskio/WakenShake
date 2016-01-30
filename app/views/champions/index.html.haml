@@ -1,0 +1,25 @@
+%h1 Listing champions
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Bio
+      %th Team
+      %th
+      %th
+      %th
+
+  %tbody
+    - @champions.each do |champion|
+      %tr
+        %td= champion.name
+        %td= champion.bio
+        %td= champion.team
+        %td= link_to 'Show', champion
+        %td= link_to 'Edit', edit_champion_path(champion)
+        %td= link_to 'Destroy', champion, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Champion', new_champion_path
