@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+NewsTickerAutoPlay = ->
+  $('.NewsTicker li:first-child').fadeOut ->
+    $(this).appendTo('.NewsTicker').fadeIn()
+    return
+  return
+
+setInterval (->
+  NewsTickerAutoPlay()
+  return
+), 4000

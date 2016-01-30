@@ -22,12 +22,21 @@
       %p= link_to "Send a donation", charges_path, class: "btn btn-primary btn-lg"
 .events-ticker
   .container
-    - @events.each do |event|
-      %b= event.title
-      = event.text
-      Time: 
-      = event.date_time
-      = event.place
+    .row
+      .col-md-2
+        %h4.text-muted Upcoming Events
+      .col-md-10
+        %ul.list-unstyled.NewsTicker
+          - @events.each do |event|
+            %li
+              %b= event.title
+              \-
+              = event.text
+              %br
+              %i.text-muted Time: 
+              = event.date_time.strftime("%b %d at %l:%M %p")
+              %i.text-muted Location: 
+              = event.place
 .container
   .row
     .col-md-4
