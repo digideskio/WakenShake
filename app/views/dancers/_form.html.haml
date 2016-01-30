@@ -1,8 +1,11 @@
-.row
-  .col-md-3
-    .col-md-6
-      .well
-        = form_for(@dancer) do |f|
+= form_for(@dancer, multipart: true) do |f|
+  .container
+    .row
+      .col-md-3
+        %p Change your profile picture
+        = image_tag @dancer.avatar, class: "img-responsive img-rounded"
+      .col-md-6
+        .well
           = if @dancer.errors.any?
             #error_explanation
               %h2
@@ -13,44 +16,155 @@
                 = @dancer.errors.full_messages.each do |message|
                   %li= message
 
-        .row
-          .form-group
-            %label for="first_name".text-uppercase First Name
-            = f.text_field :first_name, id: "first_name", class: "form-control input-lg", placeholder: "Enter your first name"
-
-          .form-group
-            %label for="last_name"."text-uppercase" Last Name
-            = f.text_field :last_name, id: "last_name", class: "form-control input-lg", placeholder: "Enter your last name"
-
-          .form-group
-            %label for="email"."text-uppercase" Email address
-            = f.email_field :email, id: "email", class: "form-control input-lg", placeholder: "Enter your email"
-
-          .form-group
-            %label for="password"."text-uppercase" Password
-            = f.password_field :password, id: "password", class: "form-control input-lg", placeholder: "Enter a new password"
-
-          .form-group
-            %label for="sex"."text-uppercase" Gender
-            .form-group#sex
-              = radio_button_tag(:gender, "male")
-              = label_tag(:gender_male, "Male")
-              = radio_button_tag(:gender, "female")
-              = label_tag(:gender_female, "Female")
-
-          .form-group
-            %label for="year"."text-uppercase" Year
-            = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control input-lg")
-
-          .form-group
-            %label for="tshirt"."text-uppercase" T-Shirt Size
-            = select_tag(:year,'<option value="1">Select your year</option>', id: "year", class: "form-control input-lg")
-
-          .form-group
-            %label for="avatar"."text-uppercase" Profile picture
-            = f.file_field :avatar
-
-          .actions
-            = button_tag(type: 'submit', class: "btn btn-success btn-lg btn-block") do
-              %i.icon-ok.icon-white Submit
-.col-md-3
+          .row
+            .form-group
+              =f.label :first_name, class: "label"
+              = f.text_field(:first_name, autofocus: true, id: "first_name", class: "form-control", placeholder: "Enter your first name")
+            .form-group
+              =f.label :last_name, class: "label"
+              = f.text_field(:last_name, id: "last_name", class: "form-control", placeholder: "Enter your last name")
+            .form-group
+              =f.label :email, class: "label"
+              = f.email_field(:email, id: "email", class: "form-control", autocomplete: "off", placeholder: "Enter your email")
+            .form-group
+              =f.label :password, class: "label"
+              = f.password_field(:password, id: "password", class: "form-control", autocomplete: "off", placeholder: "Enter a new password")
+            %hr
+            %h4.text-center
+              .fa.fa-user.text-primary
+              General Information
+            .form-group
+              =f.label :dancing_for, "Who are you dancing for?", class: "label"
+              =f.text_field :dancing_for, class: "form-control", placeholder: "Enter the name of someone you are dancing for"
+            .form-group
+              .label Sex
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  .fa.fa-male
+                  Male
+                  = f.radio_button :gender, "Male"
+                .btn.btn-primary.btn-sm
+                  .fa.fa-female
+                  Female
+                  = f.radio_button :gender, "Female"
+            .form-group
+              .label Have you participated in WNS before?
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  Yes
+                  = f.radio_button :first_time, true
+                .btn.btn-primary.btn-sm
+                  No
+                  = f.radio_button :first_time, false
+            .form-group
+              .label Year
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-xs
+                  Freshman
+                  = f.radio_button :year, "Freshman"
+                .btn.btn-primary.btn-xs
+                  Sophomore
+                  = f.radio_button :year, "Sophomore"
+                .btn.btn-primary.btn-xs
+                  Junior
+                  = f.radio_button :year, "Junior"
+                .btn.btn-primary.btn-xs
+                  Senior
+                  = f.radio_button :year, "Senior"
+                .btn.btn-primary.btn-xs
+                  Graduate
+                  = f.radio_button :year, "Graduate"
+                .btn.btn-primary.btn-xs
+                  Alumni
+                  = f.radio_button :year, "Alumni"
+                .btn.btn-primary.btn-xs
+                  Faculty/Staff
+                  = f.radio_button :year, "Faculty/Staff"
+            .form-group
+              .label Residence
+              %br
+              =f.collection_select :dorm_id, @dorms, :id, :name, {prompt: "Select your residence"}, {class: "form-control"}
+            .form-group
+              .label 
+                Team
+                %span.text-muted (Optional)
+              %br
+              =f.collection_select :team_id, @teams, :id, :name, {prompt: "Select a team to join"}, {class: "form-control"}
+            .form-group
+              .label T-Shirt Size
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  Small
+                  = f.radio_button :tshirt, "Small"
+                .btn.btn-primary.btn-sm
+                  Medium
+                  = f.radio_button :tshirt, "Medium"
+                .btn.btn-primary.btn-sm
+                  Large
+                  = f.radio_button :tshirt, "Large"
+                .btn.btn-primary.btn-sm
+                  X-Large
+                  = f.radio_button :tshirt, "X-Large"
+            .form-group
+              .label Shift
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  .fa.fa-trophy
+                  All 12 Hours
+                  = f.radio_button :shift, "All 12 Hours"
+                .btn.btn-primary.btn-sm
+                  .fa.fa-sun-o
+                  First 6 Hours
+                  = f.radio_button :shift, "First Shift"
+                .btn.btn-primary.btn-sm
+                  .fa.fa-moon-o
+                  Last 6 Hours
+                  = f.radio_button :shift, "Last Shift"
+                .btn.btn-primary.btn-sm
+                  No Preference
+                  = f.radio_button :shift, "No Preference"
+            .form-group
+              .label What is your goal to raise?
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  $500
+                  = f.radio_button :goal, 500
+                .btn.btn-primary.btn-sm
+                  $1,000
+                  = f.radio_button :goal, 1000
+                .btn.btn-primary.btn-sm
+                  $2,000
+                  = f.radio_button :goal, 2000
+                .btn.btn-primary.btn-sm
+                  $5,000
+                  = f.radio_button :goal, 5000
+            %br
+            %hr
+            %h4.text-center
+              .fa.fa-heartbeat.text-danger
+              Safety & Medical Information
+            .form-group
+              =f.label :conditional_details, class: "label"
+              %br
+              %em.text-muted.small During Wake 'N Shake, each participant is expected to be on his or her feet for twelve hours (or, if qualified, a six hour shift). With this in mind, do you have any medical conditions we should be aware of? ex. asthma, allergies, illness, medications, etc.
+              = f.text_area :conditional_details, class: "form-control", placeholder: "Enter conditional details here if needed", rows: 5
+            .form-group
+              =f.label :food_allergies, class: "label"
+              =f.text_area :food_allergies, class: "form-control", placeholder: "Enter any food allergies here"
+            .form-group
+              .label Vegetarian
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  Yes
+                  = f.radio_button :vegetarian, true
+                .btn.btn-primary.btn-sm
+                  No
+                  = f.radio_button :vegetarian, false
+          = f.submit "Save changes", class: "btn btn-block btn-success"
