@@ -1,163 +1,164 @@
-AFRICASA
-3 to 4 Ounces
-Association of Computing Machinery Student Chapter
-Asian Student Interest Association
-Alpha Delta Pi
-Alpha Epsilon Pi
-Alpha Epsilon Delta
-Alpha Kappa Alpha
-Alpha Kappa Psi
-Alpha Phi Alpha
-Alpha Phi Omega
-Alpha Sigma Phi
-Alumni Team
-Anthony Aston Players
-Arch Society
-Athletes In Action
-Baptist Student Union
-Black Student Alliance
-Campus Kitchen
-Wake Forest Catholic Community
-Chi Omega
-Chi Psi
-Chi Rho
-Club Baseball
-Club Basketball - Mens
-Club Basketball - Womens
-Club Bass Fishing
-Club Equestrian
-Club Fencing
-Club Field Hockey
-Club Golf - Mens
-Club Gymnastics
-Student Environmental Action Coalition
-Students Helping Honduras
-Club Ice Hockey
-Club Karate
-Club Lacrosse - Mens
-Club Lacrosse - Womens
-Club Rugby - Mens
-Club Running
-Club Ski and Wakeboard
-Club Soccer - Mens
-Club Soccer - Womens
-Club Softball - Womens
-Club Swim Team
-Club Tennis - Mens
-Club Tennis - Womens
-Club Ultimate Frisbee - Mens
-Club Volleyball - Mens
-Club Volleyball - Womens
-Wake Forest Aikido Club
-Wake Forest Archery Club
-Wake Forest Club Squash
-Ballroom Dancing Club
-Dance Company
-Rowing Club
-Gender Equality Allies
-Hit The Bricks
-HOPE
-Momentum
-Best Buddies
-The Howler
-Wake Forest Media Board
-Korean American Student Association
-Students For Education Reform
-Lost in Translation
-Setting the Groove Tap Club
-Wake Forest Roosevelt Institute
-Strategy & Consulting Club
-Wake Forest HOSA
-Orthodox Christian Fellowship
-Resident Student Association
-Amnesty International
-Circle K International
-Do Random Acts of Kindness
-Emergency Response Team
-Global Brigades
-Habitat for Humanity
-College Democrats
-College Republicans
-Delta Delta Delta
-Delta Kappa Epsilon
-Delta Sigma Theta
-Delta Xi Phi
-Delta Zeta
-Demon Divas
-Emergency Response Team
-Emmaus
-English Student Alliance
-Episcopal Student Fellowship
-E Society
-Faculty/Staff
-Finance Club
-GSSA
-Golden Key Honor Society
-Gospel Choir
-Habitat for Humanity
-Hillel
-Her Campus
-Interfaith
-Interfraternity Council
-Innuendo
-IV/Wesley
-Kappa Alpha Order
-Kappa Alpha Psi
-Kappa Alpha Theta
-Kappa Beta Gamma
-Kappa Delta
-Kappa Kappa Gamma
-Kappa Kappa Psi
-Lambda Chi Alpha
-Lilting Banshees
-Living Parables Christian Drama Troupe
-Lutheran Student Movement
-Medlife
-Minor Variation
-Muslim Student Association
-OGB
-OLAS
-Omega Psi Phi
-Outdoor Pursuits
-Order Of Omega
-Organization of Latin American Students
-Panhellenic Council
-Phi Mu
-Pi Kappa Alpha
-Plead the Fifth
-Presbyterian Student Fellowship
-PREPARE
-Refrmed University Fellowship
-ROTC
-Resident Student Association
-Screaming Demons
-Salsa Dancing Club
-SEAC
-Sigma Alpha Epsilon
-Sigma Chi
-Sigma Phi Epsilon
-Sigma Pi
-SOTOGAB
-Student Government
-Student Union
-Student to Student
-Theta Chi
-Traditions Council
-Upsilon Pi Epsilon
-Volunteer Service Corps
-Young Adult Cancer Awareness Society
-Wake Forest Athletes
-Wake Radio
-Wake Student
-Wake TV
-Wesley Foundation
-Bostwick Hall
-Babcock Hall
-Luter Hall
-Johnson Hall
-Collins Hall
-South Hall
-Graduate Student
-Medical School
-Law School
-Student Athlete
+name,category
+AFRICASA,Open
+3 to 4 Ounces,Open
+Association of Computing Machinery Student Chapter,Open
+Asian Student Interest Association,Open
+Alpha Delta Pi,Sorority
+Alpha Epsilon Pi,Fraternity
+Alpha Epsilon Delta,Fraternity
+Alpha Kappa Alpha,Sorority
+Alpha Kappa Psi,Fraternity
+Alpha Phi Alpha,Fraternity
+Alpha Phi Omega,Fraternity
+Alpha Sigma Phi,Fraternity
+Alumni Team,Open
+Anthony Aston Players,Open
+Arch Society,Open
+Athletes In Action,Open
+Baptist Student Union,Open
+Black Student Alliance,Open
+Campus Kitchen,Open
+Wake Forest Catholic Community,Open
+Chi Omega,Sorority
+Chi Psi,Fraternity
+Chi Rho,Open
+Club Baseball,Open
+Club Basketball - Mens,Open
+Club Basketball - Womens,Open
+Club Bass Fishing,Open
+Club Equestrian,Open
+Club Fencing,Open
+Club Field Hockey,Open
+Club Golf - Mens,Open
+Club Gymnastics,Open
+Student Environmental Action Coalition,Open
+Students Helping Honduras,Open
+Club Ice Hockey,Open
+Club Karate,Open
+Club Lacrosse - Mens,Open
+Club Lacrosse - Womens,Open
+Club Rugby - Mens,Open
+Club Running,Open
+Club Ski and Wakeboard,Open
+Club Soccer - Mens,Open
+Club Soccer - Womens,Open
+Club Softball - Womens,Open
+Club Swim Team,Open
+Club Tennis - Mens,Open
+Club Tennis - Womens,Open
+Club Ultimate Frisbee - Mens,Open
+Club Volleyball - Mens,Open
+Club Volleyball - Womens,Open
+Wake Forest Aikido Club,Open
+Wake Forest Archery Club,Open
+Wake Forest Club Squash,Open
+Ballroom Dancing Club,Open
+Dance Company,Open
+Rowing Club,Open
+Gender Equality Allies,Open
+Hit The Bricks,Open
+HOPE,Open
+Momentum,Open
+Best Buddies,Open
+The Howler,Open
+Wake Forest Media Board,Open
+Korean American Student Association,Open
+Students For Education Reform,Open
+Lost in Translation,Open
+Setting the Groove Tap Club,Open
+Wake Forest Roosevelt Institute,Open
+Strategy & Consulting Club,Open
+Wake Forest HOSA,Open
+Orthodox Christian Fellowship,Open
+Resident Student Association,Open
+Amnesty International,Open
+Circle K International,Open
+Do Random Acts of Kindness,Open
+Emergency Response Team,Open
+Global Brigades,Open
+Habitat for Humanity,Open
+College Democrats,Open
+College Republicans,Open
+Delta Delta Delta,Sorority
+Delta Kappa Epsilon,Fraternity
+Delta Sigma Theta,Sorority
+Delta Xi Phi,Sorority
+Delta Zeta,Sorority
+Demon Divas,Open
+Emergency Response Team,Open
+Emmaus,Open
+English Student Alliance,Open
+Episcopal Student Fellowship,Open
+E Society,Open
+Faculty/Staff,Open
+Finance Club,Open
+GSSA,Open
+Golden Key Honor Society,Open
+Gospel Choir,Open
+Habitat for Humanity,Open
+Hillel,Open
+Her Campus,Open
+Interfaith,Open
+Interfraternity Council,Fraternity
+Innuendo,Open
+IV/Wesley,Open
+Kappa Alpha Order,Fraternity
+Kappa Alpha Psi,Fraternity
+Kappa Alpha Theta,Sorority
+Kappa Beta Gamma,Sorority
+Kappa Delta,Sorority
+Kappa Kappa Gamma,Sorority
+Kappa Kappa Psi,Fraternity
+Lambda Chi Alpha,Fraternity
+Lilting Banshees,Open
+Living Parables Christian Drama Troupe,Open
+Lutheran Student Movement,Open
+Medlife,Open
+Minor Variation,Open
+Muslim Student Association,Open
+OGB,Open
+OLAS,Open
+Omega Psi Phi,Fraternity
+Outdoor Pursuits,Open
+Order Of Omega,Fraternity
+Organization of Latin American Students,Open
+Panhellenic Council,Sorority
+Phi Mu,Sorority
+Pi Kappa Alpha,Fraternity
+Plead the Fifth,Open
+Presbyterian Student Fellowship,Open
+PREPARE,Open
+Reformed University Fellowship,Open
+ROTC,Open
+Resident Student Association,Open
+Screaming Demons,Open
+Salsa Dancing Club,Open
+SEAC,Open
+Sigma Alpha Epsilon,Fraternity
+Sigma Chi,Fraternity
+Sigma Phi Epsilon,Fraternity
+Sigma Pi,Fraternity
+SOTOGAB,Open
+Student Government,Open
+Student Union,Open
+Student to Student,Open
+Theta Chi,Fraternity
+Traditions Council,Open
+Upsilon Pi Epsilon,Fraternity
+Volunteer Service Corps,Open
+Young Adult Cancer Awareness Society,Open
+Wake Forest Athletes,Open
+Wake Radio,Open
+Wake Student,Open
+Wake TV,Open
+Wesley Foundation,Open
+Bostwick Hall,Open
+Babcock Hall,Open
+Luter Hall,Open
+Johnson Hall,Open
+Collins Hall,Open
+South Hall,Open
+Graduate Student,Open
+Medical School,Open
+Law School,Open
+Student Athlete,Open

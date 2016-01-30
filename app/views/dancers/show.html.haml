@@ -121,11 +121,12 @@
               %span.text-success
                 =number_to_currency(donation.amount)
               donation
-            - if @dancer.id == current_dancer.id
-              %span.text-muted
-                %br
-                Given by 
-                = donation.email
+            - if current_dancer.present?
+              - if @dancer.id == current_dancer.id
+                %span.text-muted
+                  %br
+                  Given by 
+                  = donation.email
           .col-md-3
             %span.text-muted.small.pull-right.text-right
               = time_ago_in_words(donation.created_at)

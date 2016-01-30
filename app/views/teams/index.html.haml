@@ -15,13 +15,31 @@
     %br
 
   .row
-    - @teams = @teams.paginate(page: params[:page]).per_page(40).order('name ASC')
-    - @teams.each do |team|
-      .col-md-3
-        .thumbnail
-          .caption
-            = link_to team.name, team
-            %br
-            Raised 
-  .pagination.text-center
-    = will_paginate(@teams, renderer: BootstrapPagination::Rails)
+    .col-md-4
+      %h4 Sorority Division
+      %table.table
+        %th Team
+        %th Amount Raised
+        - @sorority.each do |team|
+          %tr
+            %td= link_to team.name, team
+            %td= number_to_currency(team_amount_raised(team)) 
+    .col-md-4
+      %h4 Fraternity Division
+      %table.table
+        %th Team
+        %th Amount Raised
+        - @fraternity.each do |team|
+          %tr
+            %td= link_to team.name, team
+            %td= number_to_currency(team_amount_raised(team))
+    .col-md-4
+      %h4 Open Division
+      %table.table
+        %th Team
+        %th Amount Raised
+        - @open.each do |team|
+          %tr
+            %td= link_to team.name, team
+            %td= number_to_currency(team_amount_raised(team))
+

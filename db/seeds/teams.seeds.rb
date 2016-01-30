@@ -1,12 +1,9 @@
 puts "Seeding teams..."
 
-teams = []
-open(File.expand_path("#{Rails.root}/db/seeds/data/teams.csv", __FILE__)) do |team|
-  teams = team.read.each_line.map(&:chomp)
-end
+require 'csv'
 
-teams.each do |team|
-  Team.where(
-    name: "#{team}"
-  ).first_or_create!
+csv_text = File.read("#{Rails.root}/db/seeds/data/teams.csv")
+csv = CSV.parse(csv_text, headers: true)
+csv.each do |row|
+  Team.where(row.to_hash).first_or_create!
 end

@@ -6,9 +6,13 @@ class TeamsController < ApplicationController
   # GET /teams.json
   def index
     if params[:search]
-      @teams = Team.joins(:dancers).search(params[:search])
+      @sorority = Team.where(category: "Sorority").joins(:dancers).search(params[:search])
+      @fraternity = Team.where(category: "Fraternity").joins(:dancers).search(params[:search])
+      @open = Team.where(category: "Open").joins(:dancers).search(params[:search])
     else
-      @teams = Team.joins(:dancers)
+      @fraternity = Team.where(category: "Fraternity").joins(:dancers)
+      @sorority = Team.where(category: "Sorority").joins(:dancers)
+      @open = Team.where(category: "Open").joins(:dancers)
     end
   end
 
