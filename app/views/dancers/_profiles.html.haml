@@ -5,6 +5,6 @@
         .profile-spaced
           = image_tag(dancer.avatar.url, size: "150", class: "profile-spaced center-block img-responsive")
         .text-center.caption
-          %h4= "#{dancer.first_name} #{dancer.last_name}"
+          %h4= name(dancer)
           - if dancer.stafftitle.present?
             %h6.text-muted= dancer.stafftitle

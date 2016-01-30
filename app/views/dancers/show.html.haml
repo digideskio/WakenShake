@@ -35,8 +35,7 @@
 
   .col-md-8
     %h2
-      = @dancer.first_name
-      = @dancer.last_name
+      = name(@dancer)
       %small= link_to(@dancer.team.name, @dancer.team)
       %br
       - if can? :manage, :all
@@ -60,53 +59,57 @@
         - else
           her
         campaign!
-      .form-inline
-        .form-group
-          .input-group
-            .input-group-addon $
-            = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
-            .input-group-addon .00
-          %button{class: "btn btn-md btn-primary", id: "stripeButton"}
-            Donate to 
-            = @dancer.first_name
-          %span.action
-            :javascript
-              var handler = StripeCheckout.configure({
-                key: "#{Rails.configuration.stripe[:publishable_key]}",
-                locale: 'auto',
-                token: function(token) {
-                  var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
-                  var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
-                  $("form").append(tokenInput).append(emailInput).submit();
-                }
-              });
+      = form_for @charge do
+        .form-inline
+          .form-group
+            .input-group
+              .input-group-addon $
+              = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
+              .input-group-addon .00
+            %button{class: "btn btn-md btn-primary", id: "stripeButton"}
+              Donate to 
+              = @dancer.first_name
+            %span.action
+              :javascript
+                var handler = StripeCheckout.configure({
+                  key: "#{Rails.configuration.stripe[:publishable_key]}",
+                  locale: 'auto',
+                  token: function(token) {
+                    var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+                    var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
+                    var is_donation = $("<input type=hidden name=is_donation value=true />")
+                    var charge_type = $("<input type=hidden name=charge_type value=Dancer />")
+                    var dancer_id = $("<input type=hidden name=dancer_id value=#{@dancer.id} />")
+                    $("form").append(tokenInput).append(emailInput).append(is_donation).append(charge_type).append(dancer_id).submit();
+                  }
+                });
 
-              $('#stripeButton').on('click', function(e) {
-                var amount = $("#total-amount-val").val();
-                if(amount > 0) {
-                  handler.open({
-                    name: "Donation to #{@dancer.first_name}",
-                    amount: amount*100,
-                    billingAddress: true
-                  });
-                }
-                e.preventDefault();
-              });
+                $('#stripeButton').on('click', function(e) {
+                  var amount = $("#total-amount-val").val();
+                  if(amount > 0) {
+                    handler.open({
+                      name: "Donation to #{@dancer.first_name}",
+                      amount: amount*100,
+                      billingAddress: true
+                    });
+                  }
+                  e.preventDefault();
+                });
 
-              // Close Checkout on page navigation
-              $(window).on('popstate', function() {
-                handler.close();
-              });
+                // Close Checkout on page navigation
+                $(window).on('popstate', function() {
+                  handler.close();
+                });
     - @donations.each do |donation|
-      - donor = Dancer.where(email: donation.email).present?
+      - donor = Dancer.find_by(email: donation.email)
       .panel.panel-default.panel-body
         .row
           - if donor.present?
             .col-md-1
-              = image_tag(donor.avatar, class: "img-rounded", size: "40")
+              = image_tag(donor.avatar.url, class: "img-rounded", size: "40")
           .col-md-8
             - if donor.present?
-              = donor.first_name
+              = link_to name(donor), donor
               donated
               %span.text-success
                 =number_to_currency(donation.amount)
@@ -119,7 +122,7 @@
                 =number_to_currency(donation.amount)
               donation
           .col-md-3
-            %span.text-muted.small.pull-right
+            %span.text-muted.small.pull-right.text-right
               = time_ago_in_words(donation.created_at)
               ago
   .col-md-1

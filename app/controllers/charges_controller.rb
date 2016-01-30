@@ -1,5 +1,4 @@
 class ChargesController < ApplicationController
-  before_action :set_charge, only: [:show, :edit, :update, :destroy]
 
   # GET /charges
   # GET /charges.json
@@ -9,7 +8,6 @@ class ChargesController < ApplicationController
   # GET /charges/1
   # GET /charges/1.json
   def show
-    @amount = Charge.find(params[:id]).amount
   end
 
   # GET /charges/new
@@ -21,7 +19,9 @@ class ChargesController < ApplicationController
   def edit
   end
 
+  # GET /charges/registration_fee
   def registration_fee
+    @charge = Charge.new
   end
 
   # POST /charges
@@ -30,14 +30,19 @@ class ChargesController < ApplicationController
 
     # determine if the charge is a donation or registration fee
     @description = ""
-
     if params[:is_donation].present?
       @description = "Wake \'N Shake Donation"
     elsif params[:is_registration_fee].present?
       @description = "Wake \'N Shake Registration Fee"
     end
 
-    @amount = 2000
+    # registration fee amount - $20
+    @amount = 20
+
+    # if not registration fee, set donation amount
+    if params[:donation_amount].present?
+      @amount = params[:donation_amount].to_i
+    end
 
     customer = Stripe::Customer.create(
       email: params[:stripeEmail],
@@ -46,28 +51,35 @@ class ChargesController < ApplicationController
 
     charge = Stripe::Charge.create(
       customer: customer.id,
-      amount: @amount,
+      amount: @amount*100,
       description: @description,
       currency: 'usd'
     )
 
-    charge_record = Charge.new(amount: @amount, email: params[:stripeEmail])
-
-    puts charge_record
-
     # associate the charge to a team or dancer
     if params[:charge_type] == "Dancer"
-      charge_record.dancer = Dancer.find(params[:charge_id])
-      charge_record.save
+      @dancer = Dancer.find(params[:dancer_id])
+      charge_record = @dancer.charges.new(amount: @amount, email: params[:stripeEmail])
+      if params[:is_donation].present?
+        charge_record.is_donation = true
+        charge_record.save
+      elsif params[:is_registration_fee].present?
+        charge_record.is_registration_fee = true
+        charge_record.save
+      end
     elsif params[:charge_type] == "Team"
-      charge_record.team = Team.find(params[:charge_id])
-      charge_record.save
+      @team = Team.find(params[:team_id])
+      charge_record = @team.charges.new(amount: @amount, email: params[:stripeEmail], is_donation: true)
     elsif params[:charge_type] == "All"
+      charge_record = Charge.new(amount: @amount, email: params[:stripeEmail], is_donation: true)
     end
-   
-    puts charge_record
+
     if charge_record.save
-      redirect_to charge_record
+      if charge_record.is_registration_fee.present?
+        redirect_to dancer_path(@dancer)
+      elsif charge_record.is_donation.present?
+        redirect_to charge_record
+      end
     end
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -99,10 +111,6 @@ class ChargesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_charge
-      @charge = Charge.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def charge_params

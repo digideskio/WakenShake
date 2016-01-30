@@ -19,43 +19,48 @@
           Send a donation to 
           = @team.name
           to help their campaign!
-        .form-inline
-          .form-group
-            .input-group
-              .input-group-addon $
-              = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
-              .input-group-addon .00
-            %button{class: "btn btn-md btn-primary", id: "stripeButton"}
-              Donate to 
-              = @team.name
-            %span.action
-              :javascript
-                var handler = StripeCheckout.configure({
-                  key: "#{Rails.configuration.stripe[:publishable_key]}",
-                  locale: 'auto',
-                  token: function(token) {
-                    var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
-                    var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
-                    $("form").append(tokenInput).append(emailInput).submit();
-                  }
-                });
+        = form_for @charge do
+          .form-inline
+            .form-group
+              .input-group
+                .input-group-addon $
+                = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
+                .input-group-addon .00
+              %button{class: "btn btn-md btn-primary", id: "stripeButton"}
+                Donate to 
+                = @team.name
+              %span.action
+                :javascript
+                  var handler = StripeCheckout.configure({
+                    key: "#{Rails.configuration.stripe[:publishable_key]}",
+                    locale: 'auto',
+                    token: function(token) {
+                      var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+                      var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
+                      var is_donation = $("<input type=hidden name=is_donation value=true />")
+                      var charge_type = $("<input type=hidden name=charge_type value=Team />")
+                      var team_id = $("<input type=hidden name=team_id value=#{@team.id} />")
 
-                $('#stripeButton').on('click', function(e) {
-                  var amount = $("#total-amount-val").val();
-                  if(amount > 0) {
-                    handler.open({
-                      name: "Donation to #{@team.name}",
-                      amount: amount*100,
-                      billingAddress: true
-                    });
-                  }
-                  e.preventDefault();
-                });
+                      $("form").append(tokenInput).append(emailInput).append(is_donation).append(charge_type).append(team_id).submit();
+                    }
+                  });
 
-                // Close Checkout on page navigation
-                $(window).on('popstate', function() {
-                  handler.close();
-                });
+                  $('#stripeButton').on('click', function(e) {
+                    var amount = $("#total-amount-val").val();
+                    if(amount > 0) {
+                      handler.open({
+                        name: "Donation to #{@team.name}",
+                        amount: amount*100,
+                        billingAddress: true
+                      });
+                    }
+                    e.preventDefault();
+                  });
+
+                  // Close Checkout on page navigation
+                  $(window).on('popstate', function() {
+                    handler.close();
+                  });
     .col-md-3
       %br
       %br

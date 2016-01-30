@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  resources :charges
-  resources :dancers
-  resources :teams
-  resources :histories
-  root 'home_page#index'
-
   get 'committee/index'
   get 'accountant/index'
   get 'admin/index'
@@ -17,5 +11,11 @@ Rails.application.routes.draw do
   get 'dancers/set_admin'
 
   devise_for :dancers, controllers: { registrations: 'registrations' }
+  resources :charges
+  resources :dancers
+  resources :teams
+  resources :histories
+  root 'home_page#index'
+
 
 end
