@@ -31,6 +31,8 @@ class DancersController < ApplicationController
   end
 
   def edit
+    @teams = Team.all
+    @dorms = Dorm.all 
   end
 
   def create
@@ -51,7 +53,7 @@ class DancersController < ApplicationController
     respond_to do |format|
       if @dancer.update(dancer_params)
         format.html { redirect_to @dancer, notice: 'Dancer was updated.' }
-        format.json { render :show, status: :ok, location: @dancer }
+        format.json { render :edit, status: :ok, location: @dancer }
       else
         format.html { render :edit }
         format.json { render json: @dancer.errors, status: :unprocessable_entity }

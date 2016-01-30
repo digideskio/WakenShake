@@ -26,6 +26,9 @@ gem 'annotate', '~> 2.6.6'
 # Paperclip is for handling photos
 gem "paperclip", "~> 4.2"
 
+# AWS sdk gem for photo uploads/storage
+gem 'aws-sdk'
+
 # Devise is for login help
 gem 'devise'
 
