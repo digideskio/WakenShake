@@ -20,6 +20,14 @@
         instead!
     - else
       %p= link_to "Send a donation", charges_path, class: "btn btn-primary btn-lg"
+.events-ticker
+  .container
+    - @events.each do |event|
+      %b= event.title
+      = event.text
+      Time: 
+      = event.date_time
+      = event.place
 .container
   .row
     .col-md-4
