@@ -13,7 +13,11 @@
         = link_to teams_path(format: :csv), class: "btn btn-md btn-default btn-block" do
           .fa.fa-group
           Teams
-
+      .well
+        %h4 Links
+        = link_to events_path, class: "btn btn-md btn-default btn-block" do
+          %i.fa.fa-calendar
+          Events
     .col-md-9
       .panel.panel-default.panel-body
         %h4

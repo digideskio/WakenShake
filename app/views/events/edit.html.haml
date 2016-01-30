@@ -1,7 +1,9 @@
-%h1 Editing event
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      %br
+      %br
+      .well
+        %h2 Editing event
+        = render 'form'
 
-= render 'form'
-
-= link_to 'Show', @event
-\|
-= link_to 'Back', events_path
