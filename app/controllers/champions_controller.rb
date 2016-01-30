@@ -28,7 +28,7 @@ class ChampionsController < ApplicationController
 
     respond_to do |format|
       if @champion.save
-        format.html { redirect_to @champion, notice: 'Champion was successfully created.' }
+        format.html { redirect_to champions_path, notice: 'Champion was successfully created.' }
         format.json { render :show, status: :created, location: @champion }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ChampionsController < ApplicationController
   def update
     respond_to do |format|
       if @champion.update(champion_params)
-        format.html { redirect_to @champion, notice: 'Champion was successfully updated.' }
+        format.html { redirect_to champions_path, notice: 'Champion was successfully updated.' }
         format.json { render :show, status: :ok, location: @champion }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class ChampionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def champion_params
-      params.require(:champion).permit(:name, :bio, :team)
+      params.require(:champion).permit(:name, :bio, :team, :photo)
     end
 end

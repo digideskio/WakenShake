@@ -1,4 +1,4 @@
-= form_for @champion do |f|
+= form_for @champion, html: {multipart: true} do |f|
   - if @champion.errors.any?
     #error_explanation
       %h2= "#{pluralize(@champion.errors.count, "error")} prohibited this champion from being saved:"
@@ -7,13 +7,17 @@
           %li= msg
 
   .field
-    = f.label :name
-    = f.text_field :name
+    = f.label :name, class: "label"
+    = f.text_field :name, class: "form-control", placeholder: "Enter the name of the champion"
   .field
-    = f.label :bio
-    = f.text_area :bio
+    = f.label :bio, class: "label"
+    = f.text_area :bio, class: "form-control", rows: 10, placeholder: "Enter the description of the champion"
   .field
-    = f.label :team
-    = f.text_field :team
+    = f.label :team, class: "label"
+    = f.text_field :team, class: "form-control", placeholder: "Enter the team name of the champion"
+  .field
+    = f.label :photo, class: "label"
+    = f.file_field :photo, class: "form-control"
+  %br
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: "btn btn-success btn-md"
