@@ -9,7 +9,7 @@
       .row
         .col-md-4
           %br
-          = image_tag champion.photo.url, class: "img-responsive"
+          = image_tag champion.photo.url(:medium), class: "img-responsive img-square"
         .col-md-8
           %h3= champion.name
           %h5= champion.team
