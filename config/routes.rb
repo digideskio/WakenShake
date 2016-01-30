@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :events
   get 'committee/index'
   get 'accountant/index'
   get 'admin/index'
