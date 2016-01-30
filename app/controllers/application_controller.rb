@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   alias_method :current_user, :current_dancer
 
+  def after_sign_in_path_for(resource)
+    resource
+  end
+
   require 'csv'
 
   @dancer_goal = 2000

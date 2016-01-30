@@ -1,7 +1,7 @@
 .container
   .col-md-3
     %br
-    =image_tag(@dancer.avatar.url, size: "190", class: "img-rounded center-block")
+    =image_tag(@dancer.avatar.url(:medium), size: "190", class: "img-responsive img-rounded center-block")
     - if @dancer.stafftitle.present?
       %p
         %h5.text-center= @dancer.stafftitle
@@ -121,6 +121,11 @@
               %span.text-success
                 =number_to_currency(donation.amount)
               donation
+            - if @dancer.id == current_dancer.id
+              %span.text-muted
+                %br
+                Given by 
+                = donation.email
           .col-md-3
             %span.text-muted.small.pull-right.text-right
               = time_ago_in_words(donation.created_at)

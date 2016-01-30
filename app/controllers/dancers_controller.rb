@@ -52,6 +52,7 @@ class DancersController < ApplicationController
   def update
     respond_to do |format|
       if @dancer.update(dancer_params)
+        sign_in(@dancer, :bypass => true)
         format.html { redirect_to @dancer, notice: 'Dancer was updated.' }
         format.json { render :edit, status: :ok, location: @dancer }
       else
