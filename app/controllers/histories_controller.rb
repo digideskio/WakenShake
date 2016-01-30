@@ -5,7 +5,7 @@ class HistoriesController < ApplicationController
   # GET /histories
   # GET /histories.json
   def index
-    @histories = History.all
+    @histories = History.all.order(year: :desc)
   end
 
   # GET /histories/1
@@ -29,7 +29,7 @@ class HistoriesController < ApplicationController
 
     respond_to do |format|
       if @history.save
-        format.html { redirect_to @history, notice: 'History was successfully created.' }
+        format.html { redirect_to histories_path, notice: 'History was successfully created.' }
         format.json { render :show, status: :created, location: @history }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class HistoriesController < ApplicationController
   def update
     respond_to do |format|
       if @history.update(history_params)
-        format.html { redirect_to @history, notice: 'History was successfully updated.' }
+        format.html { redirect_to histories_path, notice: 'History was successfully updated.' }
         format.json { render :show, status: :ok, location: @history }
       else
         format.html { render :edit }

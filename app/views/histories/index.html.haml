@@ -10,7 +10,7 @@
   - @histories.each do |history|
     .row
       .col-md-7
-        = image_tag(history.photo.url, class: "img-responsive")
+        = image_tag(history.photo.url(:medium), size: "600", class: "img-responsive")
       .col-md-5
         %h3
           = history.year.year
