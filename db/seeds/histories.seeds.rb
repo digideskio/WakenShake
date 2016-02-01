@@ -4,7 +4,7 @@ History.where(
   year: DateTime.strptime("03/21/2015 17:00", "%m/%d/%Y %H:%M"),
 ).first_or_create!(
   overview: "On March 21, 2015 from noon to midnight, over 1,300 students were on their feet dancing and taking a stand against cancer. It was Wake ‘N Shake’s 10th Anniversary, and the event was a huge celebration of how much Wake ‘N Shake has grown over the past 10 years. The gym looked a little different than in years past. The lights were off and the stage ran along a different wall, but the same excitement, energy, and love for Wake ‘N Shake remained present throughout the entire 12-hours. During the day and night, students listened to inspiring speeches from each of the ten “Team Champions,” and at the end of the night, heard a moving testimonial from cancer survivor and Wake Forest senior, David Edwards. In between speakers, students danced with Zumba and Body Combat instructors, learned the tango and how to swing dance, and danced with glowsticks during the “Rave Hour.” Finally, at the end of the night, students celebrated with the day’s fundraising total of $164,157!",
-  amount_raised: "$164,157",
+  amount_raised: "$200,040",
   num_of_dancers: "Over 1,300",
   photo: open("#{Rails.root}/db/seeds/data/history_images/wns_2015.jpg")
 )
