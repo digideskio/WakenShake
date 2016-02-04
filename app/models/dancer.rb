@@ -62,6 +62,13 @@ class Dancer < ActiveRecord::Base
   validates :dancing_for, presence: {message: "Indicate who you are dancing for"}
   has_attached_file :avatar, styles: { medium: "400x400>", thumb: "100x100>" }, default_url: "app_icon.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  validate :password_complexity
+
+  def password_complexity
+    if password.present? and not password.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[_\W])/)
+      errors.add :password, "Your password must include at least one lowercase letter, one uppercase letter, one digit, and one symbol."
+    end
+  end
 
   def self.search(query)
     where("first_name LIKE ? OR last_name LIKE ?", "%#{query}%", "%#{query}%")
