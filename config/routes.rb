@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sponsors
   resources :champions
   resources :events
   get 'committee/index'
