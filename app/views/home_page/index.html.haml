@@ -1,25 +1,61 @@
-:javascript
-  $(function() {
-    $('#names').vTicker();
-  });
 .jumbotron
-  .container
-    %h1
-      .dancing_for_frame.hidden-xs
-        %span.dance_for Dance for
-        #names
-          %ul
-            - @dancing_for_list.each do |dancing_for|
-              %li=dancing_for.dancing_for.split(" ")[0]
-    %h3.lead.lead-text Who are you dancing for?
-    - if current_dancer.nil?
-      = link_to( "Become a dancer now!", new_dancer_registration_path , class: "btn btn-success btn-lg")
-      %h5
-        or 
-        = link_to "donate", charges_path
-        instead!
-    - else
-      %p= link_to "Send a donation", charges_path, class: "btn btn-primary btn-lg"
+  %video#bgvid{:autoplay => true, :loop => true, :poster => "wns-video.jpg"}
+    %source{:src => "wns-video.webm", :type => "video/webm; codecs=vp8),vorbis"}
+    %source{:src => "wns-video.mp4", :type => "video/mp4"}
+  /[if lt IE 9]
+    :javascript
+      document.createElement('video');
+  .container.text-center
+    %br
+    %h2 Support our dancers
+    %p 100% of your donations goes to cancer research
+    .row
+      .col-md-4.col-md-offset-4
+        .well.well-clear
+          = form_for :charge do
+            .form-inline
+              .form-group
+                .input-group
+                  .input-group-addon $
+                  = text_field_tag :donation_amount, params[:donation_amount], class: "form-control input-lg", placeholder: "5", id: "total-amount-val", autofocus: true, autocomplete: "off"
+                %br
+                %br
+                %button{class: "btn btn-block btn-lg btn-primary", id: "stripeButton"}
+                  %b Give by  
+                  %i.fa.fa-1x.fa-credit-card
+                %span.action
+                  :javascript
+                    var handler = StripeCheckout.configure({
+                      key: "#{Rails.configuration.stripe[:publishable_key]}",
+                      locale: 'auto',
+                      token: function(token) {
+                        var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+                        var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
+                        var is_donation = $("<input type=hidden name=is_donation value=true />")
+                        var charge_type = $("<input type=hidden name=charge_type value=All />")
+                        $("form").append(tokenInput).append(emailInput).append(is_donation).append(charge_type).submit();
+                      }
+                    });
+
+                    $('#stripeButton').on('click', function(e) {
+                      var amount = $("#total-amount-val").val();
+                      if(amount > 0) {
+                        handler.open({
+                          name: "Wake 'N Shake",
+                          image: "/images/app_icon.png",
+                          description: "100% funds cancer research",
+                          amount: amount*100,
+                          billingAddress: true
+                        });
+                      }
+                      e.preventDefault();
+                    });
+
+                    // Close Checkout on page navigation
+                    $(window).on('popstate', function() {
+                      handler.close();
+                    });
+        = link_to "or become a dancer", new_dancer_registration_path, class: "btn btn-md btn-default btn-sign-up"
 .events-ticker
   .container
     .row
@@ -39,11 +75,14 @@
               = event.place
 .container
   .row
-    .col-md-4
+    .col-md-10.col-md-offset-1.text-center
+      %br
       %br
       %p.lead Wake ‘N Shake is a 12-hour dance marathon held every spring at Wake Forest University, benefiting the Brian Piccolo Cancer Research Fund. For 12-hours, students, alumni, and faculty members come together to stay standing in support of all those affected by cancer, asking for donations in support of their participation.
-      = link_to "Read more", controller: "about", action: "index", class: "lead"
-    .col-md-4
+      %br
+      %br
+  .row
+    .col-md-6
       %h3 Top 10 Teams
       %table.table.table-bordered
         - @top_10_teams.each_with_index do |team, index|
@@ -52,7 +91,7 @@
               %strong= "#{index+1}"
             %td= link_to(team.name, team)
             %td.text-success.text-center= number_to_currency(team_amount_raised(team))
-    .col-md-4
+    .col-md-6
       %h3 Top 10 Dancers
       %table.table.table-bordered
         - @top_10_dancers.each_with_index do |dancer, index|

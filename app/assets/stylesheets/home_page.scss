@@ -1,30 +1,30 @@
 .jumbotron {
-  min-height: 400px;
-  background: #000 image-url("photo_grid.jpg") repeat-x center center;
+  min-height: 500px;
+  background: rgba(0,0,0,0.3);
   color: #FFF;
   margin-bottom: 0px;
-}
-.dancing_for_frame {
+  overflow: hidden;
+  display: block;
   position: relative;
 }
-.dance_for {
-  height: 100px;
-  line-height: 100px;
-  margin-right: 20px;
-  margin-top: -30px;
-  position: absolute;
-  top: 15px;
+.well-clear {
+  background: rgba(0,0,0,0.4);
+  border: 0;
 }
-#names {
-  display: inline-block;
-  width: 60%;
-  color: #FFFF00;
-  position: absolute;
-  left: 33%;
+.btn-sign-up {
+  background: rgba(0,0,0,0.2);
+  color: white;
 }
+
+.btn-sign-up:hover {
+  background: rgba(255,255,255,0.3);
+  color: white;
+}
+
 .lead-text {
   font-size: 26px;
 }
+
 /* Nav Bar Styling */
 .navbar-inverse {
   margin: 0;
@@ -42,4 +42,38 @@
 }
 
 .events-ticker li {
+}
+
+/* Background video */
+video#bgvid { 
+    position: absolute;
+    top: 50%;
+    vertical-align: baseline;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100vw;
+    height: auto;
+    z-index: -100;
+    transition: .25s opacity .25s linear;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(wns-video.jpg) no-repeat;
+    background-size: cover; 
+}
+
+video {
+    display: block;
+    object-fit: contain;
+}
+
+@media screen and (max-device-width: 800px) {
+    html {
+         background: url(photo-grid.jpg) #000 no-repeat center center fixed;
+    }
+    #bgvid {
+        display: none;
+    }
 }
