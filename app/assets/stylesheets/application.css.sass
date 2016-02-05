@@ -3,6 +3,12 @@
 @import "home_page"
 @import "font-awesome"
 
+body
+  font-family: "Proxima Nova"
+
+.jumbotron
+  overflow: hidden
+
 // Navigation
 .navbar-inverse
   background: #333
@@ -18,7 +24,11 @@
   color: #FFF
 
 .navbar-inverse .navbar-brand
-  font-weight: bold
+  font-weight: medium
+
+.dropdown:hover .dropdown-menu, .dropdown-menu li a:hover
+  display: block
+  background: #000
 
 // Footer
 #footer

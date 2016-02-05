@@ -8,15 +8,21 @@
     %script{:src => "https://checkout.stripe.com/checkout.js"}
     = analytics_init if Rails.env.production?
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %script{:src => "https://use.typekit.net/mff8khh.js"}
+    :javascript
+      try{Typekit.load({ async: true });}catch(e){}
   %body
     %nav.navbar.navbar-inverse
       .container
         #navbar-header
           %ul.nav.navbar-nav
             %li= link_to("Wake 'N Shake", root_path, class: "navbar-brand")
-            %li= link_to("About", controller: "/about", action: :index)
-            %li= link_to("Committee", controller: "/about", action: :committee)
-            %li= link_to("Our History", histories_path)
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"} About Us
+              %ul.dropdown-menu
+                %li= link_to("Our Mission", controller: "/about", action: :index)
+                %li= link_to("Committee", controller: "/about", action: :committee)
+                %li= link_to("Our History", histories_path)
             %li= link_to("Champions", champions_path)
             %li= link_to("Donate", charges_path)
             %li= link_to("Dancers", dancers_path)
