@@ -94,11 +94,12 @@ video {
     object-fit: contain;
 }
 
-@media screen and (max-device-width: 800px) {
-    html {
-         background: url(/photo-grid.jpg) #000 no-repeat center center fixed;
+@media only screen and (max-width: 55em){
+    .jumbotron {
+         background: url(/photo_grid.jpg) no-repeat;
     }
     #bgvid {
         display: none;
+        background: url(/wns-video.jpg) repeat;
     }
 }

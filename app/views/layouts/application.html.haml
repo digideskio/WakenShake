@@ -43,36 +43,41 @@
     %nav.navbar.navbar-inverse
       .container
         #navbar-header
-          %ul.nav.navbar-nav
-            %li= link_to("Wake 'N Shake", root_path, class: "navbar-brand")
-            %li.divider-vertical
-            %li.dropdown
-              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"} About Us
-              %ul.dropdown-menu
-                %li= link_to("Our Mission", controller: "/about", action: :index)
-                %li= link_to("Committee", controller: "/about", action: :committee)
-                %li= link_to("Our History", histories_path)
-            %li= link_to("Champions", champions_path)
-            %li= link_to("Donate", charges_path)
-            %li= link_to("Dancers", dancers_path)
-            %li= link_to("Teams", teams_path)
-            %li= link_to("Our Sponsors", sponsors_path)
-        %ul.nav.navbar-nav.navbar-right
-          %li.divider-vertical
-          - if can? :manage, :all
-            %li
-              = link_to controller: "/admin", action: :index do
-                %i.fa.fa-key.text-warning
-          - if dancer_signed_in?
-            %li
-              = link_to("Profile", dancer_path(current_dancer))
-            %li
-              %p.navbar-btn= link_to("Logout", destroy_dancer_session_path, method: :delete, class: "btn btn-sign-up")
-          - else
-            %li
-              = link_to("Log In", new_dancer_session_path)
-            %li
-              %p.navbar-btn= link_to("Sign Up", new_dancer_registration_path, class: "btn btn-sign-up")
+          %button{type: "button", class: "navbar-toggle collapsed", data:{toggle: "collapse", target: "#navbar-full"}}
+            %i.fa.fa-bars
+          .collapse.navbar-collapse#navbar-full
+            %ul.nav.navbar-nav
+              %li= link_to("Wake 'N Shake", root_path, class: "navbar-brand")
+              %li.divider-vertical.hidden-xs
+              %br.visible-xs
+              %br.visible-xs
+              %li.dropdown
+                %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"} About Us
+                %ul.dropdown-menu
+                  %li= link_to("Our Mission", controller: "/about", action: :index)
+                  %li= link_to("Committee", controller: "/about", action: :committee)
+                  %li= link_to("Our History", histories_path)
+              %li= link_to("Champions", champions_path)
+              %li= link_to("Donate", charges_path)
+              %li= link_to("Dancers", dancers_path)
+              %li= link_to("Teams", teams_path)
+              %li= link_to("Our Sponsors", sponsors_path)
+            %ul.nav.navbar-nav.navbar-right
+              %li.divider-vertical.hidden-xs
+              - if can? :manage, :all
+                %li
+                  = link_to controller: "/admin", action: :index do
+                    %i.fa.fa-key.text-warning
+              - if dancer_signed_in?
+                %li
+                  = link_to("Profile", dancer_path(current_dancer))
+                %li
+                  %p.navbar-btn= link_to("Logout", destroy_dancer_session_path, method: :delete, class: "btn btn-sign-up")
+              - else
+                %li
+                  = link_to("Log In", new_dancer_session_path)
+                %li
+                  %p.navbar-btn= link_to("Sign Up", new_dancer_registration_path, class: "btn btn-sign-up")
     = yield
   %br
   %br
