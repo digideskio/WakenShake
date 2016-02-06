@@ -16,6 +16,8 @@ body
 
 .nav li a
   color: #FFF
+  text-transform: uppercase
+  font-size: 12px
 
 .label
   color: #333
@@ -25,10 +27,22 @@ body
 
 .navbar-inverse .navbar-brand
   font-weight: medium
+  text-transform: none
+  font-size: 18px
 
 .dropdown:hover .dropdown-menu, .dropdown-menu li a:hover
   display: block
   background: #000
+
+.navbar .divider-vertical
+  height: 50px
+  margin: 0 9px
+  border-right: 1px solid #ffffff
+  border-left: 1px solid #f2f2f2
+
+.navbar-inverse .divider-vertical
+  border-right-color: #444444
+  border-left-color: #111111
 
 // Footer
 #footer
@@ -60,3 +74,24 @@ a .thumbnail:hover
 
 .no-underline:hover
   text-decoration: none !important
+
+.btn-primary
+  background: #369ff4
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary.active
+  background: #70bbf7
+
+.input-group .form-control:not(:first-child):not(:last-child)
+  border-radius: 5px
+.image-spaced 
+  height: 150px
+  display: inline-block
+  overflow: hidden
+  width: 100%
+  display: flex
+  align-items: center
+
+
+.img 
+  vertical-align: middle
+

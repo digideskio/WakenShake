@@ -14,8 +14,33 @@
 .btn-sign-up {
   background: rgba(0,0,0,0.2);
   color: white;
+  border: 1px solid gray;
 }
-
+.donation-amount {
+  font-size: 22px;
+  height: auto;
+  padding: 15px;
+  padding-left: 35px;
+  color: #369ff4;
+}
+.donation-amount-btn {
+  height: auto;
+  padding: 18px;
+}
+.pre-input {
+  left: 0;
+}
+.post-input {
+  right: 0;
+}
+.post-input, .pre-input {
+  position: absolute;
+  z-index: 999;
+  font-size: 22px;
+  height: auto;
+  color: #000;
+  padding: 15px;
+}
 .btn-sign-up:hover {
   background: rgba(255,255,255,0.3);
   color: white;

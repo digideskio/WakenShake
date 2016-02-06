@@ -1,23 +1,15 @@
-%h1 Listing sponsors
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th Link
-      %th
-      %th
-      %th
-
-  %tbody
-    - @sponsors.each do |sponsor|
-      %tr
-        %td= sponsor.name
-        %td= sponsor.link
-        %td= link_to 'Show', sponsor
-        %td= link_to 'Edit', edit_sponsor_path(sponsor)
-        %td= link_to 'Destroy', sponsor, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Sponsor', new_sponsor_path
+.container
+  %h1.text-center.page-header We thank our sponsors
+  - if can? :manage, :all
+    = link_to 'New Sponsor', new_sponsor_path, class: "btn btn-md btn-primary"
+  %br
+  %br
+  - @sponsors.each do |sponsor|
+    .col-md-3
+      .thumbnail
+        .image-spaced
+          = link_to image_tag(sponsor.logo.url(:medium), size: "150", class: "image-spaced center-block")
+        - if can? :manage, :all
+          .text-center
+            = link_to "Edit", edit_sponsor_path(sponsor), class: "btn btn-xs btn-default"
+            = link_to "Delete", sponsor, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger"

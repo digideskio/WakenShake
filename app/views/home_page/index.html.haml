@@ -16,11 +16,12 @@
             .form-inline
               .form-group
                 .input-group
-                  .input-group-addon $
-                  = text_field_tag :donation_amount, params[:donation_amount], class: "form-control input-lg", placeholder: "5", id: "total-amount-val", autofocus: true, autocomplete: "off"
+                  %span.pre-input $
+                  = text_field_tag :donation_amount, params[:donation_amount], class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
+                  %span.post-input USD
                 %br
                 %br
-                %button{class: "btn btn-block btn-lg btn-primary", id: "stripeButton"}
+                %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn", id: "stripeButton"}
                   %b Give by  
                   %i.fa.fa-1x.fa-credit-card
                 %span.action

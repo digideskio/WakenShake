@@ -28,6 +28,7 @@
         #navbar-header
           %ul.nav.navbar-nav
             %li= link_to("Wake 'N Shake", root_path, class: "navbar-brand")
+            %li.divider-vertical
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"} About Us
               %ul.dropdown-menu
@@ -40,21 +41,21 @@
             %li= link_to("Teams", teams_path)
             %li= link_to("Our Sponsors", sponsors_path)
         %ul.nav.navbar-nav.navbar-right
+          %li.divider-vertical
           - if can? :manage, :all
             %li
               = link_to controller: "/admin", action: :index do
                 %i.fa.fa-key.text-warning
-                Admin
           - if dancer_signed_in?
             %li
-              = link_to("My Profile", dancer_path(current_dancer))
+              = link_to("Profile", dancer_path(current_dancer))
             %li
-              %p.navbar-btn= link_to("Logout", destroy_dancer_session_path, method: :delete, class: "btn btn-primary")
+              %p.navbar-btn= link_to("Logout", destroy_dancer_session_path, method: :delete, class: "btn btn-sign-up")
           - else
             %li
               = link_to("Log In", new_dancer_session_path)
             %li
-              %p.navbar-btn= link_to("Sign Up", new_dancer_registration_path, class: "btn btn-primary")
+              %p.navbar-btn= link_to("Sign Up", new_dancer_registration_path, class: "btn btn-sign-up")
     = yield
   %br
   %br

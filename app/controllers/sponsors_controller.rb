@@ -28,7 +28,7 @@ class SponsorsController < ApplicationController
 
     respond_to do |format|
       if @sponsor.save
-        format.html { redirect_to @sponsor, notice: 'Sponsor was successfully created.' }
+        format.html { redirect_to sponsors_path, notice: 'Sponsor was successfully created.' }
         format.json { render :show, status: :created, location: @sponsor }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class SponsorsController < ApplicationController
   def update
     respond_to do |format|
       if @sponsor.update(sponsor_params)
-        format.html { redirect_to @sponsor, notice: 'Sponsor was successfully updated.' }
+        format.html { redirect_to sponsors_path, notice: 'Sponsor was successfully updated.' }
         format.json { render :show, status: :ok, location: @sponsor }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class SponsorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sponsor_params
-      params.require(:sponsor).permit(:name, :link)
+      params.require(:sponsor).permit(:name, :link, :logo)
     end
 end
