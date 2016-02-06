@@ -85,7 +85,7 @@ video#bgvid {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(wns-video.jpg) no-repeat;
+    background: url(/wns-video.jpg) no-repeat;
     background-size: cover; 
 }
 
@@ -96,7 +96,7 @@ video {
 
 @media screen and (max-device-width: 800px) {
     html {
-         background: url(photo-grid.jpg) #000 no-repeat center center fixed;
+         background: url(/photo-grid.jpg) #000 no-repeat center center fixed;
     }
     #bgvid {
         display: none;
