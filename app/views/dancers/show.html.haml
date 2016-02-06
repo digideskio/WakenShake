@@ -63,12 +63,14 @@
         .form-inline
           .form-group
             .input-group
-              .input-group-addon $
-              = text_field_tag :donation_amount, params[:donation_amount], class: "form-control", placeholder: "Amount", id: "total-amount-val"
-              .input-group-addon .00
-            %button{class: "btn btn-md btn-primary", id: "stripeButton"}
-              Donate to 
-              = @dancer.first_name
+              %span.pre-input $
+              = text_field_tag :donation_amount, params[:donation_amount], class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
+              %span.post-input USD
+            %br
+            %br
+            %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn", id: "stripeButton"}
+              %b Give by  
+              %i.fa.fa-1x.fa-credit-card
             %span.action
               :javascript
                 var handler = StripeCheckout.configure({
@@ -88,7 +90,9 @@
                   var amount = $("#total-amount-val").val();
                   if(amount > 0) {
                     handler.open({
-                      name: "Donation to #{@dancer.first_name}",
+                      name: "Wake 'N Shake",
+                      image: "/images/app_icon.png",
+                      description: "100% funds cancer research",
                       amount: amount*100,
                       billingAddress: true
                     });
