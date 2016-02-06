@@ -60,7 +60,7 @@ class Dancer < ActiveRecord::Base
   validates :first_time, presence: {message: "Indicate whether this is your first Wake 'N Shake or not"}
   validates :vegetarian, presence: {message: "Indicate whether you are a vegetarian or not"}
   validates :dancing_for, presence: {message: "Indicate who you are dancing for"}
-  has_attached_file :avatar, styles: { medium: "400x400>", thumb: "100x100>" }, default_url: "app_icon.png"
+  has_attached_file :avatar, styles: { large: "800x800>",  medium: "400x400>", thumb: "100x100>" }, default_url: "app_icon.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validate :password_complexity
 
