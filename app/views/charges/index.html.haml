@@ -1,3 +1,8 @@
+- content_for :head do
+  %meta{:content => "Make a donation", :property => "og:title"}/
+  %meta{:content => "images/app_icon.png", :property => "og:image"}/
+  %meta{:content => "#{request.original_url}", :property => "og:url"}/
+  %meta{:content => "Donate to the Brian Piccolo Cancer Research Fund! Wake ‘N Shake is a 12-hour dance marathon held every spring at Wake Forest University, benefiting the Brian Piccolo Cancer Research Fund.", :property => "og:description"}/
 .container
   .page-header.text-center
     %h1 Support Us
