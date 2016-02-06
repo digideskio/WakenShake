@@ -29,10 +29,10 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:dancer).permit(:first_name, :last_name, :email, :password, :gender, :year, :tshirt, :avatar, :team, :residence, :dancing_for, :first_time, :team_id, :shift, :conditional_details, :food_allergies, :referral_array, :goal, :dorm_id, :vegetarian)
+    params.require(:dancer).permit(:first_name, :last_name, :email, :password, :gender, :year, :tshirt, :avatar, :team, :residence, :dancing_for, :first_time, :team_id, :shift, :conditional_details, :food_allergies, :referral_array, :goal, :dorm_id, :vegetarian, team_attributes: [:name])
   end
 
   def account_update_params
-    params.require(:dancer).permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password, :goal, :dorm_id, :vegetarian)
+    params.require(:dancer).permit(:first_name, :last_name, :email, :password, :gender, :year, :tshirt, :avatar, :team, :residence, :dancing_for, :first_time, :team_id, :shift, :conditional_details, :food_allergies, :referral_array, :goal, :dorm_id, :vegetarian, team_attributes: [:name])
   end
 end

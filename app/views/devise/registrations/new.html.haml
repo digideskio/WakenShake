@@ -93,6 +93,10 @@
                 %span.text-muted (Optional)
               %br
               =f.collection_select :team_id, @teams, :id, :name, {prompt: "Select a team to join"}, {class: "form-control"}
+              = f.fields_for :team, resource.build_team do |t|
+                .field
+                  = t.label :team, "or create a new team", class: "label"
+                  = t.text_field :name, class: "form-control", placeholder: "Enter a team name"
             .form-group
               .label T-Shirt Size
               %br

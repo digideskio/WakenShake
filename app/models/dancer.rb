@@ -73,4 +73,6 @@ class Dancer < ActiveRecord::Base
   def self.search(query)
     where("first_name LIKE ? OR last_name LIKE ?", "%#{query}%", "%#{query}%")
   end
+
+  accepts_nested_attributes_for :team
 end
