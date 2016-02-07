@@ -50,6 +50,8 @@ class DancersController < ApplicationController
   end
 
   def update
+    @teams = Team.all
+    @dorms = Dorm.all
     respond_to do |format|
       if @dancer.update(dancer_params)
         sign_in(@dancer, :bypass => true)
@@ -71,9 +73,17 @@ class DancersController < ApplicationController
   end
 
   def set_staff
+    @dancer = Dancer.find(params[:id])
+    @dancer.update_attribute(:staff_member, params[:value])
+    @dancer.save
+    redirect_to @dancer
   end
 
   def set_admin
+    @dancer = Dancer.find(params[:id])
+    @dancer.update_attribute(:admin, params[:value])
+    @dancer.save
+    redirect_to @dancer
   end
 
   private
@@ -83,6 +93,6 @@ class DancersController < ApplicationController
     end
 
     def dancer_params
-      params.require(:dancer).permit(:first_name, :last_name, :password, :email, :avatar, :year, :gender, :tshirt, :residence, :shift, :first_time, :hear_about, :food_allergies, :vegetarian, :contact_name, :contact_number, :conditional_details, :dancing_for)
+      params.require(:dancer).permit(:first_name, :last_name, :password, :email, :avatar, :year, :gender, :tshirt, :residence, :shift, :first_time, :hear_about, :food_allergies, :vegetarian, :contact_name, :contact_number, :conditional_details, :dancing_for, :stafftitle)
     end
 end
