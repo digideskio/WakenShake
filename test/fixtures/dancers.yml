@@ -40,6 +40,7 @@
 #  staff_member           :boolean
 #  dorm_id                :integer
 #  stafftitle             :string
+#  disclaimer             :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

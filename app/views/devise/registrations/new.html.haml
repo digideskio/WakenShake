@@ -40,11 +40,11 @@
               .label Sex
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   .fa.fa-male
                   Male
                   = f.radio_button :gender, "Male"
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   .fa.fa-female
                   Female
                   = f.radio_button :gender, "Female"
@@ -52,35 +52,35 @@
               .label Have you participated in WNS before?
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   Yes
                   = f.radio_button :first_time, true
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   No
                   = f.radio_button :first_time, false
             .form-group
               .label Year
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-xs
+                .btn.btn-primary.btn-xs{data:{toggle:"button"}}
                   Freshman
                   = f.radio_button :year, "Freshman"
-                .btn.btn-primary.btn-xs
+                .btn.btn-primary.btn-xs{data:{toggle:"button"}}
                   Sophomore
                   = f.radio_button :year, "Sophomore"
-                .btn.btn-primary.btn-xs
+                .btn.btn-primary.btn-xs{data:{toggle:"button"}}
                   Junior
                   = f.radio_button :year, "Junior"
-                .btn.btn-primary.btn-xs
+                .btn.btn-primary.btn-xs{data:{toggle:"button"}}
                   Senior
                   = f.radio_button :year, "Senior"
-                .btn.btn-primary.btn-xs
+                .btn.btn-primary.btn-xs{data:{toggle:"button"}}
                   Graduate
                   = f.radio_button :year, "Graduate"
-                .btn.btn-primary.btn-xs
+                .btn.btn-primary.btn-xs{data:{toggle:"button"}}
                   Alumni
                   = f.radio_button :year, "Alumni"
-                .btn.btn-primary.btn-xs
+                .btn.btn-primary.btn-xs{data:{toggle:"button"}}
                   Faculty/Staff
                   = f.radio_button :year, "Faculty/Staff"
             .form-group
@@ -93,55 +93,60 @@
                 %span.text-muted (Optional)
               %br
               =f.collection_select :team_id, @teams, :id, :name, {prompt: "Select a team to join"}, {class: "form-control"}
+              = f.fields_for :team, resource.build_team do |t|
+                .field
+                  = t.label :team, "or create a new team", class: "label"
+                  = t.text_field :name, class: "form-control", placeholder: "Enter a team name"
+                  = t.hidden_field :category, value: "Open"
             .form-group
               .label T-Shirt Size
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   Small
                   = f.radio_button :tshirt, "Small"
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   Medium
                   = f.radio_button :tshirt, "Medium"
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   Large
                   = f.radio_button :tshirt, "Large"
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   X-Large
                   = f.radio_button :tshirt, "X-Large"
             .form-group
               .label Shift
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   .fa.fa-trophy
                   All 12 Hours
                   = f.radio_button :shift, "All 12 Hours"
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   .fa.fa-sun-o
                   First 6 Hours
                   = f.radio_button :shift, "First Shift"
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   .fa.fa-moon-o
                   Last 6 Hours
                   = f.radio_button :shift, "Last Shift"
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   No Preference
                   = f.radio_button :shift, "No Preference"
             .form-group
               .label What is your goal to raise?
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   $500
                   = f.radio_button :goal, 500
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   $1,000
                   = f.radio_button :goal, 1000
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   $2,000
                   = f.radio_button :goal, 2000
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   $5,000
                   = f.radio_button :goal, 5000
             %br
@@ -150,10 +155,16 @@
               .fa.fa-heartbeat.text-danger
               Safety & Medical Information
             .form-group
-              =f.label :conditional_details, class: "label"
-              %br
-              %em.text-muted.small During Wake 'N Shake, each participant is expected to be on his or her feet for twelve hours (or, if qualified, a six hour shift). With this in mind, do you have any medical conditions we should be aware of? ex. asthma, allergies, illness, medications, etc.
-              = f.text_area :conditional_details, class: "form-control", placeholder: "Enter conditional details here if needed", rows: 5
+              =f.label :contact_name, class: "label"
+              =f.text_field :contact_name, class: "form-control", placeholder: "Enter an emergency contact name"
+            .form-group
+              =f.label :contact_number, class: "label"
+              =f.text_field :contact_number, class: "form-control", placeholder: "Enter an emergency contact number"
+            / .form-group
+            /   =f.label :conditional_details, class: "label"
+            /   %br
+            /   %em.text-muted.small During Wake 'N Shake, each participant is expected to be on his or her feet for twelve hours (or, if qualified, a six hour shift). With this in mind, do you have any medical conditions we should be aware of? ex. asthma, allergies, illness, medications, etc.
+            /   = f.text_area :conditional_details, class: "form-control", placeholder: "Enter conditional details here if needed", rows: 5
             .form-group
               =f.label :food_allergies, class: "label"
               =f.text_area :food_allergies, class: "form-control", placeholder: "Enter any food allergies here"
@@ -161,12 +172,16 @@
               .label Vegetarian
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   Yes
                   = f.radio_button :vegetarian, true
-                .btn.btn-primary.btn-sm
+                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
                   No
                   = f.radio_button :vegetarian, false
+            .form-group
+              %p I understand that I will be dancing for 12 hours.
+              = f.check_box :disclaimer
+              = f.label :disclaimer, "I agree"
           %hr
           %h4.text-center
             .fa.fa-heart-o.text-warning

@@ -40,6 +40,7 @@
 #  staff_member           :boolean
 #  dorm_id                :integer
 #  stafftitle             :string
+#  disclaimer             :boolean
 #
 
 require 'test_helper'
