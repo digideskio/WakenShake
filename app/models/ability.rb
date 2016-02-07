@@ -6,6 +6,8 @@ class Ability
       can :manage, Dancer, id: user.id
       if user.admin?
         can :manage, :all
+      elsif user.staff_member?
+        can :manage, Charge
       else
         can :read, :all
       end
