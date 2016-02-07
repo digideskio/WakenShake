@@ -85,7 +85,7 @@ video#bgvid {
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    background: url(/wns-video.jpg) no-repeat;
+    background: url(https://s3.amazonaws.com/wns-dancer-photos/wns-video.jpg) no-repeat;
     background-size: cover; 
 }
 
@@ -96,10 +96,11 @@ video {
 
 @media only screen and (max-width: 55em){
     .jumbotron {
-         background: url(/photo_grid.jpg) no-repeat;
+         background:
+         url(https://s3.amazonaws.com/wns-dancer-photos/photo_grid.jpg) no-repeat;
     }
     #bgvid {
         display: none;
-        background: url(/wns-video.jpg) repeat;
+        background: url(https://s3.amazonaws.com/wns-dancer-photos/wns-video.jpg) repeat;
     }
 }

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'dancers/login'
   get 'dancers/set_staff'
   get 'dancers/set_admin'
+  get 'dancers/set_committee'
 
   devise_for :dancers, controllers: { registrations: 'registrations' }
   resources :charges

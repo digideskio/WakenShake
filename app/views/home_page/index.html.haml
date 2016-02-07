@@ -1,7 +1,8 @@
 .jumbotron
-  %video#bgvid{:autoplay => true, :loop => true, :poster => "wns-video.jpg"}
-    %source{:src => "wns-video.mp4", :type => "video/mp4"}
-    %source{:src => "wns-video.webm", :type => "video/webm; codecs=vp8),vorbis"}
+  %video#bgvid{:autoplay => true, :loop => true, :poster => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.jpg"}
+    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.mp4", :type => "video/mp4"}
+    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.webm", :type => "video/webm; codecs=vp8),vorbis"}
+    %img{src: "https://s3.amazonaws.com/wns-dancer-photos/photo_grid.jpg"}
   /[if lt IE 9]
     :javascript
       document.createElement('video');

@@ -35,9 +35,22 @@
     - if can? :manage, :all
       %br
       %hr
+      %h4 WNS Staff
+      = form_for @dancer, {controller: "/dancers", action: :set_committee, id: @dancer.id} do |f|
+        = f.label "Staff Title", class: "label"
+        = f.text_field :stafftitle, placeholder: "Enter staff title", class: "form-control"
+        %br
+        = f.submit "Save", class: "btn btn-md btn-success"
+      %br
       %h4 Access
-      = link_to "Staff", {controller: "/dancers", action: :set_staff}, class: "btn btn-default btn-md btn-block"
-      = link_to "Admin", {controller: "/dancers", action: :set_admin}, class: "btn btn-default btn-md btn-block"
+      - if @dancer.staff_member
+        = link_to "Remove accountant", {controller: "/dancers", action: :set_staff, id: @dancer.id, value: false}, class: "btn btn-danger btn-md btn-block"
+      - else
+        = link_to "Make accountant", {controller: "/dancers", action: :set_staff, id: @dancer.id, value: true}, class: "btn btn-default btn-md btn-block"
+      - if @dancer.admin
+        = link_to "Remove admin", {controller: "/dancers", action: :set_admin, id: @dancer.id, value: false}, class: "btn btn-danger btn-md btn-block"
+      - else
+        = link_to "Make admin", {controller: "/dancers", action: :set_admin, id: @dancer.id, value: true}, class: "btn btn-default btn-md btn-block"
 
   .col-md-8
     %h2
