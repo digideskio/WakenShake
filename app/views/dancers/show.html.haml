@@ -36,7 +36,7 @@
       %br
       %hr
       %h4 WNS Staff
-      = form_for @dancer do |f|
+      = form_for @dancer, {controller: "/dancers", action: :set_committee, id: @dancer.id} do |f|
         = f.label "Staff Title", class: "label"
         = f.text_field :stafftitle, placeholder: "Enter staff title", class: "form-control"
         %br

@@ -54,7 +54,7 @@ class DancersController < ApplicationController
     @dorms = Dorm.all
     respond_to do |format|
       if @dancer.update(dancer_params)
-        sign_in(@dancer, :bypass => true)
+        sign_in(current_dancer, :bypass => true)
         format.html { redirect_to @dancer, notice: 'Dancer was updated.' }
         format.json { render :edit, status: :ok, location: @dancer }
       else
@@ -82,6 +82,13 @@ class DancersController < ApplicationController
   def set_admin
     @dancer = Dancer.find(params[:id])
     @dancer.update_attribute(:admin, params[:value])
+    @dancer.save
+    redirect_to @dancer
+  end
+
+  def set_committee
+    @dancer = Dancer.find(params[:id])
+    @dancer.update_attribute(:stafftitle, params[:stafftitle])
     @dancer.save
     redirect_to @dancer
   end
