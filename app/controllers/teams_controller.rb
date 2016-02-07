@@ -22,6 +22,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @donations = @team.charges.where(is_donation: true)
     @charge = Charge.new
+    @charge_record = Charge.new
   end
 
   # GET /teams/new

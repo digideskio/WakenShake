@@ -24,6 +24,7 @@ class DancersController < ApplicationController
     @amount_raised_goal = (@dancer.charges.where(is_donation: true).sum(:amount)/@dancer.goal)*100
     @donations = @dancer.charges.where(is_donation: true)
     @charge = Charge.new
+    @charge_record = Charge.new
   end
 
   def new

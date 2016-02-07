@@ -32,6 +32,22 @@
       %i.fa.fa-2x.fa-google-plus-square
     %a.no-underline.icon-email{:href => "mailto:?subject=Support #{name(@dancer)}'s Campaign at Wake 'N Shake!&body=Profile: #{request.original_url}", :rel => "nofollow"}
       %i.fa.fa-2x.fa-share-square
+    - if can? :manage, Charge
+      %br
+      %hr
+      %h4 Donations
+      = form_for @charge_record do |f|
+        = f.label :amount, class: "label"
+        = f.text_field :amount, placeholder: "Enter amount", class: "form-control"
+        = f.label :email, class: "label"
+        = f.text_field :email, placeholder: "Email of donor", class: "form-control"
+        = f.label "Registration Fee", class: "label"
+        = f.check_box :is_registration_fee, checked_value: true
+        = f.label "Donation", class: "label"
+        = f.check_box :is_donation, checked_value: true
+        = f.hidden_field :charged_type, value: "Dancer"
+        = f.hidden_field :charged_id, value: @dancer.id
+        = f.submit "Save", class: "btn btn-success btn-block btn-md"
     - if can? :manage, :all
       %br
       %hr
@@ -154,9 +170,10 @@
             %span.text-muted.small.pull-right.text-right
               = time_ago_in_words(donation.created_at)
               ago
-        - if can? :manage, @donations
+        - if can? :manage, donation
           .row
-            = link_to "Edit", edit_charge_path(donation), class: "btn btn-xs btn-default"
-            = link_to "Delete", donation, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs"
+            .col-md-12
+              = link_to "Edit", edit_charge_path(donation), class: "btn btn-xs btn-default"
+              = link_to "Delete", donation, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs"
   .col-md-1
 
