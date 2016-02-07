@@ -40,6 +40,7 @@
 #  staff_member           :boolean
 #  dorm_id                :integer
 #  stafftitle             :string
+#  disclaimer             :boolean
 #
 
 class Dancer < ActiveRecord::Base
@@ -63,6 +64,9 @@ class Dancer < ActiveRecord::Base
   has_attached_file :avatar, styles: { medium: "400x400>", thumb: "100x100>" }, default_url: "app_icon.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validate :password_complexity
+  validates :disclaimer, acceptance: {message: "Accept the medical disclaimer"}
+  validates :contact_name, presence: {message: "Provide an emergency contact name"}
+  validates :contact_number, presence: {message: "Provide an emergency contact number"}
 
   def password_complexity
     if password.present? and not password.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[_\W])/)
@@ -74,5 +78,5 @@ class Dancer < ActiveRecord::Base
     where("first_name LIKE ? OR last_name LIKE ?", "%#{query}%", "%#{query}%")
   end
 
-  accepts_nested_attributes_for :team
+  accepts_nested_attributes_for :team, :reject_if => :all_blank, :allow_destroy => true
 end
