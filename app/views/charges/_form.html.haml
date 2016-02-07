@@ -1,20 +1,19 @@
-.well
-  = form_for @charge do |f|
-    - if @charge.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@charge.errors.count, "error")} prohibited this charge from being saved:"
-        %ul
-          - @charge.errors.full_messages.each do |msg|
-            %li= msg
+= form_for(@charge) do |f|
+  - if @charge.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@charge.errors.count, "error")} prohibited this charge from being saved:"
+      %ul
+        - @charge.errors.full_messages.each do |msg|
+          %li= msg
 
-    .field
-      = f.label :amount, class: "label"
-      = f.text_field :amount, class: "form-control"
-    .field
-      = f.label :is_registration_fee, class: "label"
-      = f.check_box :is_registration_fee
-    .field
-      = f.label :is_donation, class: "label"
-      = f.check_box :is_donation
-    .actions
-      = f.submit 'Add money', class: "btn btn-md btn-block btn-success"
+  .field
+    = f.label :amount, class: "label"
+    = f.text_field :amount, class: "form-control"
+  .field
+    = f.label :is_registration_fee, class: "label"
+    = f.check_box :is_registration_fee
+  .field
+    = f.label :is_donation, class: "label"
+    = f.check_box :is_donation
+  .actions
+    = f.submit 'Add money', class: "btn btn-md btn-block btn-success"

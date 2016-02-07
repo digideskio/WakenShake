@@ -141,5 +141,9 @@
             %span.text-muted.small.pull-right.text-right
               = time_ago_in_words(donation.created_at)
               ago
+        - if can? :manage, @donations
+          .row
+            = link_to "Edit", edit_charge_path(donation), class: "btn btn-xs btn-default"
+            = link_to "Delete", donation, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs"
   .col-md-1
 
