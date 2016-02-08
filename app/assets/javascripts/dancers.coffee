@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$('[data-toggle=\'buttons\'] .btn').each (i, el) ->
+  $button = $(el)
+  checked = $button.find('input[type=\'checkbox\']').prop('checked')
+  if checked
+    $button.addClass 'active'
+  else
+    $button.removeClass 'active'
+  return

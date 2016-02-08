@@ -40,11 +40,11 @@
               .label Sex
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   .fa.fa-male
                   Male
                   = f.radio_button :gender, "Male"
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   .fa.fa-female
                   Female
                   = f.radio_button :gender, "Female"
@@ -52,10 +52,10 @@
               .label Have you participated in WNS before?
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   Yes
                   = f.radio_button :first_time, true
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   No
                   = f.radio_button :first_time, false
             .form-group
@@ -102,51 +102,51 @@
               .label T-Shirt Size
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   Small
                   = f.radio_button :tshirt, "Small"
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   Medium
                   = f.radio_button :tshirt, "Medium"
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   Large
                   = f.radio_button :tshirt, "Large"
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   X-Large
                   = f.radio_button :tshirt, "X-Large"
             .form-group
               .label Shift
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   .fa.fa-trophy
                   All 12 Hours
                   = f.radio_button :shift, "All 12 Hours"
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   .fa.fa-sun-o
                   First 6 Hours
                   = f.radio_button :shift, "First Shift"
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   .fa.fa-moon-o
                   Last 6 Hours
                   = f.radio_button :shift, "Last Shift"
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   No Preference
                   = f.radio_button :shift, "No Preference"
             .form-group
               .label What is your goal to raise?
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   $500
                   = f.radio_button :goal, 500
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   $1,000
                   = f.radio_button :goal, 1000
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   $2,000
                   = f.radio_button :goal, 2000
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   $5,000
                   = f.radio_button :goal, 5000
             %br
@@ -172,10 +172,10 @@
               .label Vegetarian
               %br
               .btn-group{data:{toggle: "buttons"}}
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   Yes
                   = f.radio_button :vegetarian, true
-                .btn.btn-primary.btn-sm{data:{toggle: "button"}}
+                .btn.btn-primary.btn-sm
                   No
                   = f.radio_button :vegetarian, false
             .form-group
