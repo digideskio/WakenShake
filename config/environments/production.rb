@@ -5,7 +5,7 @@ Rails.application.configure do
   config.cache_classes = true
 
   # sets the links for mailer
-  config.action_mailer.default_url_options = { :host => 'wfu-wakenshake.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'wakenshake.com' }
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
