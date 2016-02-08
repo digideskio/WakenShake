@@ -1,5 +1,16 @@
-%html
+%html{style:"font-family: 'Arial'; color: #444;"}
   %body
-  %h2 Wake 'N Shake
-  %hr
-    = yield
+    .container{style:"width: 90%; margin-left: auto; margin-right: auto;"}
+      %h1 Wake 'N Shake
+      %hr
+        = yield
+      %br
+      %br
+      %hr
+      %br
+      .footer{style: "font-size: 70%; text-align: center"}
+        = link_to "Wake 'N Shake", root_url
+        |
+        = link_to "Wake Forest University", "http://www.wfu.edu"
+        %br
+        %p 1834 Wake Forest Rd, Winston-Salem, NC 27106

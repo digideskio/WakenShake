@@ -1,0 +1,27 @@
+%p
+  Dear
+  = succeed "," do
+    = @referral.name
+%p I have pledged to participate in Wake Forest University's eleventh annual Wake 'N Shake Dance Marathon. This event benefits the Brian Piccolo Cancer Research Fund, which supports innovative research at the Comprehensive Cancer Center at Wake Forest Baptist Medical Center. Since the Brian Piccolo Cancer Research Fund was founded in 1980, over $1.4 million has been raised through the efforts of our generous sponsors and dedicated donors. 
+%p Wake 'N Shake is the largest student-run philanthropy event on campus and has become a beloved cornerstone tradition at Wake Forest. The event brings together the entire campus community, as hundreds of students pledge to stay on their feet for twelve hours in honor and in memory of those who have battled cancer.
+%p
+  You can send a donation by going to 
+  = succeed "." do
+    = link_to "my profile", dancer_url(@dancer)
+%p If you would prefer to send a check, it can be made out to “Brian Piccolo Cancer Research Fund” and sent to the following address:
+%br
+%em
+  Wake 'N Shake 
+  %br
+  c/o Pro Humanitate Institute 
+  %br
+  Campus Box 7526 
+  %br
+  1834 Wake Forest Rd. 
+  %br
+  Winston-Salem, NC 27109
+%br
+%p Thank you in advance for your support! Your generosity means a great deal to both myself and the patients at the WFU Comprehensive Cancer Center.
+%br
+%p Sincerely,
+%p= @dancer.first_name

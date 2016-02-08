@@ -9,5 +9,10 @@
 #  updated_at :datetime         not null
 #
 
-class Referral < ActiveRecord::Base
+require 'test_helper'
+
+class ReferralTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

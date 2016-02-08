@@ -65,7 +65,6 @@ class Dancer < ActiveRecord::Base
   has_attached_file :avatar, styles: { large: "800x800>",  medium: "400x400>", thumb: "100x100>" }, default_url: "app_icon.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   validate :password_complexity, on: :create
-  validates :disclaimer, acceptance: {message: "Accept the medical disclaimer"}
   validates :contact_name, presence: {message: "Provide an emergency contact name"}
   validates :contact_number, presence: {message: "Provide an emergency contact number"}
 

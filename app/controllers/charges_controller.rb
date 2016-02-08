@@ -29,7 +29,8 @@ class ChargesController < ApplicationController
   # POST /charges.json
   def create
     if not params[:stripeToken].present?
-      Charge.create!(charge_params)
+      charge_record = Charge.create!(charge_params)
+      DonationMailer.donation_notification(charge_record).deliver_later
       redirect_to(:back)
     elsif params[:stripeToken].present?
       # determine if the charge is a donation or registration fee
@@ -79,6 +80,7 @@ class ChargesController < ApplicationController
       end
 
       if charge_record.save
+        DonationMailer.donation_notification(charge_record).deliver_later
         if charge_record.is_registration_fee.present?
           redirect_to dancer_path(@dancer)
         elsif charge_record.is_donation.present?

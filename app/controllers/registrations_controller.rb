@@ -21,8 +21,13 @@ class RegistrationsController < Devise::RegistrationsController
     donation emails now..."
 
     # Queue up donation emails
-    params[:referral_emails_array].each do |referral|
-      DonationMailer.request_a_donation(referral).deliver_later
+    if resource.save
+      params[:referral_emails_array].each_with_index do |referral, index|
+        if referral.present?
+          referral_object = Referral.create(name: params[:referral_names_array][index], email: referral)
+          DonationMailer.request_a_donation(referral_object, resource).deliver_later
+        end
+      end
     end
   end
 

@@ -39,9 +39,25 @@
         %hr
         %h4
           .fa.fa-paper-plane
-          Mass Email
-        = form_for (Dancer.new) do |f|
+          Mass email to dancers
+        = form_tag(send_mass_email_path)  do
           .form-group
-            = f.text_area :first_name, class: "form-control", rows: 8, placeholder: "Enter a message to email to the dancers"
+            = text_field_tag :subject, nil, class: "form-control", placeholder: "Enter a subject"
+          .form-group
+            = text_area_tag :message, nil, class: "form-control", rows: 8, placeholder: "Enter a message to email to the dancers"
+            = hidden_field_tag :type, nil, value: "Dancer"
           .action
-            = f.submit "Send Message", class: "btn btn-md btn-default"
+            = submit_tag "Send Message", class: "btn btn-md btn-default"
+        %hr
+        %h4
+          .fa.fa-paper-plane
+          Mass email to donors
+        = form_tag(send_mass_email_path)  do
+          .form-group
+            = text_field_tag :subject, nil, class: "form-control", placeholder: "Enter a subject"
+          .form-group
+            .text-muted Dear (Donor's Name),
+            = text_area_tag :message, nil, class: "form-control", rows: 8, placeholder: "Enter a message to email to the donors"
+            = hidden_field_tag :type, nil, value: "Donor"
+          .action
+            = submit_tag "Send Message", class: "btn btn-md btn-default"

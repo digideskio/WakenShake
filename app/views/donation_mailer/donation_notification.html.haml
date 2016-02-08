@@ -1,0 +1,15 @@
+%h2 You have received a donation!
+%p
+  - if @donor.present?
+    = link_to "#{@donor.first_name} #{@donor.last_name}", @donor
+  - else
+    = link_to @donation.email, "mailto:#{@donation.email}"
+  has donated 
+  %b= number_to_currency(@donation.amount)
+  in your name.
+  %br
+%p
+  Feel free to make donations to your friends and support their campaigns!
+%br
+%h2= link_to "Click here to donate", charges_url
+

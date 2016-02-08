@@ -4,4 +4,16 @@ class AdminController < ApplicationController
     @active_teams = Team.joins(:dancers).count
     @amount_raised = Charge.where(is_donation: true).sum(:amount)
   end
+  def mass_mailer
+    @message = params[:message]
+    @subject = params[:subject]
+    if params[:type] == "Dancer"
+      AdminMailer.mass_dancer(@message, @subject).deliver_now
+    elsif params[:type] == "Donor"
+      Referral.find_each do |donor|
+        AdminMailer.mass_donor(donor, @message, @subject).deliver_later
+      end
+    end
+    redirect_to admin_index_path
+  end
 end
