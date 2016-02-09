@@ -4,6 +4,9 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
+  # force ssl
+  config.force_ssl = true
+
   # sets the links for mailer
   config.action_mailer.default_url_options = { :host => 'wakenshake.com' }
 
