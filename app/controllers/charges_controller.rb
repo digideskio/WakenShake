@@ -80,10 +80,10 @@ class ChargesController < ApplicationController
       end
 
       if charge_record.save
-        DonationMailer.donation_notification(charge_record).deliver_later
         if charge_record.is_registration_fee.present?
           redirect_to dancer_path(@dancer)
         elsif charge_record.is_donation.present?
+          DonationMailer.donation_notification(charge_record).deliver_later
           redirect_to charge_record
         end
       end
