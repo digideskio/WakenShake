@@ -168,16 +168,16 @@
             .form-group
               =f.label :food_allergies, class: "label"
               =f.text_area :food_allergies, class: "form-control", placeholder: "Enter any food allergies here"
-            /.form-group
-            /  .label Vegetarian
-            /  %br
-            /  .btn-group{data:{toggle: "buttons"}}
-            /    .btn.btn-primary.btn-sm
-            /      Yes
-            /      = f.radio_button :vegetarian, true
-            /    .btn.btn-primary.btn-sm
-            /      No
-            /      = f.radio_button :vegetarian, false
+            .form-group
+              .label Vegetarian
+              %br
+              .btn-group{data:{toggle: "buttons"}}
+                .btn.btn-primary.btn-sm
+                  Yes
+                  = f.radio_button :vegetarian, true
+                .btn.btn-primary.btn-sm
+                  No
+                  = f.radio_button :vegetarian, false
             .form-group
               %p I understand that I will be dancing for 12 hours.
               = f.check_box :disclaimer
