@@ -18,11 +18,16 @@ class TeamsController < ApplicationController
 
   # GET /teams/1
   # GET /teams/1.json
-  def show
-    @team = Team.find(params[:id])
+  def show @team = Team.find(params[:id])
     @donations = @team.charges.where(is_donation: true)
     @charge = Charge.new
     @charge_record = Charge.new
+    @total = 0
+    @team.dancers.each do |dancer|
+      @total += dancer.charges.where(is_donation: true).sum(:amount)
+    end
+    @total += @team.charges.where(is_donation: true).sum(:amount)
+    @amount_raised_goal = (@total/10000)*100
   end
 
   # GET /teams/new

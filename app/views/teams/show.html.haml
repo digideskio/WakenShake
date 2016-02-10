@@ -19,8 +19,8 @@
           has raised 
           %span.text-success= number_to_currency(team_amount_raised(@team))
         .progress
-          .progress-bar.progress-bar-success.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 40%"}
-            40% from reaching the goal
+          .progress-bar.progress-bar-success.progress-bar-striped{:role => "progressbar", :style => "width: #{number_to_percentage(@amount_raised_goal, precision: 0)}", "aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{@amount_raised_goal}"}
+            =number_to_percentage(@amount_raised_goal, precision: 0)
         %hr
         %p.text-muted
           Send a donation to 
@@ -101,7 +101,7 @@
           .row
             - if donor.present?
               .col-md-1
-                = image_tag(donor.avatar, class: "img-rounded", size: "40")
+                = image_tag(donor.avatar.url, class: "img-rounded", size: "40")
             .col-md-8
               - if donor.present?
                 = donor.first_name
