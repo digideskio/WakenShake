@@ -3,7 +3,7 @@
     = link_to dancer do
       .thumbnail.thumbnail-fixed-height
         .profile-spaced
-          = image_tag(dancer.avatar.url(:medium), class: "profile-spaced center-block img-responsive")
+          = image_tag(dancer.avatar.url(:medium), class: "center-block img-responsiveimg-square")
         .text-center.caption
           %h4= name(dancer)
           - if dancer.stafftitle.present?
