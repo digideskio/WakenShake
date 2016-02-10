@@ -71,7 +71,8 @@
   .col-md-8
     %h2
       = name(@dancer)
-      %small= link_to(@dancer.team.name, @dancer.team)
+      - if @dancer.team.present?
+        %small= link_to(@dancer.team.name, @dancer.team)
       %br
       - if can? :manage, @dancer
         = link_to('Edit your profile', edit_dancer_path(@dancer), class: "btn btn-default btn-sm")
