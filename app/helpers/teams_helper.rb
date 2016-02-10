@@ -4,9 +4,9 @@ module TeamsHelper
   def team_amount_raised(team)
     @total = 0
     team.dancers.each do |dancer|
-      @total += dancer.charges.sum(:amount)
+      @total += dancer.charges.where(is_donation: true).sum(:amount)
     end
-    @total += team.charges.sum(:amount)
+    @total += team.charges.where(is_donation: true).sum(:amount)
     @total
   end
 end
