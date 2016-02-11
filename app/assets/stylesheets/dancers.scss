@@ -1,3 +1,21 @@
-// Place all the styles related to the Dancers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.progress-bar[aria-valuenow="1"],
+.progress-bar[aria-valuenow="2"] {
+  min-width: 3%;
+}
+
+.progress-bar[aria-valuenow="0"] {
+  color: #222;
+  min-width: 3%;
+  background: transparent;
+  box-shadow: none;
+  padding-right: 10px;
+}
+
+.progress-bar[aria-valuenow^="9"]:not([aria-valuenow="9"]) {
+  background: #70bbf7;
+  max-width: 100%;
+}
+
+.progess-bar {
+  max-width: 100%;
+}

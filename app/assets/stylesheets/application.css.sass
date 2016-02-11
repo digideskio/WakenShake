@@ -108,3 +108,24 @@ a .thumbnail:hover
 .img 
   vertical-align: middle
 
+.progress-bar[aria-valuenow="1"],
+.progress-bar[aria-valuenow="2"] 
+  min-width: 3%
+
+
+.progress-bar[aria-valuenow="0"] 
+  color: #222
+  min-width: 3%
+  background: transparent
+  box-shadow: none
+
+
+.progress-bar[aria-valuenow^="9"]:not([aria-valuenow="9"]) 
+  background: #70bbf7
+  max-width: 100%
+
+
+.progess-bar 
+  max-width: 100%
+  background-color: #70bbf7
+  background-image: none
