@@ -96,12 +96,12 @@
     .col-md-9
       %h4.page-header Recent Activity
       - @donations.each do |donation|
-        - donor = Dancer.where(email: donation.email).present?
+        - donor = Dancer.where(email: donation.email).first
         .panel.panel-default.panel-body
           .row
             - if donor.present?
               .col-md-1
-                = image_tag(donor.avatar.url, class: "img-rounded", size: "40")
+                = image_tag(donor.avatar.url(:thumb), class: "img-rounded", size: "40")
             .col-md-8
               - if donor.present?
                 = donor.first_name
