@@ -2,8 +2,7 @@
   .col-xs-4.col-md-2
     = link_to dancer do
       .thumbnail.thumbnail-fixed-height
-        .profile-spaced
-          = image_tag(dancer.avatar.url(:medium))
+        .profile-spaced{style: "background-image:url(#{dancer.avatar.url(:medium)})"}
         .text-center.caption
           %h4= name(dancer)
           - if dancer.stafftitle.present?
