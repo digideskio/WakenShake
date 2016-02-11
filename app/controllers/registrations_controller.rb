@@ -17,11 +17,9 @@ class RegistrationsController < Devise::RegistrationsController
 
     super
 
-    logger.info "User - #{resource.email} has been created. Queueing up 
-    donation emails now..."
-
     # Queue up donation emails
     if resource.save
+      logger.info "User - #{resource.email} has been created. Queueing up donation emails now..."
       params[:referral_emails_array].each_with_index do |referral, index|
         if referral.present?
           referral_object = Referral.create(name: params[:referral_names_array][index], email: referral)
