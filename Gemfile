@@ -66,6 +66,9 @@ gem "google-analytics-rails"
 # Seedbank organizes our seed data a little better so that it's not a mess seeding stuff
 gem 'seedbank'
 
+# Awesome print for queries
+gem 'awesome_print'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
