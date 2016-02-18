@@ -1,0 +1,5 @@
+- headers = ['Team Name', 'Category', 'Amount Raised', '# of Dancers']
+= CSV.generate_line headers
+- @teams.joins(:dancers).distinct.each do |team|
+  - @num_of_dancers = team.dancers.count
+  = CSV.generate_line([team.name, team.category, team.amount_raised, @num_of_dancers])
