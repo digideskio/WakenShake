@@ -3,4 +3,8 @@
 - @dancers.each do |dancer|
   - @amount_raised = dancer.charges.where(is_donation: true).sum(:amount)
   - @dorm = Dorm.find(dancer.dorm_id).name
-  = CSV.generate_line([dancer.first_name, dancer.last_name, dancer.email, dancer.tshirt, dancer.team.name, dancer.gender, @dorm, @amount_raised, dancer.year, dancer.shift, dancer.first_time, dancer.hear_about, dancer.food_allergies, dancer.vegetarian, dancer.contact_name, dancer.contact_number, dancer.conditional_details, dancer.dancing_for, dancer.staff_member])
+  - if dancer.team.nil?
+    - @team = "Individual"
+  - else
+    - @team = dancer.team.name
+  = CSV.generate_line([dancer.first_name, dancer.last_name, dancer.email, dancer.tshirt, @team, dancer.gender, @dorm, @amount_raised, dancer.year, dancer.shift, dancer.first_time, dancer.hear_about, dancer.food_allergies, dancer.vegetarian, dancer.contact_name, dancer.contact_number, dancer.conditional_details, dancer.dancing_for, dancer.staff_member])
