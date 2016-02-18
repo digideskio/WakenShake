@@ -28,6 +28,8 @@
               = f.email_field(:email, id: "email", class: "form-control", autocomplete: "off", placeholder: "Enter your email")
             .form-group
               =f.label :password, class: "label"
+              %br
+              %small.text-muted Passwords must contain an uppercase letter, lowercase letter, digit, and a special character
               = f.password_field(:password, id: "password", class: "form-control", autocomplete: "off", placeholder: "Enter a new password")
             %hr
             %h4.text-center
