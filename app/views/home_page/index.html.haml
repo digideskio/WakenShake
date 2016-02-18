@@ -58,23 +58,24 @@
                       handler.close();
                     });
         = link_to "or become a dancer", new_dancer_registration_path, class: "btn btn-md btn-default btn-sign-up"
-.events-ticker
-  .container
-    .row
-      .col-md-2
-        %h4.text-muted Upcoming Events
-      .col-md-10
-        %ul.list-unstyled.NewsTicker
-          - @events.each do |event|
-            %li
-              %b= event.title
-              \-
-              = event.text
-              %br
-              %i.text-muted Time: 
-              = event.date_time.strftime("%b %d at %l:%M %p")
-              %i.text-muted Location: 
-              = event.place
+- unless @events.empty?
+  .events-ticker
+    .container
+      .row
+        .col-md-2
+          %h4.text-muted Upcoming Events
+        .col-md-10
+          %ul.list-unstyled.NewsTicker
+            - @events.each do |event|
+              %li
+                %b= event.title
+                \-
+                = event.text
+                %br
+                %i.text-muted Time: 
+                = event.date_time.strftime("%b %d at %l:%M %p")
+                %i.text-muted Location: 
+                = event.place
 .container
   .row
     .col-md-10.col-md-offset-1.text-center
