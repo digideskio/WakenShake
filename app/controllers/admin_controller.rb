@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
   def index
     @dancers_count = Dancer.count
-    @active_teams = Team.joins(:dancers).count
+    @active_teams = Team.joins(:dancers).group("teams.id").count.count
     @amount_raised = Charge.where(is_donation: true).sum(:amount)
   end
   def mass_mailer
