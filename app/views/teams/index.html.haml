@@ -25,7 +25,7 @@
           %tr
             %td= index+1
             %td= link_to team.name, team
-            %td= number_to_currency(team_amount_raised(team)) 
+            %td= number_to_currency(team.amount_raised) 
     .col-md-4
       %h4 Fraternity Division
       %table.table
@@ -36,7 +36,7 @@
           %tr
             %td= index+1
             %td= link_to team.name, team
-            %td= number_to_currency(team_amount_raised(team))
+            %td= number_to_currency(team.amount_raised)
     .col-md-4
       %h4 Open Division
       %table.table
@@ -47,5 +47,5 @@
           %tr
             %td= index+1
             %td= link_to team.name, team
-            %td= number_to_currency(team_amount_raised(team))
+            %td= number_to_currency(team.amount_raised)
 

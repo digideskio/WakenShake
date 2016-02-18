@@ -17,7 +17,7 @@
         %h4
           = @team.name
           has raised 
-          %span.text-success= number_to_currency(team_amount_raised(@team))
+          %span.text-success= number_to_currency(@team.amount_raised)
         .progress
           .progress-bar.progress-bar-success.progress-bar-striped{:role => "progressbar", :style => "width: #{number_to_percentage(@amount_raised_goal, precision: 0)}", "aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{@amount_raised_goal}"}
             =number_to_percentage(@amount_raised_goal, precision: 0)
