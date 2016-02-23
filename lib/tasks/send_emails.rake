@@ -11,6 +11,7 @@ namespace :send_emails do
     puts "Testing emails"
     if Date.today.wday == 1
       Team.joins(:dancers).group('teams.id').each do |team|
+        puts "Queuing up emails"
         Newsletter.test_weekly_mailer(team).deliver_now
       end
     end
