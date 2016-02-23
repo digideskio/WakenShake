@@ -5,15 +5,15 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    @teams = Team.all
-    @dorms = Dorm.all
+    @teams = Team.all.order('name')
+    @dorms = Dorm.all.order('name')
 
     super
   end
 
   def create
-    @teams = Team.all
-    @dorms = Dorm.all
+    @teams = Team.all.order('name')
+    @dorms = Dorm.all.order('name')
 
     super
 
