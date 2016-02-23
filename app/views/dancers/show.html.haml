@@ -77,6 +77,8 @@
       - if can? :manage, @dancer
         = link_to('Edit your profile', edit_dancer_path(@dancer), class: "btn btn-default btn-sm")
         = link_to('Delete your profile', @dancer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
+        - if @registration_fee
+          = link_to('Pay your registration fee', {controller: :charges, action: :registration_fee}, class: "btn btn-primary btn-sm")
     .panel.panel-default.panel-body
       %h4
         = @dancer.first_name

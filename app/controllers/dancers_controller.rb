@@ -25,6 +25,7 @@ class DancersController < ApplicationController
     @donations = @dancer.charges.where(is_donation: true)
     @charge = Charge.new
     @charge_record = Charge.new
+    @registration_fee = @dancer.charges.where(is_registration_fee: true).empty?
   end
 
   def new
