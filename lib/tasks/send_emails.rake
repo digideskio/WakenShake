@@ -7,4 +7,12 @@ namespace :send_emails do
       end
     end
   end
+  task test_weekly_update: :environment do
+    if Date.today.wday == 1
+      Team.joins(:dancers).group('teams.id').each do |team|
+        Newsletter.test_weekly_mailer(team).deliver_now
+      end
+    end
+  end
+
 end
