@@ -78,5 +78,5 @@ class Dancer < ActiveRecord::Base
     where("first_name LIKE ? OR last_name LIKE ?", "%#{query}%", "%#{query}%")
   end
 
-  accepts_nested_attributes_for :team, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :team, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 end
