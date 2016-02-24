@@ -62,10 +62,12 @@
   width: 100%;
   display: block;
   overflow: hidden;
-  height: 60px;
+  height: 100px;
 }
 
 .events-ticker li {
+  height: 100px;
+  padding-top: 8px;
 }
 
 /* Background video */
