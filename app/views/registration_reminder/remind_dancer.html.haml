@@ -1,0 +1,16 @@
+%h3 Please pay your Wake 'N Shake registration fee!
+%br
+%p
+  Hi
+  = succeed "," do
+    = @dancer.first_name
+
+%p Thank you for signing up for Wake 'N Shake! We noticed that you have not yet paid your Wake 'N Shake registration fee. It may have been a technical glitch on our end or you may have choosen to pay later. Either way, we would love to you pay for your Wake 'N Shake registration so that we can give you a t-shirt at our event.
+%p
+  To pay your registration fee, go to 
+  = link_to "our website", "#{root_url}/dancers/sign_in"
+  and sign in to your account. Once you're signed in, you can click "Pay your registration fee" at your profile pay to pay.
+%p Please let us know if you have any questions or if you think there's an error. We'd be happy to check our records.
+%br
+%p All the best,
+%p Wake 'N Shake Exec Committee
