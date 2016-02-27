@@ -100,7 +100,7 @@ class DancersController < ApplicationController
     dancer = Dancer.find(params[:dancer_id])
     referral_object = Referral.create(email: params[:referral_email], name: params[:referral_name])
     DonationMailer.request_a_donation(referral_object, dancer).deliver_later
-    redirect_to :back
+    redirect_to :back, notice: "Your donation request email has been sent."
   end
 
   private
