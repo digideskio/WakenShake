@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'dancers/set_staff'
   get 'dancers/set_admin'
   get 'dancers/set_committee'
+  post 'dancers/send_donation_email'
   match '/send_mass_email', to: 'admin#mass_mailer', via: 'post'
 
   devise_for :dancers, controllers: { registrations: 'registrations' }

@@ -7,4 +7,4 @@ NewsTickerAutoPlay = ->
 setInterval (->
   NewsTickerAutoPlay()
   return
-), 4000
+), 7000

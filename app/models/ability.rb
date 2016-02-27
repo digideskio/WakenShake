@@ -8,8 +8,10 @@ class Ability
         can :manage, :all
       elsif user.staff_member?
         can :manage, Charge
+        cannot :read, :admin
       else
         can :read, :all
+        cannot :read, :admin
       end
   end
 end

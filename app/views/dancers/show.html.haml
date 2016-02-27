@@ -32,6 +32,19 @@
       %i.fa.fa-2x.fa-google-plus-square
     %a.no-underline.icon-email{:href => "mailto:?subject=Support #{name(@dancer)}'s Campaign at Wake 'N Shake!&body=Profile: #{request.original_url}", :rel => "nofollow"}
       %i.fa.fa-2x.fa-share-square
+    - if can? :manage, @dancer
+      %br
+      %hr
+      %h4 Send a donation request email
+      = form_tag({action: :send_donation_email}) do |f|
+        = label :referral_name, "Name", class: "label"
+        = text_field_tag :referral_name, "", placeholder: "Enter a name", class: "form-control"
+        = label :referral_email, "Email", class: "label"
+        = text_field_tag :referral_email,"", placeholder: "Enter an email", class: "form-control"
+        = hidden_field_tag :dancer_id, @dancer.id
+        %br
+        = submit_tag "Send", class: "btn btn-success btn-md"
+      %p A message will be sent to this email from our team. 
     - if can? :manage, Charge
       %br
       %hr

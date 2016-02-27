@@ -25,6 +25,7 @@ class DancersController < ApplicationController
     @donations = @dancer.charges.where(is_donation: true)
     @charge = Charge.new
     @charge_record = Charge.new
+    @referral = Referral.new
     @registration_fee = @dancer.charges.where(is_registration_fee: true).empty?
   end
 
@@ -93,6 +94,13 @@ class DancersController < ApplicationController
     @dancer.update_attribute(:stafftitle, params[:stafftitle])
     @dancer.save
     redirect_to @dancer
+  end
+
+  def send_donation_email
+    dancer = Dancer.find(params[:dancer_id])
+    referral_object = Referral.create(email: params[:referral_email], name: params[:referral_name])
+    DonationMailer.request_a_donation(referral_object, dancer).deliver_later
+    redirect_to :back
   end
 
   private
