@@ -192,14 +192,14 @@
           %em.text-muted.small Please submit the contact information of friends or family members. They will automatically be sent an email telling them about Wake 'N Shake and your participation in the event, and asking if they would be willing to support you by donating to the Brian Piccolo Cancer Research Fund on your behalf.
           %h5.text-center Required
           - 5.times do |i|
-            = fields_for :referrals, @dancer.referrals.build do |r|
+            = f.fields_for :referrals, resource.referrals.build do |r|
               %label.label= "Contact #{i+1}"
               %p= r.text_field :name, placeholder: "Enter name", class: "form-control"
               %p= r.text_field :email, placeholder: "Enter email address", class: "form-control"
             %hr
           %h5.text-center Optional
           - 5.times do |i|
-            = fields_for :referrals, resource.referrals.build do |r|
+            = f.fields_for :referrals, resource.referrals.build do |r|
               %label.label= "Contact #{i+1}"
               %p= r.text_field :name, placeholder: "Enter name", class: "form-control"
               %p= r.text_field :email, placeholder: "Enter email address", class: "form-control"

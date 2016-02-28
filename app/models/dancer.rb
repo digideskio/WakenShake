@@ -46,6 +46,7 @@
 class Dancer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
+
   belongs_to :team
   has_many :charges, as: :charged
   has_many :referrals
@@ -69,11 +70,16 @@ class Dancer < ActiveRecord::Base
   validate :password_complexity, on: :create
   validates :contact_name, presence: {message: "Provide an emergency contact name"}
   validates :contact_number, presence: {message: "Provide an emergency contact number"}
+  validate :require_five_referrals
 
   def password_complexity
     if password.present? and not password.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[_\W])/)
       errors.add :password, "Your password must include at least one lowercase letter, one uppercase letter, one digit, and one symbol."
     end
+  end
+
+  def require_five_referrals
+    errors.add :referrals, "You must provide at least 5 donation contacts" if referrals.size < 5
   end
 
   def self.search(query)
