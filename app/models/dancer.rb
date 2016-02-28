@@ -48,6 +48,8 @@ class Dancer < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
   belongs_to :team
   has_many :charges, as: :charged
+  has_many :referrals
+
   validates :email, presence: {message: "Your email cannot be blank"}, uniqueness: {message: "This email address is already being used"}
   validates :password, presence: {message: "Your password cannot be blank"}, length: {minimum: 8, too_short: "Your password must have at least 8 characters"}, on: :create
   validates :password, length: {minimum: 8, too_short: "Your password must have at least 8 characters"}, on: :update, allow_blank: true
@@ -79,4 +81,5 @@ class Dancer < ActiveRecord::Base
   end
 
   accepts_nested_attributes_for :team, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :referrals, reject_if: :all_blank, allow_destroy: true
 end
