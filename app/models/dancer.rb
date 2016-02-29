@@ -70,7 +70,7 @@ class Dancer < ActiveRecord::Base
   validate :password_complexity, on: :create
   validates :contact_name, presence: {message: "Provide an emergency contact name"}
   validates :contact_number, presence: {message: "Provide an emergency contact number"}
-  validate :require_five_referrals
+  validate :require_five_referrals, on: :create
 
   def password_complexity
     if password.present? and not password.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[_\W])/)
