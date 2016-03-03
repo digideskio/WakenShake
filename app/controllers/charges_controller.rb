@@ -3,6 +3,7 @@ class ChargesController < ApplicationController
   # GET /charges
   # GET /charges.json
   def index
+    @charge = Charge.new
   end
 
   # GET /charges/1
