@@ -106,3 +106,11 @@
               %strong= "#{index+1}"
             %td= link_to("#{dancer.first_name} #{dancer.last_name}", dancer)
             %td.text-success.text-center=number_to_currency(dancer_amount_raised(dancer))
+  .row
+    %br
+    %h2.text-center We Thank Our Sponsors
+    - @sponsors.each do |sponsor|
+      .col-md-3
+        .thumbnail
+          .image-spaced
+            = link_to image_tag(sponsor.logo.url(:medium), size: "150", class: "image-spaced center-block")
