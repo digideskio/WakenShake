@@ -83,7 +83,8 @@ class Dancer < ActiveRecord::Base
   end
 
   def self.search(query)
-    where("first_name LIKE ? OR last_name LIKE ?", "%#{query}%", "%#{query}%")
+    query = query.split.map(&:capitalize).join(' ')
+    where("first_name LIKE ? OR last_name LIKE ? OR CONCAT(first_name,' ',last_name) LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%")
   end
 
   accepts_nested_attributes_for :team, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
