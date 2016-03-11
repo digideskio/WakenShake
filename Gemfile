@@ -33,7 +33,7 @@ gem 'aws-sdk'
 gem 'devise'
 
 # for tiered access in the app
-gem "cancan"
+gem "cancancan"
 
 # for pagination
 gem 'will_paginate', '~> 3.0.6'

@@ -91,3 +91,16 @@
           PO Box 7526
           %br
           Winston-Salem, NC 27109
+  - if can? :manage, :all
+    .row
+      .col-md-6
+        .well
+          %h3 Record a donation
+          = form_for @charge do |f|
+            = f.label :amount, class: "label"
+            = f.text_field :amount, placeholder: "Enter amount", class: "form-control"
+            = f.label :email, class: "label"
+            = f.text_field :email, placeholder: "Email of donor (if available)", class: "form-control"
+            = f.hidden_field :is_donation, value: true
+            = f.submit "Save", class: "btn btn-success btn-block btn-md"
+

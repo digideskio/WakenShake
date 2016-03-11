@@ -34,8 +34,8 @@ class DancersController < ApplicationController
   end
 
   def edit
-    @teams = Team.all
-    @dorms = Dorm.all 
+    @teams = Team.all.order('name asc')
+    @dorms = Dorm.all.order('name asc')
   end
 
   def create

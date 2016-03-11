@@ -46,8 +46,11 @@
 class Dancer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
+
   belongs_to :team
   has_many :charges, as: :charged
+  has_many :referrals
+
   validates :email, presence: {message: "Your email cannot be blank"}, uniqueness: {message: "This email address is already being used"}
   validates :password, presence: {message: "Your password cannot be blank"}, length: {minimum: 8, too_short: "Your password must have at least 8 characters"}, on: :create
   validates :password, length: {minimum: 8, too_short: "Your password must have at least 8 characters"}, on: :update, allow_blank: true
@@ -67,6 +70,7 @@ class Dancer < ActiveRecord::Base
   validate :password_complexity, on: :create
   validates :contact_name, presence: {message: "Provide an emergency contact name"}
   validates :contact_number, presence: {message: "Provide an emergency contact number"}
+  validate :require_five_referrals, on: :create
 
   def password_complexity
     if password.present? and not password.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[_\W])/)
@@ -74,9 +78,15 @@ class Dancer < ActiveRecord::Base
     end
   end
 
-  def self.search(query)
-    where("first_name LIKE ? OR last_name LIKE ?", "%#{query}%", "%#{query}%")
+  def require_five_referrals
+    errors.add :referrals, "You must provide at least 5 donation contacts" if referrals.size < 5
   end
 
-  accepts_nested_attributes_for :team, :reject_if => :all_blank, :allow_destroy => true
+  def self.search(query)
+    query = query.split.map(&:capitalize).join(' ')
+    where("first_name LIKE ? OR last_name LIKE ? OR CONCAT(first_name,' ',last_name) LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%")
+  end
+
+  accepts_nested_attributes_for :team, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :referrals, reject_if: :all_blank, allow_destroy: true
 end
