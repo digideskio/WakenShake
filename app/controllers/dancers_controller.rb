@@ -43,7 +43,7 @@ class DancersController < ApplicationController
 
     respond_to do |format|
       if @dancer.save
-        format.html { redirect_to @dancer, notice: 'Dancer was created.' }
+        format.html { redirect_to @dancer, flash: { success: 'Your profile was created!.'} }
         format.json { render :show, status: :created, location: @dancer }
       else
         format.html { render :new }
@@ -58,7 +58,7 @@ class DancersController < ApplicationController
     respond_to do |format|
       if @dancer.update(dancer_params)
         sign_in(current_dancer, :bypass => true)
-        format.html { redirect_to @dancer, notice: 'Dancer was updated.' }
+        format.html { redirect_to @dancer, notice: 'Your profile was updated.' }
         format.json { render :edit, status: :ok, location: @dancer }
       else
         format.html { render :edit }
@@ -100,7 +100,7 @@ class DancersController < ApplicationController
     dancer = Dancer.find(params[:dancer_id])
     referral_object = Referral.create(email: params[:referral_email], name: params[:referral_name])
     DonationMailer.request_a_donation(referral_object, dancer).deliver_later
-    redirect_to :back, notice: "Your donation request email has been sent."
+    redirect_to :back, flash: { success: "Your donation request email has been sent."}
   end
 
   private

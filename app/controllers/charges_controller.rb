@@ -93,7 +93,7 @@ class ChargesController < ApplicationController
     end
   rescue Stripe::CardError => e
     logger.debug e.message
-    redirect_to charges_path
+    redirect_to :back, flash: { error:"#{e.message} Please try again or try another card." }
   end
 
   # PATCH/PUT /charges/1

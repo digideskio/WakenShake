@@ -5,6 +5,10 @@
   %meta{:content => "#{request.original_url}", :property => "og:url"}/
   %meta{:content => "Support #{name(@dancer)}'s campaign! Wake ‘N Shake is a 12-hour dance marathon held every spring at Wake Forest University, benefiting the Brian Piccolo Cancer Research Fund.", :property => "og:description"}/
 .container
+  .row
+    .col-md-12
+      - flash_messages
+.container
   .col-md-3
     %br
     =image_tag(@dancer.avatar.url(:medium), size: "190", class: "img-responsive img-rounded center-block")
