@@ -22,6 +22,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @donations = @team.charges.where(is_donation: true)
     @charge = Charge.new
+    @dancers = @team.dancers.order('last_name asc')
     @charge_record = Charge.new
     @total = 0
     @team.dancers.each do |dancer|

@@ -90,7 +90,6 @@
   .row
     .col-md-12
       %h3 Dancers
-      - @dancers = @team.dancers
       = render partial: "/dancers/profiles", locals: {object: @dancers}
   .row
     .col-md-9
