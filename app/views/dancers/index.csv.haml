@@ -1,4 +1,4 @@
-- headers = ['First Name', 'Last Name', 'Email', 'T-Shirt Size', 'Team', 'Gender', 'Residence', 'Amount Raised', 'Year', 'Shift', 'First Time?', 'Food Allergies', 'Vegetarian', 'Contact Name', 'Contact Number', 'Conditional Details', 'Paid registration fee?', 'Dancing For']
+- headers = ['First Name', 'Last Name', 'Email', 'T-Shirt Size', 'Team', 'Gender', 'Residence', 'Amount Raised', 'Year', 'Shift', 'First Time?', 'Food Allergies', 'Vegetarian', 'Contact Name', 'Contact Number', 'Conditional Details', 'Date of sign up','Paid registration fee?', 'Dancing For']
 = CSV.generate_line headers
 - @dancers.each do |dancer|
   - @amount_raised = dancer.charges.where(is_donation: true).sum(:amount)
@@ -8,4 +8,4 @@
   - else
     - @team = dancer.team.name
   - @registration_fee = dancer.charges.where(is_registration_fee: true).any?
-  = CSV.generate_line([dancer.first_name, dancer.last_name, dancer.email, dancer.tshirt, @team, dancer.gender, @dorm, @amount_raised, dancer.year, dancer.shift, dancer.first_time, dancer.food_allergies, dancer.vegetarian, dancer.contact_name, dancer.contact_number, dancer.conditional_details, @registration_fee, dancer.dancing_for])
+  = CSV.generate_line([dancer.first_name, dancer.last_name, dancer.email, dancer.tshirt, @team, dancer.gender, @dorm, @amount_raised, dancer.year, dancer.shift, dancer.first_time, dancer.food_allergies, dancer.vegetarian, dancer.contact_name, dancer.contact_number, dancer.conditional_details, dancer.created_at, @registration_fee, dancer.dancing_for])
