@@ -8,4 +8,4 @@
   - else
     - @team = dancer.team.name
   - @registration_fee = dancer.charges.where(is_registration_fee: true).any?
-  = CSV.generate_line([dancer.first_name, dancer.last_name, dancer.email, dancer.tshirt, @team, dancer.gender, @dorm, @amount_raised, dancer.year, dancer.shift, dancer.first_time, dancer.food_allergies, dancer.vegetarian, dancer.contact_name, dancer.contact_number, dancer.conditional_details, dancer.created_at, @registration_fee, dancer.dancing_for])
+  = CSV.generate_line([dancer.first_name, dancer.last_name, dancer.email, dancer.tshirt, @team, dancer.gender, @dorm, @amount_raised, dancer.year, dancer.shift, dancer.first_time, dancer.food_allergies, dancer.vegetarian, dancer.contact_name, dancer.contact_number, dancer.conditional_details, dancer.created_at, @registration_fee, dancer.dancing_for]).html_safe
