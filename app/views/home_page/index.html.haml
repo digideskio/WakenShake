@@ -1,65 +1,63 @@
 .jumbotron
-  %iframe#bgvid{:allowfullscreen => "", :frameborder => "0", :height => "500", :src => "https://www.youtube.com/embed/7WpR7Pd0huQ", :width => "100%"}
-/.jumbotron
-/  %video#bgvid{:autoplay => true, :loop => true, :poster => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.jpg"}
-/    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.mp4", :type => "video/mp4"}
-/    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.webm", :type => "video/webm; codecs=vp8),vorbis"}
-/    %img{src: "https://s3.amazonaws.com/wns-dancer-photos/photo_grid.jpg"}
-/  /[if lt IE 9]
-/    :javascript
-/      document.createElement('video');
-/  .container.text-center
-/    %br
-/    %h2 Support our dancers
-/    %p 100% of your donations goes to cancer research
-/    .row
-/      .col-md-4.col-md-offset-4
-/        .well.well-clear
-/          = form_for :charge do
-/            .form-inline
-/              .form-group
-/                .input-group
-/                  %span.pre-input $
-/                  = text_field_tag :donation_amount, params[:donation_amount], class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
-/                  %span.post-input USD
-/                %br
-/                %br
-/                %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn", id: "stripeButton"}
-/                  %b Give by  
-/                  %i.fa.fa-1x.fa-credit-card
-/                %span.action
-/                  :javascript
-/                    var handler = StripeCheckout.configure({
-/                      key: "#{Rails.configuration.stripe[:publishable_key]}",
-/                      locale: 'auto',
-/                      token: function(token) {
-/                        var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
-/                        var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
-/                        var is_donation = $("<input type=hidden name=is_donation value=true />")
-/                        var charge_type = $("<input type=hidden name=charge_type value=All />")
-/                        $("form").append(tokenInput).append(emailInput).append(is_donation).append(charge_type).submit();
-/                      }
-/                    });
-/
-/                    $('#stripeButton').on('click', function(e) {
-/                      var amount = $("#total-amount-val").val();
-/                      if(amount > 0) {
-/                        handler.open({
-/                          name: "Wake 'N Shake",
-/                          image: "/images/app_icon.png",
-/                          description: "100% funds cancer research",
-/                          amount: amount*100,
-/                          billingAddress: true
-/                        });
-/                      }
-/                      e.preventDefault();
-/                    });
-/
-/                    // Close Checkout on page navigation
-/                    $(window).on('popstate', function() {
-/                      handler.close();
-/                    });
-/        = link_to "or become a dancer", new_dancer_registration_path, class: "btn btn-md btn-default btn-sign-up"
+  %video#bgvid{:autoplay => true, :loop => true, :poster => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.jpg"}
+    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.mp4", :type => "video/mp4"}
+    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.webm", :type => "video/webm; codecs=vp8),vorbis"}
+    %img{src: "https://s3.amazonaws.com/wns-dancer-photos/photo_grid.jpg"}
+  /[if lt IE 9]
+    :javascript
+      document.createElement('video');
+  .container.text-center
+    %br
+    %h2 Support our dancers
+    %p 100% of your donations goes to cancer research
+    .row
+      .col-md-4.col-md-offset-4
+        .well.well-clear
+          = form_for :charge do
+            .form-inline
+              .form-group
+                .input-group
+                  %span.pre-input $
+                  = text_field_tag :donation_amount, params[:donation_amount], class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
+                  %span.post-input USD
+                %br
+                %br
+                %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn", id: "stripeButton"}
+                  %b Give by  
+                  %i.fa.fa-1x.fa-credit-card
+                %span.action
+                  :javascript
+                    var handler = StripeCheckout.configure({
+                      key: "#{Rails.configuration.stripe[:publishable_key]}",
+                      locale: 'auto',
+                      token: function(token) {
+                        var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
+                        var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
+                        var is_donation = $("<input type=hidden name=is_donation value=true />")
+                        var charge_type = $("<input type=hidden name=charge_type value=All />")
+                        $("form").append(tokenInput).append(emailInput).append(is_donation).append(charge_type).submit();
+                      }
+                    });
+
+                    $('#stripeButton').on('click', function(e) {
+                      var amount = $("#total-amount-val").val();
+                      if(amount > 0) {
+                        handler.open({
+                          name: "Wake 'N Shake",
+                          image: "/images/app_icon.png",
+                          description: "100% funds cancer research",
+                          amount: amount*100,
+                          billingAddress: true
+                        });
+                      }
+                      e.preventDefault();
+                    });
+
+                    // Close Checkout on page navigation
+                    $(window).on('popstate', function() {
+                      handler.close();
+                    });
+        = link_to "or become a dancer", new_dancer_registration_path, class: "btn btn-md btn-default btn-sign-up"
 - unless @events.empty?
   .events-ticker
     .container
