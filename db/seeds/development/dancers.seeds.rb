@@ -1,5 +1,5 @@
-after "development:teams", "dorms" do
-  
+after "teams", "dorms" do
+
   puts "Seeding dancers..."
 
   # tshirt sizes
