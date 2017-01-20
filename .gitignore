@@ -18,3 +18,4 @@
 
 # Ignore all seed data photos
 /public/system/dancers/*
+/public/*
