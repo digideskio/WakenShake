@@ -39,4 +39,4 @@ test:
 
 production:
   <<: *default
-  database: production
+  database: postgresql-symmetrical-84905
