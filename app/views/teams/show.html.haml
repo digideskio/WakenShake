@@ -26,52 +26,16 @@
           Send a donation to 
           = @team.name
           to help their campaign!
-        = form_for @charge do
-          .form-inline
-            .form-group
-              .input-group
-                %span.pre-input $
-                = text_field_tag :donation_amount, params[:donation_amount], class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
-                %span.post-input USD
-              %br
-              %br
-              %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn", id: "stripeButton"}
-                %b Give by  
-                %i.fa.fa-1x.fa-credit-card
-              %span.action
-                :javascript
-                  var handler = StripeCheckout.configure({
-                    key: "#{Rails.configuration.stripe[:publishable_key]}",
-                    locale: 'auto',
-                    token: function(token) {
-                      var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
-                      var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
-                      var is_donation = $("<input type=hidden name=is_donation value=true />")
-                      var charge_type = $("<input type=hidden name=charge_type value=Team />")
-                      var team_id = $("<input type=hidden name=team_id value=#{@team.id} />")
-
-                      $("form").append(tokenInput).append(emailInput).append(is_donation).append(charge_type).append(team_id).submit();
-                    }
-                  });
-
-                  $('#stripeButton').on('click', function(e) {
-                    var amount = $("#total-amount-val").val();
-                    if(amount > 0) {
-                      handler.open({
-                      name: "Wake 'N Shake",
-                      image: "/images/app_icon.png",
-                      description: "100% funds cancer research",
-                      amount: amount*100,
-                      billingAddress: true
-                      });
-                    }
-                    e.preventDefault();
-                  });
-
-                  // Close Checkout on page navigation
-                  $(window).on('popstate', function() {
-                    handler.close();
-                  });
+          = form_tag ENV['PAYMENTURL'], :method =>'post' do
+            .form-inline
+              .form-group
+                .input-group
+                  %span.pre-input $
+                  = text_field_tag "ssl_amount", 10, class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
+                  %span.post-input USD
+                %br
+                %br
+                = submit_tag "Donate", class: "btn btn-block btn-lg btn-primary donation-amount-btn"
     .col-md-3
       %br
       %br
