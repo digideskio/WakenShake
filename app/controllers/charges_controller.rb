@@ -30,9 +30,6 @@ class ChargesController < ApplicationController
   # POST /charges.json
   def create
 
-    redirect_to ENV["PAYMENTURL"]
-
-=begin
     raise RuntimeError "hello"
 
     if params[:is_donation].present?
@@ -75,7 +72,6 @@ class ChargesController < ApplicationController
         redirect_to charge_record
       end
     end
-=end
 
   end
 
