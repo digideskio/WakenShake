@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   match '/send_mass_email', to: 'admin#mass_mailer', via: 'post'
 
   devise_for :dancers, controllers: { registrations: 'registrations' }
-  resources :charges
+  
+  resources :charges, except: [:create]
+  post 'charges', to: 'charges#create', constraints: {protocol: 'https://', host: "ENV['PAYMENTURL']"}
+  
   resources :dancers
   resources :teams
   resources :histories
