@@ -13,7 +13,7 @@
     .row
       .col-md-4.col-md-offset-4
         .well.well-clear
-          = form_tag ENV['PAYMENTURL'], :method =>'post' do
+          = form_tag ENV['PAYMENTURL'], :method => 'post', :authenticity_token => 'false' do
             .form-inline
               .form-group
                 .input-group
@@ -22,7 +22,9 @@
                   %span.post-input USD
                 %br
                 %br
-                = submit_tag "Donate", class: "btn btn-block btn-lg btn-primary donation-amount-btn"
+                %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn"}
+                  %b Give by
+                  %i.fa.fa-1x.fa-credit-card
         = link_to "or become a dancer", new_dancer_registration_path, class: "btn btn-md btn-default btn-sign-up"
 - unless @events.empty?
   .events-ticker
