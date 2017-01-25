@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Ruby version
 ruby '2.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.7.1'
 # Use postgres as the database for Active Record
 gem 'pg'
 # Heroku requires this gem
@@ -81,4 +81,7 @@ group :development, :test do
 
   # for testing email messages
   gem "letter_opener"
+
+  # Detects security vulnerabilities
+  gem 'brakeman'
 end
