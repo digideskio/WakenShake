@@ -35,7 +35,7 @@
       .well
         %h3 Donate to Wake 'N Shake
         %p If you do not want to donate to a specific dancer or team, you can make a general donation to Wake 'N Shake.
-        = form_tag ENV['PAYMENTURL'], :method =>'post' do
+        = form_tag ENV['PAYMENTURL'], :method => 'post', :authenticity_token => 'false' do
           .form-inline
             .form-group
               .input-group
@@ -44,7 +44,9 @@
                 %span.post-input USD
               %br
               %br
-              = submit_tag "Donate", class: "btn btn-block btn-lg btn-primary donation-amount-btn"
+              %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn"}
+                %b Give by&nbsp;
+                %i.fa.fa-1x.fa-credit-card
     .col-md-6
       .well
         %h3 Send in donations by mail

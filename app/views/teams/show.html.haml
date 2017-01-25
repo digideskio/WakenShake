@@ -26,7 +26,7 @@
           Send a donation to 
           = @team.name
           to help their campaign!
-          = form_tag ENV['PAYMENTURL'], :method =>'post' do
+          = form_tag ENV['PAYMENTURL'], :method => 'post', :authenticity_token => 'false' do
             .form-inline
               .form-group
                 .input-group
@@ -35,7 +35,9 @@
                   %span.post-input USD
                 %br
                 %br
-                = submit_tag "Donate", class: "btn btn-block btn-lg btn-primary donation-amount-btn"
+                %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn"}
+                  %b Give by&nbsp;
+                  %i.fa.fa-1x.fa-credit-card
     .col-md-3
       %br
       %br
