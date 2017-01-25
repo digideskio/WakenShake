@@ -30,7 +30,7 @@ class ChargesController < ApplicationController
   # POST /charges.json
   def create
 
-    raise RuntimeError "hello"
+    raise "You have successfully reached the create method."
 
     if params[:is_donation].present?
       @description = "Wake \'N Shake Donation"

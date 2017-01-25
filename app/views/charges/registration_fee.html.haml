@@ -8,9 +8,19 @@
     %br
     .col-md-6.col-md-offset-3
       .well
-        %h3 Pay your registration fee
-        %br
-        = form_for @charge do
-          %button{class: "btn btn-md btn-success", id: "stripeButton"}
-            Pay now
+        %h3 Pay your registration fee:
+        - if current_dancer.present?
+          = form_tag ENV['PAYMENTURL'], :method => 'post', :authenticity_token => 'false' do
+            .form-inline
+              .form-group
+                .input-group
+                  =hidden_field_tag "is_registration_fee", "true"
+                  =hidden_field_tag "charge_type", "Dancer"
+                  =hidden_field_tag "dancer_id", current_dancer.id
+                %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn"}
+                  %b Click here to pay by credit card&nbsp;
+                  %i.fa.fa-1x.fa-credit-card
+                %br
+        -else
+          %p You must be signed in to pay your registraton fee.
 

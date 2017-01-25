@@ -119,7 +119,10 @@
           .form-group
             .input-group
               %span.pre-input $
-              = text_field_tag "ssl_amount", 10, class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
+              = text_field_tag "donation_amount", 10, class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
+              = hidden_field_tag "is_donation", "true"
+              = hidden_field_tag "charge_type", "Dancer"
+              = hidden_field_tag "dancer_id", @dancer.id
               %span.post-input USD
             %br
             %br
