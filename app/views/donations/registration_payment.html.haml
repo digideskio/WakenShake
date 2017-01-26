@@ -8,33 +8,16 @@
         %br
         %p To complete your registration, click the "Pay" button below to pay your registration fee.
         %br
-        = form_for @new_charge do
+        = form_tag ENV['PAYMENTURL'], :method => 'post', :authenticity_token => 'false' do
           .form-inline
-            %button{class: "btn btn-md btn-block btn-success", id: "stripeButton"} Pay Registration Fee
-            %span.action
-              :javascript
-                var handler = StripeCheckout.configure({
-                  key: "#{Rails.configuration.stripe[:publishable_key]}",
-                  locale: 'auto',
-                  token: function(token) {
-                    var tokenInput = $("<input type=hidden name=stripeToken />").val(token.id);
-                    var emailInput = $("<input type=hidden name=stripeEmail />").val(token.email);
-                    $("form").append(tokenInput).append(emailInput).submit();
-                  }
-                });
-
-                $('#stripeButton').on('click', function(e) {
-                    handler.open({
-                      name: "Wake 'N Shake Fee",
-                      amount: 2000,
-                      billingAddress: true
-                    });
-                  e.preventDefault();
-                });
-
-                // Close Checkout on page navigation
-                $(window).on('popstate', function() {
-                  handler.close();
-                });
-
+            .form-group
+              .input-group
+                =hidden_field_tag "is_registration_fee", "true"
+                =hidden_field_tag "charge_type", "Dancer"
+                =hidden_field_tag "dancer_id", current_dancer.id
+                =hidden_field_tag "redirect_url", ENV['REDIRECTURL']
+              %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn"}
+                %b Click here to pay by credit card&nbsp;
+                %i.fa.fa-1x.fa-credit-card
+              %br
 

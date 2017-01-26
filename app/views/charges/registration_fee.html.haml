@@ -17,6 +17,7 @@
                   =hidden_field_tag "is_registration_fee", "true"
                   =hidden_field_tag "charge_type", "Dancer"
                   =hidden_field_tag "dancer_id", current_dancer.id
+                  =hidden_field_tag "redirect_url", ENV['REDIRECTURL']
                 %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn"}
                   %b Click here to pay by credit card&nbsp;
                   %i.fa.fa-1x.fa-credit-card

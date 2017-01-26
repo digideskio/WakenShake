@@ -123,6 +123,7 @@
               = hidden_field_tag "is_donation", "true"
               = hidden_field_tag "charge_type", "Dancer"
               = hidden_field_tag "dancer_id", @dancer.id
+              =hidden_field_tag "redirect_url", ENV['REDIRECTURL']
               %span.post-input USD
             %br
             %br
