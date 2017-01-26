@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   devise_for :dancers, controllers: { registrations: 'registrations' }
   
   resources :charges, except: [:create]
-  post 'charges', to: 'charges#create', constraints: {protocol: 'https://', host: "ENV['PAYMENTURL']"}
+  post 'charges', to: 'charges#create', constraints: {host: "ENV['PAYMENTURL']"}
   
   resources :dancers
   resources :teams
