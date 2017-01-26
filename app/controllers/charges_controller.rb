@@ -67,7 +67,7 @@ class ChargesController < ApplicationController
         redirect_to dancer_path(@dancer)
       elsif charge_record.is_donation.present?
         #DonationMailer.donation_notification(charge_record).deliver_later
-        redirect_to charge_record
+        redirect_to dancer_path(@dancer)
       end
     end
 
