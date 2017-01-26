@@ -18,9 +18,15 @@ Rails.application.routes.draw do
 
   devise_for :dancers, controllers: { registrations: 'registrations' }
   
-  resources :charges, except: [:create]
-  post 'charges', to: 'charges#create', constraints: {host: "ENV['PAYMENTURL']"}
-  
+  get '/charges', to: 'charges#index'
+  get '/charges/:id', to: 'charges#show'
+  get '/charges/new', to: 'charges#new'
+  get '/charges/registration_fee', to: 'charges#registration_fee'
+  post '/charges', to: 'charges#create', constraints: {host: "ENV['PAYMENTURL']"}
+  patch '/charges/:id', to: 'charges#update'
+  put '/charges/:id', to: 'charges#update'
+  delete '/charges/:id', to: 'charges#destroy'
+
   resources :dancers
   resources :teams
   resources :histories
