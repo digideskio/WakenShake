@@ -34,7 +34,7 @@
                   = text_field_tag "donation_amount", 10, class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
                   = hidden_field_tag "is_donation", "true"
                   = hidden_field_tag "charge_type", "Team"
-                  = hidden_field_tag "dancer_id", @team.id
+                  = hidden_field_tag "team_id", @team.id
                   =hidden_field_tag "redirect_url", ENV['REDIRECTURL']
                   %span.post-input USD
                 %br
