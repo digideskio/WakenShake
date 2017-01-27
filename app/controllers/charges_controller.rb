@@ -69,9 +69,8 @@ class ChargesController < ApplicationController
       elsif charge_record.is_donation.present?
         #DonationMailer.donation_notification(charge_record).deliver_later
         if params[:charge_type] == "Dancer"
-          redirect_to dancer_path(@dancer)
+          redirect_to dancer_path(@dancer), notice: "Your donation was processed successfully!"
         else
-          flash[:success] = "Your donation was processed successfully!"
           render :action => "show"
         end
       end
