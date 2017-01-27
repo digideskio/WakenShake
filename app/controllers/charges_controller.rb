@@ -68,7 +68,10 @@ class ChargesController < ApplicationController
         redirect_to dancer_path(@dancer)
       elsif charge_record.is_donation.present?
         #DonationMailer.donation_notification(charge_record).deliver_later
-        redirect_to charge_record
+        if params[:charge_type] == "Dancer"
+          redirect_to dancer_path(@dancer)
+        else
+          redirect_to root_path
       end
     end
   end
