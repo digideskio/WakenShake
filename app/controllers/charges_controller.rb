@@ -29,48 +29,59 @@ class ChargesController < ApplicationController
   # POST /charges
   # POST /charges.json
   def create
-
-    if params[:is_donation].present?
-      @description = "Wake \'N Shake Donation"
-    elsif params[:is_registration_fee].present?
-      @description = "Wake \'N Shake Registration Fee"
-    end
-
-    # registration fee amount - $20
-    @amount = 20
-
-    # if not registration fee, set donation amount
-    if params[:donation_amount].present?
-      @amount = params[:donation_amount].to_i
-    end
-
-    # associate the charge to a team or dancer
-    if params[:charge_type] == "Dancer"
-      @dancer = Dancer.find(params[:dancer_id])
-      charge_record = @dancer.charges.new(amount: @amount, email: params[:email])
+    if not params[:result_message] == 'APPROVED'
+      charge_record = Charge.create!(charge_params)
+      DonationMailer.donation_notification(charge_record).deliver_later
+      redirect_to(:back)
+    elsif params[:result_message] == 'APPROVED'
+      # determine if the charge is a donation or registration fee
+      @description = ""
       if params[:is_donation].present?
-        charge_record.is_donation = true
-        charge_record.save
+        @description = "Wake \'N Shake Donation"
       elsif params[:is_registration_fee].present?
-        charge_record.is_registration_fee = true
-        charge_record.save
+        @description = "Wake \'N Shake Registration Fee"
       end
-    elsif params[:charge_type] == "Team"
-      @team = Team.find(params[:team_id])
-      charge_record = @team.charges.new(amount: @amount, email: params[:email], is_donation: true)
-    elsif params[:charge_type] == "All"
-      charge_record = Charge.new(amount: @amount, email: params[:email], is_donation: true)
-    end
 
-    if charge_record.save
-      if charge_record.is_registration_fee.present?
-        redirect_to dancer_path(@dancer)
-      elsif charge_record.is_donation.present?
-        #DonationMailer.donation_notification(charge_record).deliver_later
-        redirect_to dancer_path(@dancer)
+      # registration fee amount - $20
+      @amount = 20
+
+      # if not registration fee, set donation amount
+      if params[:donation_amount].present?
+        @amount = params[:donation_amount].to_i
       end
-    end
 
+      # associate the charge to a team or dancer
+      if params[:charge_type] == "Dancer"
+        @dancer = Dancer.find(params[:dancer_id])
+        charge_record = @dancer.charges.new(amount: @amount, email: params[:email])
+        if params[:is_donation].present?
+          charge_record.is_donation = true
+          charge_record.save
+        elsif params[:is_registration_fee].present?
+          charge_record.is_registration_fee = true
+          charge_record.save
+        end
+      elsif params[:charge_type] == "Team"
+        @team = Team.find(params[:team_id])
+        charge_record = @team.charges.new(amount: @amount, email: params[:email], is_donation: true)
+      elsif params[:charge_type] == "All"
+        charge_record = Charge.new(amount: @amount, email: params[:email], is_donation: true)
+      end
+
+      if charge_record.save
+        if charge_record.is_registration_fee.present?
+          redirect_to dancer_path(@dancer)
+        elsif charge_record.is_donation.present?
+          DonationMailer.donation_notification(charge_record).deliver_later
+          redirect_to charge_record
+        end
+      end
+    else
+      redirect_to root_path
+    end
+  rescue Exception => e
+    logger.debug e.message
+    redirect_to :back, flash: { error:"#{e.message} Please try again or try another card." }
   end
 
   # PATCH/PUT /charges/1
