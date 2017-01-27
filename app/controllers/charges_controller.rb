@@ -71,6 +71,7 @@ class ChargesController < ApplicationController
         if params[:charge_type] == "Dancer"
           redirect_to dancer_path(@dancer)
         else
+          flash[:success] = "Your donation was processed successfully!"
           render :action => "show"
         end
       end
