@@ -24,7 +24,7 @@
         %h3 Donate to a team
         %p Send a donation to your favorite team to help support their fundraising efforts!
         .form-inline
-          = form_tag(team_path, :method => "get", id: "search-form") do
+          = form_tag(teams_path, :method => "get", id: "search-form") do
             .input-group
               = text_field_tag(:search, params[:search], class: "form-control input-md", placeholder: "Search teams...")
               %span.input-group-btn
