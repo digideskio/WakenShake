@@ -73,6 +73,7 @@ class ChargesController < ApplicationController
         if params[:charge_type] == "Dancer"
           redirect_to dancer_path(@dancer), notice: "Your donation was processed successfully!"
         elsif params[:charge_type] == "Team"
+          @team.amount_raised += @amount
           redirect_to team_path(@team), notice: "Your donation was processed successfully!"
         else
           render :action => "show"
