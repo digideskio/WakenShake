@@ -29,11 +29,11 @@ class ChargesController < ApplicationController
   # POST /charges
   # POST /charges.json
   def create
-    if not params[:result_message] == 'APPROVED'
+    if not params[:result_message].present?
       charge_record = Charge.create!(charge_params)
       DonationMailer.donation_notification(charge_record).deliver_later
       redirect_to(:back)
-    elsif params[:result_message] == 'APPROVED'
+    elsif params[:result_message].present?
       # determine if the charge is a donation or registration fee
       @description = ""
       if params[:is_donation].present?
