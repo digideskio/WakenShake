@@ -72,6 +72,7 @@ class ChargesController < ApplicationController
           redirect_to dancer_path(@dancer)
         else
           raise "TEST"
+        end
       end
     end
   end
