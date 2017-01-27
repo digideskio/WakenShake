@@ -71,7 +71,7 @@ class ChargesController < ApplicationController
         if params[:charge_type] == "Dancer"
           redirect_to dancer_path(@dancer)
         else
-          redirect_to root_path
+          raise "TEST"
       end
     end
   end
