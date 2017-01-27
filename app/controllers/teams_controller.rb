@@ -29,6 +29,7 @@ class TeamsController < ApplicationController
       @total += dancer.charges.where(is_donation: true).sum(:amount)
     end
     @total += @team.charges.where(is_donation: true).sum(:amount)
+    @amount_raised = @total
     @amount_raised_goal = (@total/10000)*100
   end
 
