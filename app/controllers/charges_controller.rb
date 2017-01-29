@@ -139,6 +139,6 @@ class ChargesController < ApplicationController
     end
 
     def verify_request_authenticity
-      return false
+      return true
     end
 end
