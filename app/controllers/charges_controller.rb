@@ -53,7 +53,7 @@ class ChargesController < ApplicationController
         charge_record.is_donation = true
         charge_record.save
         if @dancer.team_id != nil
-          @team = Team.find(params[@dancer.team_id])
+          @team = Team.find(@dancer.team_id)
           @team.amount_raised += @amount
           @team.save
         end
