@@ -24,12 +24,7 @@ class TeamsController < ApplicationController
     @charge = Charge.new
     @dancers = @team.dancers.order('last_name asc')
     @charge_record = Charge.new
-    @total = 0
-    @team.dancers.each do |dancer|
-      @total += dancer.charges.where(is_donation: true).sum(:amount)
-    end
-    @total += @team.charges.sum(:amount)
-    @amount_raised_goal = (@total/10000)*100
+    @amount_raised_goal = (@team.amount_raised/10000)*100
   end
 
   # GET /teams/new
