@@ -52,6 +52,11 @@ class ChargesController < ApplicationController
       if params[:is_donation].present?
         charge_record.is_donation = true
         charge_record.save
+        if @dancer.team_id != nil
+          @team = Team.find(params[@dancer.team_id])
+          @team.amount_raised += @amount
+          @team.save
+        end
       elsif params[:is_registration_fee].present?
         charge_record.is_registration_fee = true
         charge_record.save
