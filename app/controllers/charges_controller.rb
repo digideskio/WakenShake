@@ -60,6 +60,8 @@ class ChargesController < ApplicationController
       @team = Team.find(params[:team_id])
       charge_record = @team.charges.new(amount: @amount, email: params[:email], is_donation: true)
       charge_record.save
+      @team.amount_raised += @amount
+      @team.save
     elsif params[:charge_type] == "All"
       charge_record = Charge.new(amount: @amount, email: params[:email], is_donation: true)
       charge_record.save
@@ -73,7 +75,6 @@ class ChargesController < ApplicationController
         if params[:charge_type] == "Dancer"
           redirect_to dancer_path(@dancer), notice: "Your donation was processed successfully!"
         elsif params[:charge_type] == "Team"
-          @team.amount_raised += @amount
           redirect_to team_path(@team), notice: "Your donation was processed successfully!"
         else
           render :action => "show"
