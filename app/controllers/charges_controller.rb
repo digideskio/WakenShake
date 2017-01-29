@@ -31,6 +31,11 @@ class ChargesController < ApplicationController
   # POST /charges
   # POST /charges.json
   def create
+
+    if verify_request_authenticity == false
+      raise "You do not have permission to access this resource."
+    end
+
     # determine if the charge is a donation or registration fee
     @description = ""
     if params[:is_donation].present?
@@ -131,5 +136,9 @@ class ChargesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def charge_params
       params.require(:charge).permit(:amount, :charged_id, :charged_type, :is_registration_fee, :is_donation, :email)
+    end
+
+    def verify_request_authenticity
+      return false
     end
 end
