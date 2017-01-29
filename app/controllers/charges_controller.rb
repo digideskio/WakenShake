@@ -1,5 +1,7 @@
 class ChargesController < ApplicationController
 
+  protect_from_forgery :except => [:create]
+
   # GET /charges
   # GET /charges.json
   def index
