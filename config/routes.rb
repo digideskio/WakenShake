@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/charges/:id', to: 'charges#show'
   get '/charges/new', to: 'charges#new'
   get '/charges/registration_fee', to: 'charges#registration_fee'
-  post '/charges', to: 'charges#create'
+  post '/charges', to: 'charges#create', constraints: { protocol: 'https://', host: 'secure.dev.wfu.edu' }
   patch '/charges/:id', to: 'charges#update'
   put '/charges/:id', to: 'charges#update'
   delete '/charges/:id', to: 'charges#destroy'
