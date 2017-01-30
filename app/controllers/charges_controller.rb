@@ -138,7 +138,7 @@ class ChargesController < ApplicationController
       params.require(:charge).permit(:amount, :charged_id, :charged_type, :is_registration_fee, :is_donation, :email)
     end
 
-    def authorized_request
+    def authorized_request?
       return true
     end
 end
