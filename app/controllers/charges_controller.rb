@@ -32,7 +32,7 @@ class ChargesController < ApplicationController
   # POST /charges.json
   def create
 
-    if verify_request_authenticity == false
+    unless authorized_request?
       raise "You do not have permission to access this resource."
     end
 
@@ -138,7 +138,7 @@ class ChargesController < ApplicationController
       params.require(:charge).permit(:amount, :charged_id, :charged_type, :is_registration_fee, :is_donation, :email)
     end
 
-    def verify_request_authenticity
+    def authorized_request
       return true
     end
 end
