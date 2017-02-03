@@ -140,19 +140,30 @@ class ChargesController < ApplicationController
 
     def authorized_request?
 
-      private_key_txt = ENV['CHARGES_PRIVATE_KEY']
-      private_key_pwd = ENV['CHARGES_PRIVATE_KEY_PWD']
-
-      private_key = OpenSSL::PKey::RSA.new(private_key_txt, private_key_pwd)
-
-      if params[:authorization_token].present?
-        encrypted_token = params[:authorization_token]
-      else
+      unless params[:authorization_token].present?
         return false
       end
 
+      private_key_txt = ENV['CHARGES_PRIVATE_KEY']
+      private_key_pwd = ENV['CHARGES_PRIVATE_KEY_PWD']
+      private_key = OpenSSL::PKey::RSA.new(private_key_txt, private_key_pwd)
+      encrypted_token = params[:authorization_token]
       decrypted_token = private_key.private_decrypt(Base64.decode64(encrypted_token))
       token_params = decrypted_token.split(',')
+      user_email = token_params[0]
+      validation_key = token_params[1]
+      time_stamp = token_params[2]
+
+      unless validation_key == ENV['CHARGES_VALIDATION_KEY']
+        return false
+      end
+
+      if Chargetoken.exists?(email: user_email, time: time_stamp)
+        return false
+      else
+        chargetoken = Chargetoken.new(email: user_email, time: time_stamp)
+        chargetoken.save
+      end
 
       return true
 
