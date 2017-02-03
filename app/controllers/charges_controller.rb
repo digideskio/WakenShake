@@ -142,13 +142,18 @@ class ChargesController < ApplicationController
 
     def authorized_request?
 
+      private_key_txt = ENV['CHARGES_PRIVATE_KEY']
+      private_key_pwd = ENV['CHARGES_PRIVATE_KEY_PWD']
+
+      private_key = OpenSSL::PKey::RSA.new(private_key_txt, private_key_pwd)
+
       if params[:authorization_token].present?
         encrypted_token = params[:authorization_token]
       else
         return false
       end
 
-      decrypted_token = Rails.application.config.private_key.private_decrypt(Base64.decode64(encrypted_token))
+      decrypted_token = private_key.private_decrypt(Base64.decode64(encrypted_token))
       token_params = decrypted_token.split(',')
 
       return true
