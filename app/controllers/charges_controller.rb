@@ -33,7 +33,7 @@ class ChargesController < ApplicationController
   def create
 
     unless authorized_request?
-      redirect_to :action => "index"
+      render :action => "index"
     end
 
     # determine if the charge is a donation or registration fee
