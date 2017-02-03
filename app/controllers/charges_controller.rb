@@ -141,8 +141,10 @@ class ChargesController < ApplicationController
     def authorized_request?
 
       unless params[:authorization_token].present?
-        return false
+        return false # if authorization_token is not present, ignore the request
       end
+
+      # decrypt the authorization_token:
 
       private_key_txt = ENV['CHARGES_PRIVATE_KEY']
       private_key_pwd = ENV['CHARGES_PRIVATE_KEY_PWD']
@@ -155,17 +157,17 @@ class ChargesController < ApplicationController
       time_stamp = token_params[2]
 
       unless validation_key == ENV['CHARGES_VALIDATION_KEY']
-        return false
+        return false # if validation key is incorrect, ignore the request
       end
 
       if Chargetoken.exists?(email: user_email, time: time_stamp)
-        return false
+        return false # if token already exists in the database, ignore the request
       else
         chargetoken = Chargetoken.new(email: user_email, time: time_stamp)
-        chargetoken.save
+        chargetoken.save # if token is original and valid, push to the database
       end
 
-      return true
+      return true # continue processing the payment
 
     end
 end
