@@ -34,6 +34,7 @@ class ChargesController < ApplicationController
 
     unless authorized_request?
       render :action => "index"
+      return
     end
 
     # determine if the charge is a donation or registration fee
