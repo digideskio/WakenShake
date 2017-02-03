@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   require 'csv'
+  require 'openssl'
 
   @dancer_goal = 2000
   @team_goal = 10000

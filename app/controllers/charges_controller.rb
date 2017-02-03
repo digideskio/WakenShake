@@ -1,8 +1,6 @@
 class ChargesController < ApplicationController
 
   protect_from_forgery :except => [:create]
-  require 'openssl'
-  require 'Base64'
 
   # GET /charges
   # GET /charges.json
@@ -153,7 +151,7 @@ class ChargesController < ApplicationController
         return false
       end
 
-      decrypted_token = private_key.private_decrypt(Base64.decode64(encrypted_token))
+      decrypted_token = private_key.private_decrypt(encrypted_token)
       token_params = decrypted_token.split(',')
 
       return true
