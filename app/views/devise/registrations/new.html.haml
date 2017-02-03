@@ -18,28 +18,28 @@
           - devise_error_messages!
           .row
             .form-group
-              =f.label :first_name, class: "label"
+              =f.label :first_name, class: "label label-required"
               = f.text_field(:first_name, autofocus: true, id: "first_name", class: "form-control", placeholder: "Enter your first name")
             .form-group
-              =f.label :last_name, class: "label"
+              =f.label :last_name, class: "label label-required"
               = f.text_field(:last_name, id: "last_name", class: "form-control", placeholder: "Enter your last name")
             .form-group
-              =f.label :email, class: "label"
+              =f.label :email, class: "label label-required"
               = f.email_field(:email, id: "email", class: "form-control", autocomplete: "off", placeholder: "Enter your email")
             .form-group
-              =f.label :password, class: "label"
+              =f.label :password, class: "label label-required"
               %be
-              %small.text-muted Passwords must contain an uppercase letter, lowercase letter, digit, and a special character
+              %small.text-muted must contain an uppercase letter, lowercase letter, digit, and a special character
               = f.password_field(:password, id: "password", class: "form-control", autocomplete: "off", placeholder: "Enter a new password")
             %hr
             %h4.text-center
               .fa.fa-user.text-primary
               General Information
             .form-group
-              =f.label :dancing_for, "Who are you dancing for?", class: "label"
+              =f.label :dancing_for, "Who are you dancing for?", class: "label label-required"
               =f.text_field :dancing_for, class: "form-control", placeholder: "Enter the name of someone you are dancing for"
             .form-group
-              .label Sex
+              .label Sex*
               %br
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-sm
@@ -51,7 +51,7 @@
                   Female
                   = f.radio_button :gender, "Female"
             .form-group
-              .label Have you participated in WNS before?
+              .label Have you participated in WNS before?*
               %br
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-sm
@@ -61,7 +61,7 @@
                   No
                   = f.radio_button :first_time, false
             .form-group
-              .label Year
+              .label Year*
               %br
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-xs{data:{toggle:"button"}}
@@ -86,7 +86,7 @@
                   Faculty/Staff
                   = f.radio_button :year, "Faculty/Staff"
             .form-group
-              .label Residence
+              .label Residence*
               %br
               =f.collection_select :dorm_id, @dorms, :id, :name, {prompt: "Select your residence"}, {class: "form-control"}
             .form-group
@@ -102,7 +102,7 @@
                   = t.hidden_field :category, value: "Open"
                   = t.hidden_field :amount_raised, value: 0
             .form-group
-              .label T-Shirt Size
+              .label T-Shirt Size*
               %br
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-sm
@@ -118,7 +118,7 @@
                   X-Large
                   = f.radio_button :tshirt, "X-Large"
             .form-group
-              .label Shift
+              .label Shift*
               %br
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-sm
@@ -137,7 +137,7 @@
                   No Preference
                   = f.radio_button :shift, "No Preference"
             .form-group
-              .label What is your goal to raise?
+              .label What is your goal to raise?*
               %br
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-sm
@@ -158,10 +158,10 @@
               .fa.fa-heartbeat.text-danger
               Safety & Medical Information
             .form-group
-              =f.label :contact_name, class: "label"
+              =f.label :contact_name, class: "label label-required"
               =f.text_field :contact_name, class: "form-control", placeholder: "Enter an emergency contact name"
             .form-group
-              =f.label :contact_number, class: "label"
+              =f.label :contact_number, class: "label label-required"
               =f.text_field :contact_number, class: "form-control", placeholder: "Enter an emergency contact number"
             / .form-group
             /   =f.label :conditional_details, class: "label"
@@ -172,7 +172,7 @@
               =f.label :food_allergies, class: "label"
               =f.text_area :food_allergies, class: "form-control", placeholder: "Enter any food allergies here"
             .form-group
-              .label Vegetarian
+              .label Vegetarian*
               %br
               .btn-group{data:{toggle: "buttons"}}
                 .btn.btn-primary.btn-sm
@@ -182,7 +182,7 @@
                   No
                   = f.radio_button :vegetarian, false
             .form-group
-              %p I understand that I will be dancing for 12 hours.
+              %p I understand that I will be dancing for 12 hours: *
               = f.check_box :disclaimer
               = f.label :disclaimer, "I agree"
           %hr
