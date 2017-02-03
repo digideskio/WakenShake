@@ -148,7 +148,7 @@ class ChargesController < ApplicationController
         return false
       end
 
-      decrypted_token = Rails.application.config.charges_rsa.private_key.private_decrypt(Base64.decode64(encrypted_token))
+      decrypted_token = Rails.application.config.private_key.private_decrypt(Base64.decode64(encrypted_token))
       token_params = decrypted_token.split(',')
 
       return true
