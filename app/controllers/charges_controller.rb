@@ -1,6 +1,8 @@
 class ChargesController < ApplicationController
 
   protect_from_forgery :except => [:create]
+  require 'openssl'
+  require 'Base64'
 
   # GET /charges
   # GET /charges.json
@@ -139,6 +141,17 @@ class ChargesController < ApplicationController
     end
 
     def authorized_request?
+
+      if params[:authorization_token].present?
+        encrypted_token = params[:authorization_token]
+      else
+        return false
+      end
+
+      decrypted_token = Rails.application.config.charges_rsa.private_key.private_decrypt(Base64.decode64(encrypted_token))
+      token_params = decrypted_token.split(',')
+
       return true
+
     end
 end
