@@ -33,7 +33,7 @@ class ChargesController < ApplicationController
   def create
 
     unless authorized_request?
-      raise "You do not have permission to access this resource."
+      redirect_to :action => "index"
     end
 
     # determine if the charge is a donation or registration fee
