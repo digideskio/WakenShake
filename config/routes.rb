@@ -18,14 +18,7 @@ Rails.application.routes.draw do
 
   devise_for :dancers, controllers: { registrations: 'registrations' }
   
-  get '/charges', to: 'charges#index'
-  get '/charges/:id', to: 'charges#show'
-  get '/charges/new', to: 'charges#new'
-  post '/charges', to: 'charges#create'
-  patch '/charges/:id', to: 'charges#update'
-  put '/charges/:id', to: 'charges#update'
-  delete '/charges/:id', to: 'charges#destroy'
-
+  resources :charges
   resources :dancers
   resources :teams
   resources :histories
