@@ -92,6 +92,9 @@
               %span.text-muted.small.pull-right
                 = time_ago_in_words(donation.created_at)
                 ago
+                - if can? :manage, Charge
+                  %br
+                  = link_to('Delete this charge', donation, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
     .col-md-3
       - if can? :manage, Charge
         %h4.page-header Donations
