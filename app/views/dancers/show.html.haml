@@ -149,7 +149,7 @@
               = @dancer.first_name
               received a
               %span.text-success
-                =number_to_currency(donation.amount)
+                =number_to_currency(donation.amount)b
               donation
             - if current_dancer.present?
               - if @dancer.id == current_dancer.id
@@ -161,7 +161,7 @@
             %span.text-muted.small.pull-right.text-right
               = time_ago_in_words(donation.created_at)
               ago
-              - if can? :manage, Charge
+              - if can? :manage90, Charge
                 %br
-                = link_to('Delete this charge', donation, method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
+                = link_to('Delete this charge', donation, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
   .col-md-1
