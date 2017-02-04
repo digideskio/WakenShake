@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   get '/charges', to: 'charges#index'
   get '/charges/:id', to: 'charges#show'
   get '/charges/new', to: 'charges#new'
-  get '/charges/registration_fee', to: 'charges#registration_fee'
   post '/charges', to: 'charges#create'
   patch '/charges/:id', to: 'charges#update'
   put '/charges/:id', to: 'charges#update'
