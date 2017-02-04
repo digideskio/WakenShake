@@ -161,5 +161,7 @@
             %span.text-muted.small.pull-right.text-right
               = time_ago_in_words(donation.created_at)
               ago
-              = link_to('Delete this charge', @charge, method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
+              - if can? :manage, Charge
+                %br
+                = link_to('Delete this charge', @charge, method: :destroy, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
   .col-md-1
