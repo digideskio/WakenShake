@@ -121,11 +121,20 @@ class ChargesController < ApplicationController
   def destroy
     @charge = Charge.find(params[:id])
     if @charge.charged_type == "Dancer"
-      @redirect = Dancer.find(@charge.charged_id)
+      @dancer = Dancer.find(@charge.charged_id)
+      if @dancer.team_id != nil
+        @team = Team.find(@dancer.team_id)
+      end
+      @redirect = @dancer
     elsif @charge.charged_type = "Team"
-      @redirect = Team.find(@charge.charged_id)
+      @team = Team.find(@charge.charged_id)
+      @redirect = @team
     end
     @charge.destroy
+    if @team != nil
+      @team.amount_raised -= @charge.amount
+      @team.save
+    end
     respond_to do |format|
       format.html { redirect_to @redirect, notice: 'Charge was successfully destroyed.' }
       format.json { head :no_content }
