@@ -48,6 +48,7 @@
         = hidden_field_tag :dancer_id, @dancer.id
         %br
         = submit_tag "Send", class: "btn btn-success btn-md"
+      %br
       %p A message will be sent to this email from our team. 
     - if can? :manage, Charge
       %br
@@ -58,12 +59,10 @@
         = f.text_field :amount, placeholder: "Enter amount", class: "form-control"
         = f.label :email, class: "label"
         = f.text_field :email, placeholder: "Email of donor", class: "form-control"
-        = f.label "Registration Fee", class: "label"
-        = f.check_box :is_registration_fee, checked_value: true
-        = f.label "Donation", class: "label"
-        = f.check_box :is_donation, checked_value: true
+        = f.hidden_field :is_donation, value: true
         = f.hidden_field :charged_type, value: "Dancer"
         = f.hidden_field :charged_id, value: @dancer.id
+        %br
         = f.submit "Save", class: "btn btn-success btn-block btn-md"
     - if can? :manage, :all
       %br
