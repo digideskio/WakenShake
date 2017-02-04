@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'accountant/index'
   get 'admin/index'
   get 'about/index'
+  get 'charges/registration_fee'
   get 'about/committee'
   get 'home_page/index'
   get 'dancers/login'
