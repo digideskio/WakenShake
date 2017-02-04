@@ -32,7 +32,7 @@ class ChargesController < ApplicationController
   # POST /charges.json
   def create
 
-    unless authorized_request?
+    unless authorized_request? or can? :manage, Charge
       render :action => "index"
       return # stop processing the payment
     end
