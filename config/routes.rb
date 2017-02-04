@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get 'committee/index'
   get 'accountant/index'
   get 'admin/index'
-  get 'charges/registration_fee'
   get 'about/index'
   get 'about/committee'
   get 'home_page/index'
@@ -31,6 +30,5 @@ Rails.application.routes.draw do
   resources :teams
   resources :histories
   root 'home_page#index'
-
-
+  
 end

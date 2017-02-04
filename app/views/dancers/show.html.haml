@@ -164,7 +164,6 @@
         - if can? :manage, donation
           .row
             .col-md-12
-              = link_to "Edit", edit_charge_path(donation), class: "btn btn-xs btn-default"
               = link_to "Delete", donation, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs"
   .col-md-1
 
