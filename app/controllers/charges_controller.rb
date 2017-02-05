@@ -32,7 +32,7 @@ class ChargesController < ApplicationController
   # POST /charges.json
   def create
 
-    unless authorized_request? or (can? :manage, Charge and verify_app_token?)
+    unless authorized_request? or (can? :manage, Charge and verified_request?)
       render :action => "index"
       return # stop processing the payment
     end
@@ -179,9 +179,5 @@ class ChargesController < ApplicationController
 
       return true # continue processing the payment
 
-    end
-
-    def verify_app_token?
-      return params[:authorization_token] == form_authenticity_token
     end
 end
