@@ -72,8 +72,6 @@
         =hidden_field_tag "dancer_id", current_dancer.id
         %br
         = submit_tag "Mark as payed", class: "btn btn-md btn-success"
-      %hr
-      %h4 Registration has not been payed
     - if can? :manage, :all
       %br
       %hr
