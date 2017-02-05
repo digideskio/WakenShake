@@ -53,16 +53,13 @@
     - if can? :manage, Charge
       %hr
       %h4 Donations
-      = form_for @charge_record do |f|
-        = f.label :amount, class: "label"
-        = f.text_field :amount, placeholder: "Enter amount", class: "form-control"
-        = f.label :email, class: "label"
-        = f.text_field :email, placeholder: "Email of donor", class: "form-control"
-        = f.hidden_field :is_donation, value: true
-        = f.hidden_field :charged_type, value: "Dancer"
-        = f.hidden_field :charged_id, value: @dancer.id
+      = form_tag '/charges', :method => 'post', :authenticity_token => 'true' do
+        = text_field_tag "donation_amount"
+        = hidden_field_tag "is_donation", "true"
+        = hidden_field_tag "charge_type", "Dancer"
+        = hidden_field_tag "dancer_id", @dancer.id
         %br
-        = f.submit "Save", class: "btn btn-success btn-block btn-md"
+        %button{class: "btn btn-success btn-block btn-md"}
     - if can? :manage, :all
       %br
       %hr
