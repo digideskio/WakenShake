@@ -54,7 +54,7 @@
       %hr
       %h4 Donations
       = form_tag '/charges', :method => 'post', :authenticity_token => 'true' do
-        = label_tag :amount, class: "label"
+        = label_tag :amount, "Amount", class: "label"
         = text_field_tag :amount, placeholder: "Enter amount", class: "form-control"
         = label_tag :email, class: "label"
         = text_field_tag :email, placeholder: "Email of donor", class: "form-control"
