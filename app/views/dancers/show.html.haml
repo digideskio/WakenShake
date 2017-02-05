@@ -53,7 +53,7 @@
     - if can? :manage, Charge
       %hr
       %h4 Donations
-      = form_tag '/charges', :method => 'post', :authenticity_token => 'true' do
+      = form_tag '/charges', :method => 'post', :authenticity_token => 'false' do
         = label_tag :amount, "Amount", class: "label"
         = text_field_tag :amount, nil, placeholder: "Enter amount", class: "form-control"
         = label_tag :email, "Email", class: "label"
