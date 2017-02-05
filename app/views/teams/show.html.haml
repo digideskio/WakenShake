@@ -97,15 +97,14 @@
                   = link_to('Delete this charge', donation, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm")
     .col-md-3
       - if can? :manage, Charge
-        %h4.page-header Donations
-        = form_for @charge_record do |f|
-          = f.label :amount, class: "label"
-          = f.text_field :amount, placeholder: "Enter amount", class: "form-control"
-          = f.label :email, class: "label"
-          = f.text_field :email, placeholder: "Email of donor", class: "form-control"
-          = f.hidden_field :is_donation, value: true
-          = f.hidden_field :charged_type, value: "Team"
-          = f.hidden_field :charged_id, value: @team.id
+        = form_tag '/charges', :method => 'post' do
+          = label_tag :amount, "Amount", class: "label"
+          = text_field_tag :amount, nil, placeholder: "Enter amount", class: "form-control"
+          = label_tag :email, "Email", class: "label"
+          = text_field_tag :email, nil, placeholder: "Email of donor", class: "form-control"
+          = hidden_field_tag "is_donation", "true"
+          = hidden_field_tag "charge_type", "Team"
+          = hidden_field_tag "team_id", @team.id
           %br
-          = f.submit "Save", class: "btn btn-success btn-block btn-md"
+          = submit_tag "Save", class: "btn btn-md btn-success"
 

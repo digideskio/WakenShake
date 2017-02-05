@@ -67,13 +67,13 @@
       .col-md-6
         .well
           %h3 Record a donation
-          = form_tag '/charges', :method => 'post', :authenticity_token => 'false' do
+          = form_tag '/charges', :method => 'post' do
             = label_tag :amount, "Amount", class: "label"
             = text_field_tag :amount, nil, placeholder: "Enter amount", class: "form-control"
             = label_tag :email, "Email", class: "label"
             = text_field_tag :email, nil, placeholder: "Email of donor", class: "form-control"
-            = hidden_field_tag :is_donation, value: true
-            = hidden_field_tag :charge_type, value: "All"
+            = hidden_field_tag "is_donation", "true"
+            = hidden_field_tag "charge_type", "All"
             %br
             = submit_tag "Save", class: "btn btn-md btn-success"
 
