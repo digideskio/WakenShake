@@ -69,7 +69,7 @@
       = form_tag '/charges', :method => 'post' do
         =hidden_field_tag "is_registration_fee", "true"
         =hidden_field_tag "charge_type", "Dancer"
-        =hidden_field_tag "dancer_id", current_dancer.id
+        =hidden_field_tag "dancer_id", @dancer.id
         %br
         = submit_tag "Mark as payed", class: "btn btn-md btn-success"
     - if can? :manage, :all
