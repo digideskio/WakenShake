@@ -17,5 +17,6 @@ Dorm.where(name: "Poteat Hall").first_or_create!;
 Dorm.where(name: "South Hall Hall").first_or_create!;
 Dorm.where(name: "Taylor Hall").first_or_create!;
 Dorm.where(name: "Student Apts").first_or_create!;
+Dorm.where(name: "North Campus Apts").first_or_create!;
 Dorm.where(name: "Off Campus").first_or_create!;
 Dorm.where(name: "Other").first_or_create!;
