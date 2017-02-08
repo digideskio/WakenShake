@@ -75,8 +75,10 @@ class ChargesController < ApplicationController
       @team = Team.find(params[:team_id])
       charge_record = @team.charges.new(amount: @amount, email: params[:email], is_donation: true)
       charge_record.save
-      @team.amount_raised += @amount
-      @team.save
+      @team.with_lock do
+        @team.amount_raised += @amount
+        @team.save
+      end
     elsif params[:charge_type] == "All"
       charge_record = Charge.new(amount: @amount, email: params[:email], is_donation: true)
       charge_record.save
@@ -134,8 +136,10 @@ class ChargesController < ApplicationController
     end
     @charge.destroy
     if @team != nil
-      @team.amount_raised -= @charge.amount
-      @team.save
+      @team.with_lock do
+        @team.amount_raised -= @charge.amount
+        @team.save
+      end
     end
     respond_to do |format|
       format.html { redirect_to @redirect, notice: 'Charge was successfully destroyed.' }
