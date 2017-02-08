@@ -62,8 +62,10 @@ class ChargesController < ApplicationController
         charge_record.save
         if @dancer.team_id != nil
           @team = Team.find(@dancer.team_id)
-          @team.amount_raised += @amount
-          @team.save
+          @team.with_lock do
+            @team.amount_raised += @amount
+            @team.save
+          end
         end
       elsif params[:is_registration_fee].present?
         charge_record.is_registration_fee = true
