@@ -16,5 +16,4 @@ namespace :send_emails do
       end
     end
   end
-
 end
