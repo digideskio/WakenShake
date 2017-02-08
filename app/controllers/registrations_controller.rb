@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
       logger.info "User - #{resource.email} has been created. Queueing up donation emails now..."
       resource.referrals.each_with_index do |referral, index|
         if referral.present?
-          #DonationMailer.request_a_donation(referral, resource).deliver_later
+          DonationMailer.request_a_donation(referral, resource).deliver_later
         end
       end
     end
