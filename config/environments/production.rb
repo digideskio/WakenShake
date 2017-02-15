@@ -89,6 +89,7 @@ Rails.application.configure do
   # configuration for paperclip + AWS connection
   config.paperclip_defaults = {
     :storage => :s3,
+    :s3_region => ENV['AWS_REGION'],
     :s3_protocol => :https,
     :s3_credentials => {
       :bucket => ENV['S3_BUCKET_NAME'],
