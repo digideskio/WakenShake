@@ -83,5 +83,5 @@
     %h2.text-center We Thank Our Sponsors
     %br
     - @sponsors.each do |sponsor|
-      .col-md-3{style: ""}
-        = link_to image_tag(sponsor.logo.url(:medium))
+      .col-md-3
+        = link_to image_tag(sponsor.logo.url(:medium)) :style => ""
