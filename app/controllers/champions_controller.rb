@@ -75,6 +75,6 @@ class ChampionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def champion_params
-      params.require(:champion).permit(:name, :photo, :bio, :team)
+      params.require(:champion).permit(:name, :current, :photo, :bio, :team)
     end
 end
