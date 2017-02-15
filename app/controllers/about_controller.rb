@@ -3,7 +3,7 @@ class AboutController < ApplicationController
   end
 
   def committee
-    @chairs = Dancer.where('stafftitle LIKE ?', '%CoChair%').all
-    @staff = Dancer.where.not('stafftitle LIKE ?', '%CoChair%').all
+    @chairs = Dancer.where('stafftitle LIKE ?', '%Cochair%').all
+    @staff = Dancer.where.not('stafftitle LIKE ?', '%Cochair%').all
   end
 end
