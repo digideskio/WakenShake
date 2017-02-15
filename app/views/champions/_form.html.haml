@@ -11,12 +11,15 @@
     = f.text_field :name, class: "form-control", placeholder: "Enter the name of the champion"
     Current champion:  
     = f.check_box :current
+  %br
   .field
     = f.label :bio, class: "label"
     = f.text_area :bio, class: "form-control", rows: 10, placeholder: "Enter the description of the champion"
+  %br
   .field
     = f.label :team, class: "label"
     = f.text_field :team, class: "form-control", placeholder: "Enter the team name of the champion"
+  %br
   .field
     = f.label :photo, class: "label"
     = f.file_field :photo, class: "form-control"
