@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-xs-12
+      .text-center.page-header
+        %h1 Our Champions
+        %p In 2011, for the first time in Wake ‘N Shake history, we added a “Team Champion” to each team. The Team Champion is an individual who has fought or is currently fighting cancer. At the event, they inspire dancers with their courage and strength as they speak about their battles with cancer.
+  .row
+    - if can? :manage, :all
+      = link_to 'New Champion', new_champion_path, class: "btn btn-md btn-primary"
+    - @champions.each do |champion|
+      .row
+        .col-md-4.col-xs-3
+          %br
+          = image_tag champion.photo.url(:medium), class: "img-responsive img-square"
+        .col-md-8
+          %h3= champion.name
+          %h5= champion.team
+          %p= champion.bio
+          - if can? :manage, :all
+            = link_to 'Edit', edit_champion_path(champion), class: "btn btn-sm btn-default"
+            = link_to 'Destroy', champion, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-danger"
+      %hr
