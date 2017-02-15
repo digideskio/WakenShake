@@ -10,7 +10,7 @@ class ChampionsController < ApplicationController
   #GET /past_champions
   #get /past_champions.json
   def past
-    @champions = Champion.all;
+    @champions = Champion.where('current != ?', 'true');
   end
 
   # GET /champions/1
