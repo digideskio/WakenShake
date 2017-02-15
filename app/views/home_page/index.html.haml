@@ -56,7 +56,6 @@
     .col-md-10.col-md-offset-1.text-center
       %br
       %p.lead Wake ‘N Shake is a 12-hour dance marathon held every spring at Wake Forest University, benefiting the Brian Piccolo Cancer Research Fund. For 12-hours, students, alumni, and faculty members come together to stay standing in support of all those affected by cancer, asking for donations in support of their participation.
-      %br
       %hr
   .row
     .col-md-6
@@ -78,9 +77,9 @@
               %strong= "#{index+1}"
             %td= link_to("#{dancer.first_name} #{dancer.last_name}", dancer)
             %td.text-success.text-center=number_to_currency(dancer_amount_raised(dancer))
-      %hr
   .row
     %br
+    %hr
     %h2.text-center We Thank Our Sponsors
     %hr
     %br
