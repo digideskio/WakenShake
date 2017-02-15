@@ -4,7 +4,7 @@ class ChampionsController < ApplicationController
   # GET /champions
   # GET /champions.json
   def index
-    @champions = Champion.where(current: 'true');
+    @champions = Champion.where(current: true);
   end
 
   # GET /champions/1
