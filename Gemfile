@@ -24,10 +24,10 @@ gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'annotate', '~> 2.6.6'
 
 # Paperclip is for handling photos
-gem "paperclip"
+gem "paperclip", "~> 4.2"
 
 # AWS sdk gem for photo uploads/storage
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk', "~> 2.3"
 
 # Devise is for login help
 gem 'devise'
