@@ -84,5 +84,5 @@
     %br
     - @sponsors.each do |sponsor|
       .col-md-4
-        .thumbnail
+        .thumbnail.clearfix
           = link_to image_tag(sponsor.logo.url(:medium))
