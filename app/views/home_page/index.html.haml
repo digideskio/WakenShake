@@ -19,6 +19,7 @@
                 .input-group
                   %span.pre-input $
                   = text_field_tag "donation_amount", 10, class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
+                  %br
                   %span.input-group-addon{style: "width: 100%;"}
                   = hidden_field_tag "is_donation", "true"
                   = hidden_field_tag "charge_type", "All"
