@@ -4,7 +4,6 @@
       .text-center.page-header
         %h1 Past Champions
         %p In 2011, for the first time in Wake ‘N Shake history, we added a “Team Champion” to each team. The Team Champion is an individual who has fought or is currently fighting cancer. At the event, they inspire dancers with their courage and strength as they speak about their battles with cancer.
-        =link_to('See our Current Champions', '/champions')
   .row
     - if can? :manage, :all
       = link_to 'New Champion', new_champion_path, class: "btn btn-md btn-primary"
@@ -21,3 +20,4 @@
             = link_to 'Edit', edit_champion_path(champion), class: "btn btn-sm btn-default"
             = link_to 'Destroy', champion, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-sm btn-danger"
       %hr
+      =link_to('See our Current Champions', '/champions')
