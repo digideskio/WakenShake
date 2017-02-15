@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :sponsors
   resources :champions
-  match '/past_champions', to: 'champions#past'
+  get '/past_champions', to: 'champions#past'
   resources :events
   get 'committee/index'
   get 'accountant/index'
