@@ -5,7 +5,7 @@
   %br
   %br
   - @sponsors.each do |sponsor|
-    .col-md-4
+    .col-md-3
       .thumbnail
         = link_to image_tag(sponsor.logo.url(:medium), style: "min-height: 130px;")
         - if can? :manage, :all
