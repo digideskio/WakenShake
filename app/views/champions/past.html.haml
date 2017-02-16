@@ -5,6 +5,7 @@
         %h1 Past Champions
         %p In 2011, for the first time in Wake ‘N Shake history, we added a “Team Champion” to each team. The Team Champion is an individual who has fought or is currently fighting cancer. At the event, they inspire dancers with their courage and strength as they speak about their battles with cancer. This page contains the list of Wake 'N Shake champions from years past.
         =link_to("Click here to see this year's champions!", '/champions')
+        %br
   .row
     - if can? :manage, :all
       = link_to 'New Champion', new_champion_path, class: "btn btn-md btn-primary"
