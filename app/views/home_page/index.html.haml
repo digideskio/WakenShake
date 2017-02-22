@@ -62,7 +62,7 @@
   .row
     .col-md-6
       %h3 Top 10 Teams
-      /
+
       %table.table.table-bordered
         - @top_10_teams.each_with_index do |team, index|
           %tr
@@ -70,7 +70,7 @@
               %strong= "#{index+1}"
             %td= link_to(team.name, team)
             %td.text-success.text-center= number_to_currency(team.amount_raised)
-      .col-md-6
+    .col-md-6
       %h3 Top 10 Dancers
       %table.table.table-bordered
         - @top_10_dancers.each_with_index do |dancer, index|
