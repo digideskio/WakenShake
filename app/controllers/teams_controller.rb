@@ -40,6 +40,8 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = Team.new(team_params)
+    @team.amount_raised = 0.00 if @team.amount_raised.nil?
+    @team.category = "Open" if @team.category.nil?
 
     respond_to do |format|
       if @team.save
