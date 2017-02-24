@@ -22,5 +22,6 @@ class DonationMailer < ApplicationMailer
   def thank_donor(email)
     @email = email
     mail(to: @email, subject: "Thank You for Donating to Wake 'N Shake!", body: @body)
+  end
 
 end
