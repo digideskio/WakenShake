@@ -12,7 +12,7 @@
           .text-center
             = link_to "Edit", edit_sponsor_path(sponsor), class: "btn btn-xs btn-default"
             = link_to "Delete", sponsor, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger"
-  %h3 Food Sponsors
+  %h3{style: "clear: both;"} Food Sponsors
   %br
   - @sponsors.where(food: true).each do |sponsor|
     .col-md-3
