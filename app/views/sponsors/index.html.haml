@@ -3,7 +3,6 @@
   - if can? :manage, :all
     = link_to 'New Sponsor', new_sponsor_path, class: "btn btn-md btn-primary"
   %br
-  %br
   %h3 Corporate Sponsors
   %br
   - @sponsors.where(food: false).each do |sponsor|
@@ -14,6 +13,7 @@
           .text-center
             = link_to "Edit", edit_sponsor_path(sponsor), class: "btn btn-xs btn-default"
             = link_to "Delete", sponsor, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger"
+  %br
   %br
   %h3 Food Sponsors
   %br
