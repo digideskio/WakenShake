@@ -14,7 +14,7 @@
             = link_to "Delete", sponsor, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger"
   %br
   %br
-%h3 Food Sponsors
+  %h3 Food Sponsors
   %br
   - @sponsors.where(food: true).each do |sponsor|
     .col-md-3
