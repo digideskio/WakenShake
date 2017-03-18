@@ -1,7 +1,12 @@
 .jumbotron
-  <iframe frameborder="0" height="100%" width="100%" 
-    src="https://www.youtube.com/embed/W1HviOAn1ks?autoplay=1&controls=0&showinfo=0&autohide=1">
-  </iframe>
+  %video#bgvid{:autoplay => true, :loop => true, :poster => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.jpg"}
+    %source{:src => "https://www.youtube.com/embed/W1HviOAn1ks?autoplay=1&controls=0&showinfo=0&autohide=1"}
+    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.mp4", :type => "video/mp4"}
+    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.webm", :type => "video/webm; codecs=vp8),vorbis"}
+    %img{src: "https://s3.amazonaws.com/wns-dancer-photos/photo_grid.jpg"}
+  /[if lt IE 9]
+    :javascript
+      document.createElement('video');
   .container.text-center
     %br
     %h2 Support Our Dancers
