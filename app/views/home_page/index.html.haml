@@ -1,4 +1,34 @@
-<div class="flex-video widescreen"><iframe width="100%" src="https://www.youtube.com/embed/W1HviOAn1ks?autoplay=1&controls=0&showinfo=0&autohide=1 frameborder="0" allowfullscreen></iframe></div>
+.jumbotron
+  %video#bgvid{:autoplay => true, :loop => true, :poster => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.jpg"}
+    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.mp4", :type => "video/mp4"}
+    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.webm", :type => "video/webm; codecs=vp8),vorbis"}
+    %img{src: "https://s3.amazonaws.com/wns-dancer-photos/photo_grid.jpg"}
+  /[if lt IE 9]
+    :javascript
+      document.createElement('video');
+  .container.text-center
+    %br
+    %h2 Support Our Dancers
+    %p 100% of your donation goes to cancer research
+    .row
+      .col-md-4.col-md-offset-4
+        .well.well-clear
+          = form_tag ENV['PAYMENTURL'], :method => 'post', :authenticity_token => 'false' do
+            .form-inline
+              .form-group
+                .input-group
+                  %span.pre-input $
+                  = text_field_tag "donation_amount", 10, class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
+                  = hidden_field_tag "is_donation", "true"
+                  = hidden_field_tag "charge_type", "All"
+                  = hidden_field_tag "redirect_url", ENV['REDIRECTURL']
+                  %span.post-input USD
+                %br
+                %br
+                %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn"}
+                  %b Give by&nbsp;
+                  %i.fa.fa-1x.fa-credit-card
+        = link_to "or become a dancer", new_dancer_registration_path, class: "btn btn-md btn-default btn-sign-up"
 - unless @events.empty?
   .events-ticker
     .container
@@ -20,29 +50,8 @@
 .container
   .row.text-center
     %br
-    .container.text-center
-      %br
-      %h2 Support Our Dancers
-      %p 100% of your donation goes to cancer research
-      .row
-        .col-md-4.col-md-offset-4
-          .well.well-clear
-            = form_tag ENV['PAYMENTURL'], :method => 'post', :authenticity_token => 'false' do
-              .form-inline
-                .form-group
-                  .input-group
-                    %span.pre-input $
-                    = text_field_tag "donation_amount", 10, class: "form-control input-lg donation-amount", id: "total-amount-val", autofocus: true, autocomplete: "off", value: 10
-                    = hidden_field_tag "is_donation", "true"
-                    = hidden_field_tag "charge_type", "All"
-                    = hidden_field_tag "redirect_url", ENV['REDIRECTURL']
-                    %span.post-input USD
-                  %br
-                  %br
-                  %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn"}
-                    %b Give by&nbsp;
-                    %i.fa.fa-1x.fa-credit-card
-          = link_to "or become a dancer", new_dancer_registration_path, class: "btn btn-md btn-default btn-sign-up"
+    %h3 Wake 'N Shake is today! Watch the live stream!
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/W1HviOAn1ks" frameborder="0" allowfullscreen></iframe>
     %br
     %hr
   .row
