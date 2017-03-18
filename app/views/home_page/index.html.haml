@@ -1,5 +1,5 @@
 .container
-  %h2 Watch the live stream here!
+  %h2 Wake 'N Shake is now! Watch the live stream here:
   .row.text-center
     %br
     <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;">
@@ -12,7 +12,7 @@
     %p 100% of your donation goes to cancer research
     .row
       .col-md-4.col-md-offset-4
-        .well.well-clear
+        .well
           = form_tag ENV['PAYMENTURL'], :method => 'post', :authenticity_token => 'false' do
             .form-inline
               .form-group
@@ -33,7 +33,7 @@
       %br
       %p.lead Wake ‘N Shake is a 12-hour dance marathon held every spring at Wake Forest University, benefiting the Brian Piccolo Cancer Research Fund. For 12-hours, students, alumni, and faculty members come together to stay standing in support of all those affected by cancer, asking for donations in support of their participation.
       %br
-  %br
+  %hr
   .row
     .col-md-6
       %h3 Top 10 Teams
