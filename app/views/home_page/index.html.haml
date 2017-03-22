@@ -1,19 +1,18 @@
-.container
-  .row.text-center
-    %h2 Wake 'N Shake is now! Watch the live stream here:
-  .row.text-center
-    %br
-    <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0;">
-    <iframe width="560" height="349" src="https://www.youtube.com/embed/W1HviOAn1ks?autoplay=1" frameborder="0" allowfullscreen style=" position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
-    %br
-    %hr
+.jumbotron
+  %video#bgvid{:autoplay => true, :loop => true, :poster => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.jpg"}
+    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.mp4", :type => "video/mp4"}
+    %source{:src => "https://s3.amazonaws.com/wns-dancer-photos/wns-video.webm", :type => "video/webm; codecs=vp8),vorbis"}
+    %img{src: "https://s3.amazonaws.com/wns-dancer-photos/photo_grid.jpg"}
+  /[if lt IE 9]
+    :javascript
+      document.createElement('video');
   .container.text-center
+    %br
     %h2 Support Our Dancers
     %p 100% of your donation goes to cancer research
     .row
       .col-md-4.col-md-offset-4
-        .well
+        .well.well-clear
           = form_tag ENV['PAYMENTURL'], :method => 'post', :authenticity_token => 'false' do
             .form-inline
               .form-group
@@ -29,19 +28,40 @@
                 %button{class: "btn btn-block btn-lg btn-primary donation-amount-btn"}
                   %b Give by&nbsp;
                   %i.fa.fa-1x.fa-credit-card
+        = link_to "or become a dancer", new_dancer_registration_path, class: "btn btn-md btn-default btn-sign-up"
+- unless @events.empty?
+  .events-ticker
+    .container
+      .row
+        .col-md-2
+          %h4.text-muted Upcoming Events
+        .col-md-10
+          %ul.list-unstyled.NewsTicker
+            - @events.each do |event|
+              %li
+                %b= event.title
+                \-
+                = event.text
+                %br
+                %i.text-muted Time: 
+                = event.date_time.strftime("%b %d at %l:%M %p")
+                %i.text-muted Location: 
+                = event.place
+.container
+  .row.text-center
+    %br
+    %h3 Welcome to Wake 'N Shake! Registration is now open!
+    %br
+    %hr
   .row
     .col-md-10.col-md-offset-1.text-center
       %br
-      %p.lead Wake ‘N Shake is a 12-hour dance marathon held every spring at Wake Forest University, benefiting the Brian Piccolo Cancer Research Fund. For 12-hours, students, alumni, and faculty members come together to stay standing in support of all those affected by cancer, asking for donations in support of their participation. 
-      %p 
-        Please also consider donating to Wake NY's team
-        %a{:href => 'https://wakenshake.com/teams/224'}here!
+      %p.lead Wake ‘N Shake is a 12-hour dance marathon held every spring at Wake Forest University, benefiting the Brian Piccolo Cancer Research Fund. For 12-hours, students, alumni, and faculty members come together to stay standing in support of all those affected by cancer, asking for donations in support of their participation.
       %br
-  %hr
+      %hr
   .row
     .col-md-6
       %h3 Top 10 Teams
-
       %table.table.table-bordered
         - @top_10_teams.each_with_index do |team, index|
           %tr
